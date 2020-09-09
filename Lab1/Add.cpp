@@ -4,10 +4,12 @@
 using namespace std;
 using namespace lab1;
 
-int Add(int a, int b) {
+namespace lab1 {
+	int Add(int a, int b) {
 
-	cout << a + b << endl;
-	
-	return a + b;
+		cout << a + b << endl;
 
+		return a + b;
+
+	}
 }
