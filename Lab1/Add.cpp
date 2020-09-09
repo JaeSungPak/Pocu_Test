@@ -4,7 +4,7 @@
 using namespace std;
 using namespace lab1;
 
-int lab1::Add(int a, int b) {
+int Add(int a, int b) {
 
 	cout << a + b << endl;
 	
