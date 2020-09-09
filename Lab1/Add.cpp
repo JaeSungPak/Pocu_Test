@@ -1,0 +1,13 @@
+#include "Add.h"
+#include <iostream>
+
+using namespace std;
+using namespace lab1;
+
+int lab1::Add(int a, int b) {
+
+	cout << a + b << endl;
+	
+	return a + b;
+
+}
