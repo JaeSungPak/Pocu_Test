@@ -4,9 +4,11 @@ using namespace std;
 
 namespace lab2
 {
-    void PrintIntegers(std::istream& in, std::ostream& out)
+    void PrintIntegers(istream& in, ostream& out)
     {
-        out << setw(12) << "oct" << setw(11) << "dec" << setw(9) << "hex" << endl << setfill('-') << setw(13) << ' ' << setw(11) << ' ' << setw(9) << '\n' << setfill(' ');
+        out <<setw(12)<<"oct"<<setw(11);
+        out << "dec" << setw(9) << "hex" << endl;
+        out << setfill('-') << setw(13) << ' ' << setw(11) << ' ' << setw(9) << '\n' << setfill(' ');
 
         int input;
         string trash;
@@ -29,7 +31,7 @@ namespace lab2
     }
 
 
-    void PrintMaxFloat(std::istream& in, std::ostream& out)
+    void PrintMaxFloat(istream& in, ostream& out)
     {
         float input;
         float max = LLONG_MIN;
