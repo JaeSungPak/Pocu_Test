@@ -37,7 +37,7 @@ namespace lab2
 
         out << fixed << setprecision(3);
 
-        while (!in.eof()) {
+        do {
 
             in >> input;
 
@@ -68,7 +68,7 @@ namespace lab2
                 in >> trash;
             }
 
-        }
+        } while (!in.eof());
 
         if (max < 0)
         {
