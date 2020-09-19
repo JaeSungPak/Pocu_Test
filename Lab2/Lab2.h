@@ -4,6 +4,8 @@
 #include <iomanip>
 #include <stdlib.h>
 
+using namespace std;
+
 namespace lab2
 {
 	// in: 여기서 사용자 입력을 읽으세요. cin에서 읽는 게 아닙니다.
