@@ -7,7 +7,7 @@ namespace lab2
     void PrintIntegers(std::istream& in, std::ostream& out)
     {
         out << setw(12) << "oct" << setw(11) << "dec" << setw(9) << "hex" << endl << 
-            setfill('-') << setw(13) << ' ' << setw(12) << ' ' << setw(9) << '\n' << setfill(' ');
+            setfill('-') << setw(13) << ' ' << setw(11) << ' ' << setw(9) << '\n' << setfill(' ');
 
         int input;
         string trash;
