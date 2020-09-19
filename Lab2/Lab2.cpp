@@ -7,7 +7,7 @@ namespace lab2
     void PrintIntegers(std::istream& in, std::ostream& out)
     {
         out << setw(12) << "oct" << setw(11) << "dec" << setw(9) << "hex" << endl << 
-            setfill('-') << setw(13) << ' ' << setw(12) << ' ' << setw(10) << '\n' << setfill(' ');
+            setfill('-') << setw(13) << ' ' << setw(12) << ' ' << setw(9) << '\n' << setfill(' ');
 
         int input;
         string trash;
@@ -41,6 +41,13 @@ namespace lab2
 
             in >> input;
 
+            if (max < input)
+            {
+
+                max = input;
+
+            }
+
             if (!in.fail())
             {
                 if (input < 0) 
@@ -54,13 +61,6 @@ namespace lab2
                 }
 
                 out << setw(14) << input << endl;
-
-                if (max < input)
-                {
-
-                    max = input;
-
-                }
             }
             else
             {
