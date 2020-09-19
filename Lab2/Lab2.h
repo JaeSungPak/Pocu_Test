@@ -1,7 +1,7 @@
 #pragma once
 
-#include <iostream>;
-#include <iomanip>;
+#include <iostream>
+#include <iomanip>
 
 namespace lab2
 {
