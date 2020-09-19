@@ -6,7 +6,7 @@ namespace lab2
 {
     void PrintIntegers(std::istream& in, std::ostream& out)
     {
-        cout << setw(12) << "oct" << setw(11) << "dec" << setw(9) << "hex" << endl << 
+        out << setw(12) << "oct" << setw(11) << "dec" << setw(9) << "hex" << endl << 
             setfill('-') << setw(13) << ' ' << setw(12) << ' ' << setw(10) << '\n' << setfill(' ');
 
         int input;
@@ -18,7 +18,7 @@ namespace lab2
 
             if (!in.fail())
             {
-                cout << setw(12) << oct << input << setw(11) << dec << input << setw(9) << hex << uppercase << input << endl;
+                out << setw(12) << oct << input << setw(11) << dec << input << setw(9) << hex << uppercase << input << endl;
             }
             else
             {
@@ -35,7 +35,7 @@ namespace lab2
         float max = LLONG_MIN;
         string trash;
 
-        cout << fixed << setprecision(3);
+        out << fixed << setprecision(3);
 
         while (!in.eof()) {
 
@@ -45,15 +45,15 @@ namespace lab2
             {
                 if (input < 0) 
                 {
-                    cout << setw(6) << '-';
+                    out << setw(6) << '-';
                     input = -input;
                 }
                 else
                 {
-                    cout << setw(6) << '+';
+                    out << setw(6) << '+';
                 }
 
-                cout << setw(14) << input << endl;
+                out << setw(14) << input << endl;
 
                 if (max < input)
                 {
@@ -72,15 +72,15 @@ namespace lab2
 
         if (max < 0)
         {
-            cout << "max:" << setw(2) << '-';
+            out << "max:" << setw(2) << '-';
             max = -max;
         }
         else
         {
-            cout << "max:" << setw(2) << '+';
+            out << "max:" << setw(2) << '+';
         }
 
-        cout << setw(14) << max << endl;
+        out << setw(14) << max << endl;
 
     }
 }
