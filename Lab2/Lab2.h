@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <stdlib.h>
 
 namespace lab2
 {

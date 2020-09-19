@@ -37,8 +37,8 @@ namespace lab2
 
         cout << fixed << setprecision(3);
 
-        do {
-
+        while (!in.eof())
+        {
             in >> input;
 
             if (max < input)
@@ -53,14 +53,13 @@ namespace lab2
                 if (input < 0) 
                 {
                     cout << setw(6) << '-';
-                    input = -input;
                 }
                 else
                 {
                     cout << setw(6) << '+';
                 }
 
-                cout << setw(14) << input << endl;
+                cout << setw(14) << abs(input) << endl;
             }
             else
             {
@@ -68,19 +67,18 @@ namespace lab2
                 in >> trash;
             }
 
-        } while (!in.eof());
+        }
 
         if (max < 0)
         {
             cout << "max:" << setw(2) << '-';
-            max = -max;
         }
         else
         {
             cout << "max:" << setw(2) << '+';
         }
 
-        cout << setw(14) << max << endl;
+        cout << setw(14) << abs(max) << endl;
 
     }
 }
