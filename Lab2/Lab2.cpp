@@ -2,9 +2,9 @@
 
 void lab2::PrintIntegers(istream& in, ostream& out)
 {
-    out <<setw(12)<<"oct"<<setw(11) << "dec" << setw(9) << "hex" << endl << setfill('-') << setw(13) << ' ' << setw(11) << ' ' << setw(9) << '\n' << setfill(' ');
+out <<setw(12)<<"oct"<<setw(11) << "dec" << setw(9) << "hex" << endl << setfill('-') << setw(13) << ' ' << setw(11) << ' ' << setw(9) << '\n' << setfill(' ');
 
-    int input;
+int input;
     string trash;
 
     while (!in.eof()) 
