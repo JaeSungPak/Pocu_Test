@@ -6,10 +6,10 @@ namespace lab2
 {
     void PrintIntegers(std::istream& in, std::ostream& out)
     {
+        out << setw(12) << "oct" << setw(11) << "dec" << setw(9) << "hex" << endl << endl;
+
         int input;
         string trash;
-
-        out << setw(12) << "oct" << setw(11) << "dec" << setw(9) << "hex" << endl << endl;
 
         while (!in.eof()) {
 
