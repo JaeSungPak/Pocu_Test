@@ -26,7 +26,7 @@ void lab2::PrintIntegers(istream& in, ostream& out)
 void lab2::PrintMaxFloat(istream& in, ostream& out)
 {
 	float input;
-	float max = LLONG_MAX;
+	float max = LLONG_MIN;
 	string trash;
 
 	out << fixed << setprecision(3);
