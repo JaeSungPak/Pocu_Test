@@ -50,8 +50,9 @@ void lab2::PrintMaxFloat(istream& in, ostream& out)
 			}
 			else
 			{
-				out << setw(14) << abs(input) << endl;
+				out << setw(6) << '+';
 			}
+			out << setw(14) << abs(input) << endl;
 		}
 		else
 		{
