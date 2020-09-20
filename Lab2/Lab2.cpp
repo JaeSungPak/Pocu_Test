@@ -35,7 +35,7 @@ void lab2::PrintMaxFloat(istream& in, ostream& out)
 	{
 		in >> input;
 
-		if (max = input)
+		if (max < input)
 		{
 
 			max = input;
