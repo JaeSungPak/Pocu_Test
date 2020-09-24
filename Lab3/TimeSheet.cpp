@@ -19,42 +19,45 @@ namespace lab3
 	
 	void TimeSheet::AddTime(int timeInHours)
 	{
+		/*
 		if (timeInHours >= 1 && timeInHours <= 10 && static_cast<unsigned>(mTimeLocate) < _msize(mTime) / sizeof(int))
 		{ 
 			mTime[mTimeLocate] = timeInHours;
 			mTimeLocate += 1;
-		}
+		}*/
 	}
 	int TimeSheet::GetTimeEntry(unsigned int index) const
 	{
+		/*
 		if (index <= static_cast<unsigned int>(mTimeLocate) && index >= 0)
 		{
 			return mTime[index];
 		}
+		*/
 		return -1;
 	}
 	
 	int TimeSheet::GetTotalTime() const
 	{
-		//int total = 0;
+		int total = 0;
 		
-		//for (int i = 0; i < mTimeLocate; i++)
-		//{
-			//total += mTime[i];
-		//}
+		for (int i = 0; i < mTimeLocate; i++)
+		{
+			total += mTime[i];
+		}
 		
-		return 0;//total;
+		return total;
 	}
 	
 	float TimeSheet::GetAverageTime() const
 	{
-		//float average = static_cast<float>(GetTotalTime()) / mTimeLocate;
+		float average = static_cast<float>(GetTotalTime()) / mTimeLocate;
 
-		return 0;//average;
+		return average;
 	}
 	float TimeSheet::GetStandardDeviation() const
 	{
-		/*
+		
 		float average = GetAverageTime();
 		float temp = 0;
 		
@@ -63,8 +66,8 @@ namespace lab3
 			float minus = static_cast<float>(mTime[i]);
 			temp += (minus - average) * (minus - average);
 		}
-		*/
-		return 0;//static_cast<float>(sqrt(temp / static_cast<float>(mTimeLocate)));
+		
+		return static_cast<float>(sqrt(temp / static_cast<float>(mTimeLocate)));
 	}
 	const std::string& TimeSheet::GetName() const
 	{
