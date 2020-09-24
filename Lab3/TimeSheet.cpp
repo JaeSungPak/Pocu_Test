@@ -45,7 +45,7 @@ namespace lab3
 		
 		return total;
 	}
-	/*
+	
 	float TimeSheet::GetAverageTime() const
 	{
 		float average = static_cast<float>(GetTotalTime()) / mTimeLocate;
@@ -54,6 +54,7 @@ namespace lab3
 	}
 	float TimeSheet::GetStandardDeviation() const
 	{
+		/*
 		float average = GetAverageTime();
 		float temp = 0;
 		
@@ -62,13 +63,13 @@ namespace lab3
 			float minus = static_cast<float>(mTime[i]);
 			temp += (minus - average) * (minus - average);
 		}
-		
-		return static_cast<float>(sqrt(temp / static_cast<float>(mTimeLocate)));
+		*/
+		return 0;//static_cast<float>(sqrt(temp / static_cast<float>(mTimeLocate)));
 	}
 	const std::string& TimeSheet::GetName() const
 	{
 		return mName;
-	}*/
+	}
 	TimeSheet::~TimeSheet()
 	{
 		delete[] mTime;
