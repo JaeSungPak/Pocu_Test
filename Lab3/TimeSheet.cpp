@@ -8,9 +8,15 @@ namespace lab3
         mTime = new int[maxEntries];
     }
 
+    TimeSheet::TimeSheet(const TimeSheet &other) : timeLocate(other.timeLocate), mName(other.mName)
+    {
+        mTime = new int[_msize(other.mTime) / sizeof(int)];
+        memcpy(mTime, other.mTime, _msize(other.mTime));
+    }
+
     void TimeSheet::AddTime(int timeInHours)
     {
-        if (timeInHours >= 1 && timeInHours <= 10 && timeLocate < _msize(mTime) / sizeof(int))
+        if (timeInHours >= 1 && timeInHours <= 10 && (unsigned)timeLocate < _msize(mTime) / sizeof(int))
         {
             mTime[timeLocate] = timeInHours;
             timeLocate += 1;
@@ -19,7 +25,7 @@ namespace lab3
 
     int TimeSheet::GetTimeEntry(unsigned int index) const
     {
-        if (index <= timeLocate && index >= 0)
+        if (index <= (unsigned)timeLocate && index >= 0)
         {
             return mTime[index];
         }
@@ -68,4 +74,16 @@ namespace lab3
     {
         delete[] mTime;
     }
+    
+    TimeSheet& TimeSheet::operator= (const TimeSheet &other)
+    {
+        timeLocate = other.timeLocate;
+        mName = other.mName;
+        delete[] mTime;
+        mTime = new int[_msize(other.mTime) / sizeof(int)];
+        memcpy(mTime, other.mTime, _msize(other.mTime));
+
+        return *this;
+    }
+    
 }

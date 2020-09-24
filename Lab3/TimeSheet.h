@@ -7,6 +7,7 @@ namespace lab3
     {
     public:
         TimeSheet(const char* name, unsigned int maxEntries);
+        TimeSheet(const TimeSheet &other);
         void AddTime(int timeInHours);
         int GetTimeEntry(unsigned int index) const;
         int GetTotalTime() const;
@@ -14,6 +15,7 @@ namespace lab3
         float GetStandardDeviation() const;
         const std::string& GetName() const;
         ~TimeSheet();
+        TimeSheet& operator= (const TimeSheet& other);
 
     private:
         TimeSheet();
