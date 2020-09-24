@@ -36,21 +36,21 @@ namespace lab3
 	
 	int TimeSheet::GetTotalTime() const
 	{
-		int total = 0;
+		//int total = 0;
 		
-		for (int i = 0; i < mTimeLocate; i++)
-		{
-			total += mTime[i];
-		}
+		//for (int i = 0; i < mTimeLocate; i++)
+		//{
+			//total += mTime[i];
+		//}
 		
-		return total;
+		return 0;//total;
 	}
 	
 	float TimeSheet::GetAverageTime() const
 	{
-		float average = static_cast<float>(GetTotalTime()) / mTimeLocate;
+		//float average = static_cast<float>(GetTotalTime()) / mTimeLocate;
 
-		return average;
+		return 0;//average;
 	}
 	float TimeSheet::GetStandardDeviation() const
 	{
