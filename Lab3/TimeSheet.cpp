@@ -22,7 +22,7 @@ namespace lab3
 	}
 	int TimeSheet::GetTimeEntry(unsigned int index) const
 	{
-		if (index <= (unsigned int)mTimeLocate && index >= 0)
+		if (index <= static_cast<unsigned int>(mTimeLocate) && index >= 0)
 		{
 			return mTime[index];
 		}
