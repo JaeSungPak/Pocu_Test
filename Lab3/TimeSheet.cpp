@@ -33,7 +33,7 @@ namespace lab3
 		}
 		return -1;
 	}
-	/*
+	
 	int TimeSheet::GetTotalTime() const
 	{
 		int total = 0;
@@ -45,6 +45,7 @@ namespace lab3
 		
 		return total;
 	}
+	/*
 	float TimeSheet::GetAverageTime() const
 	{
 		float average = static_cast<float>(GetTotalTime()) / mTimeLocate;
