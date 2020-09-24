@@ -13,7 +13,8 @@ int main()
     employee1.AddTime(2);
     lab3::TimeSheet employee2("Anna", 2);
     employee2 = employee1;
-    std::cout << "Employee: " << employee1.GetName() << " / AverageTime: " << employee1.GetAverageTime() << " / AverageTime: " << employee1.GetAverageTime() << " / TotalTime: " << employee1.GetTotalTime() << std::endl;
-    std::cout << "Employee: " << employee2.GetName() << " / AverageTime: " << employee1.GetAverageTime() << " / AverageTime: " << employee2.GetAverageTime() << " / TotalTime: " << employee2.GetTotalTime() << std::endl;
+    std::cout << sizeof(int) << endl;
+    std::cout << "Employee: " << employee1.GetName() << " / AverageTime: " << employee1.GetAverageTime() << " / StandardDeviation: " << employee1.GetStandardDeviation() << " / TotalTime: " << employee1.GetTotalTime() << std::endl;
+    std::cout << "Employee: " << employee2.GetName() << " / AverageTime: " << employee1.GetAverageTime() << " / StandardDeviation: " << employee2.GetStandardDeviation() << " / TotalTime: " << employee2.GetTotalTime() << std::endl;
     return 0;
 }

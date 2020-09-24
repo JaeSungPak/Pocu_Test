@@ -23,7 +23,7 @@ namespace lab3
 	private:
 		std::string mName;
 		int* mTime;
-		int timeLocate;
+		int mTimeLocate;
 	};
     
 }
