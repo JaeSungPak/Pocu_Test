@@ -16,7 +16,7 @@ namespace lab3
 		mTime = new int[_msize(other.mTime) / 4];
 		memcpy(mTime, other.mTime, _msize(other.mTime));
 	}
-	/*
+	
 	void TimeSheet::AddTime(int timeInHours)
 	{
 		if (timeInHours >= 1 && timeInHours <= 10 && static_cast<unsigned>(mTimeLocate) < _msize(mTime) / sizeof(int))
@@ -33,6 +33,7 @@ namespace lab3
 		}
 		return -1;
 	}
+	/*
 	int TimeSheet::GetTotalTime() const
 	{
 		int total = 0;
