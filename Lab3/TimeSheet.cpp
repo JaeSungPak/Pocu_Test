@@ -31,11 +31,12 @@ namespace lab3
 	int TimeSheet::GetTotalTime() const
 	{
 		int total = 0;
-
+		/*
 		for (int i = 0; i < mTimeLocate; i++)
 		{
 			total += mTime[i];
 		}
+		*/
 		return total;
 	}
 	float TimeSheet::GetAverageTime() const
@@ -48,12 +49,13 @@ namespace lab3
 	{
 		float average = GetAverageTime();
 		float temp = 0;
-
+		/*
 		for (int i = 0; i < mTimeLocate; i++)
 		{
 			float minus = static_cast<float>(mTime[i]);
 			temp += (minus - average) * (minus - average);
 		}
+		*/
 		return static_cast<float>(sqrt(temp / static_cast<float>(mTimeLocate)));
 	}
 	const std::string& TimeSheet::GetName() const
