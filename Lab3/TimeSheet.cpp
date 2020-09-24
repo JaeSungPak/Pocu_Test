@@ -51,9 +51,10 @@ namespace lab3
 
 		for (int i = 0; i < mTimeLocate; i++)
 		{
-			temp += pow(mTime[i] - average, 2);
+			float minus = static_cast<float>(mTime[i]);
+			temp += (minus - average) * (minus - average);
 		}
-		return sqrt(temp / mTimeLocate);
+		return static_cast<float>(sqrt(temp / static_cast<float>(mTimeLocate)));
 	}
 	const std::string& TimeSheet::GetName() const
 	{
