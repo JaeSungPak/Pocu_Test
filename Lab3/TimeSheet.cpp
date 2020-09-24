@@ -1,8 +1,12 @@
 #include "TimeSheet.h"
+#include <iostream>
 
 namespace lab3
 {
-	
+	TimeSheet::TimeSheet() : mTimeLocate(0), mName("")
+	{
+		mTime = NULL;
+	}
 	TimeSheet::TimeSheet(const char* name, unsigned int maxEntries) : mTimeLocate(0), mName(name)
 	{
 		mTime = new int[maxEntries];
@@ -31,12 +35,12 @@ namespace lab3
 	int TimeSheet::GetTotalTime() const
 	{
 		int total = 0;
-		/*
+		
 		for (int i = 0; i < mTimeLocate; i++)
 		{
 			total += mTime[i];
 		}
-		*/
+		
 		return total;
 	}
 	float TimeSheet::GetAverageTime() const
@@ -49,13 +53,13 @@ namespace lab3
 	{
 		float average = GetAverageTime();
 		float temp = 0;
-		/*
+		
 		for (int i = 0; i < mTimeLocate; i++)
 		{
 			float minus = static_cast<float>(mTime[i]);
 			temp += (minus - average) * (minus - average);
 		}
-		*/
+		
 		return static_cast<float>(sqrt(temp / static_cast<float>(mTimeLocate)));
 	}
 	const std::string& TimeSheet::GetName() const
@@ -68,6 +72,10 @@ namespace lab3
 	}
 	TimeSheet& TimeSheet::operator= (const TimeSheet& other)
 	{
+		if (reinterpret_cast<int>(this) == reinterpret_cast<int>(&other))
+		{
+			return *this;
+		}
 		mTimeLocate = other.mTimeLocate;
 		mName = other.mName;
 		delete[] mTime;

@@ -9,6 +9,7 @@ namespace lab3
 	class TimeSheet
 	{
 	public :
+		TimeSheet();
 		TimeSheet(const char* name, unsigned int maxEntries);
 		TimeSheet(const TimeSheet& other);
 		void AddTime(int timeInHours);
