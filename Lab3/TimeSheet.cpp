@@ -5,16 +5,12 @@ namespace lab3
 {
 	TimeSheet::TimeSheet() : mTimeLocate(0), mName("")
 	{
-		mTime = NULL;
 	}
 	TimeSheet::TimeSheet(const char* name, unsigned int maxEntries) : mTimeLocate(0), mName(name)
 	{
-		mTime = new int[maxEntries];
 	}
-	TimeSheet::TimeSheet(const TimeSheet& other) : mTimeLocate(other.mTimeLocate), mName(other.mName)
+	TimeSheet::TimeSheet(const TimeSheet& other)
 	{
-		mTime = new int[_msize(other.mTime) / 4];
-		//memcpy(mTime, other.mTime, _msize(other.mTime));
 	}
 
 	void TimeSheet::AddTime(int timeInHours)
