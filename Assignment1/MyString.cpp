@@ -159,7 +159,7 @@ namespace assignment1
 
         for (int i = length; i < totalLength; i++)
         {
-            mString[i] = '-';
+            mString[i] = ' ';
         }
 
         mString[totalLength] = '\0';
@@ -167,6 +167,14 @@ namespace assignment1
 
     void MyString::PadRight(unsigned int totalLength, const char c)
     {
+        int length = GetLength();
+
+        for (int i = length; i < totalLength; i++)
+        {
+            mString[i] = c;
+        }
+
+        mString[totalLength] = '\0';
     }
 
     void MyString::Reverse()
