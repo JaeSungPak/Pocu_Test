@@ -4,7 +4,12 @@ namespace assignment1
 {
     MyString::MyString(const char* s)
     {
-        mString = new char[];
+        int length = GetLength(s);
+        mString = new char[length];
+        for (int i = 0; i < length; i++)
+        {
+            mString[i] = s[i];
+        }
     }
 
     MyString::MyString(const MyString& other)
@@ -19,6 +24,9 @@ namespace assignment1
     {
         int length;
         for (length = 0; mString[length]; length++);
+        {
+
+        }
         return length;
     }
 
