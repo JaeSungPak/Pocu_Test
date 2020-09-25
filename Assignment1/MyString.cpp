@@ -1,4 +1,5 @@
 #include "MyString.h"
+#include <iostream>
 
 #define MAX_LENGTH (256)
 
@@ -69,6 +70,26 @@ namespace assignment1
 
     void MyString::Interleave(const char* s)
     {
+        int thisLength = GetLength();
+
+        int sLength = GetLength(s);
+
+        int bigger = sLength > thisLength ? sLength : thisLength;
+
+        char temp[MAX_LENGTH];
+
+        for (int i = 0; temp[i] = mString[i]; i++);
+
+        for (int i = 0; i < bigger; i++)
+        {
+            std::cout << i << std::endl;
+
+            thisLength > i ? mString[i * 2] = temp[i] : false;
+
+            sLength > i ? mString[i * 2 + 1] = s[i] : false;
+        }
+        
+        mString[sLength + thisLength + 1] = '\0';
     }
 
     bool MyString::RemoveAt(unsigned int index)

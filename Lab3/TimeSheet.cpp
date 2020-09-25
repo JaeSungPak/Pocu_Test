@@ -12,8 +12,7 @@ namespace lab3
 	}
 	TimeSheet::TimeSheet(const TimeSheet& other)
 	{
-		mTimeLocate = other.GetLocate();
-		mName = other.GetName();
+		mTime = new int[_msize(other.mTime) / 4];
 	}
 
 	void TimeSheet::AddTime(int timeInHours)

@@ -7,7 +7,7 @@ int main()
 	MyString s("hello");
 	MyString s2(s);
 
-	s.Append(" world");
+	s.Interleave(" World");
 
 	std::cout << s.GetLength() << " " << s.GetCString() << std::endl << (s + s2).GetLength() << " " << (s + s2).GetCString();
 
