@@ -4,11 +4,8 @@ namespace assignment1
 {
     MyString::MyString(const char* s)
     {
-        mString = new char[15];
-        for (int i = 0; s < "\0"; i++)
-        {
-            mString[i] = s[i];
-        }
+        mString = new char[10];
+        for (int i = 0; mString[i] = s[i]; i++);
     }
 
     MyString::MyString(const MyString& other)

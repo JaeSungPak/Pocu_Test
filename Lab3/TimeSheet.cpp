@@ -10,19 +10,19 @@ namespace lab3
 	{
 		mTime = new int[maxEntries];
 	}
-	TimeSheet::TimeSheet(const TimeSheet& other)
+	TimeSheet::TimeSheet(const TimeSheet& other) : mTimeLocate(other.mTimeLocate), mName(other.mName)
 	{
 	}
 
 	void TimeSheet::AddTime(int timeInHours)
 	{
-		
+		/*
 		if (timeInHours >= 1 && timeInHours <= 10 && static_cast<unsigned>(mTimeLocate) < _msize(mTime) / 4)
 		{
 			mTime[mTimeLocate] = timeInHours;
 			mTimeLocate += 1;
 		}
-		
+		*/
 	}
 	int TimeSheet::GetTimeEntry(unsigned int index) const
 	{
