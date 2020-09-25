@@ -1,16 +1,20 @@
 #include "MyString.h"
 
+#define MAX_LENGTH (256)
+
 namespace assignment1
 {
     MyString::MyString(const char* s)
     {
-        mString = new char[10];
+        mString = new char[MAX_LENGTH];
         for (int i = 0; mString[i] = s[i]; i++);
     }
 
     MyString::MyString(const MyString& other)
     {
         delete[] mString;
+        mString = new char[MAX_LENGTH];
+        for (int i = 0; mString[i] = other.GetCString()[i]; i++);
     }
 
     MyString::~MyString()

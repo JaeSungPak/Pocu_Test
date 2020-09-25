@@ -10,7 +10,7 @@ namespace lab3
 	{
 		mTime = new int[maxEntries];
 	}
-	TimeSheet::TimeSheet(const TimeSheet& other) : mTimeLocate(other.mTimeLocate), mName(other.mName)
+	TimeSheet::TimeSheet(const TimeSheet& other) : mTimeLocate(other.GetLocate()), mName(other.GetName())
 	{
 	}
 
