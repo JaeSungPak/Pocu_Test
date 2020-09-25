@@ -5,7 +5,8 @@ namespace assignment1
     MyString::MyString(const char* s)
     {
         int length = GetLength(s);
-        mString = new char[length];
+        mString = new char[5];
+        
         for (int i = 0; i < length; i++)
         {
             mString[i] = s[i];
@@ -14,32 +15,31 @@ namespace assignment1
 
     MyString::MyString(const MyString& other)
     {
+        delete[] mString;
     }
 
     MyString::~MyString()
     {
+        delete[] mString;
     }
 
     unsigned int MyString::GetLength() const
     {
         int length;
-        for (length = 0; mString[length]; length++);
-        {
-
-        }
+        for (length = 0; mString[length] != '\0'; length++);
         return length;
     }
 
     unsigned int MyString::GetLength(const char* string) const
     {
         int length;
-        for (length = 0; string[length]; length++);
+        for (length = 0; string[length] != '\0'; length++);
         return length;
     }
 
     const char* MyString::GetCString() const
     {
-        return 0;
+        return mString;
     }
 
     void MyString::Append(const char* s)
