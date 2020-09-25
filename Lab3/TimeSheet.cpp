@@ -1,5 +1,4 @@
 #include "TimeSheet.h"
-#include <iostream>
 
 namespace lab3
 {
@@ -13,18 +12,17 @@ namespace lab3
 	}
 	TimeSheet::TimeSheet(const TimeSheet& other)
 	{
-
 	}
 
 	void TimeSheet::AddTime(int timeInHours)
 	{
-
-		if (timeInHours >= 1 && timeInHours <= 10 && static_cast<unsigned>(mTimeLocate) < _msize(mTime) / sizeof(int))
+		/*
+		if (timeInHours >= 1 && timeInHours <= 10 && static_cast<unsigned>(mTimeLocate) < _msize(mTime) / 4)
 		{
 			mTime[mTimeLocate] = timeInHours;
 			mTimeLocate += 1;
 		}
-
+		*/
 	}
 	int TimeSheet::GetTimeEntry(unsigned int index) const
 	{
