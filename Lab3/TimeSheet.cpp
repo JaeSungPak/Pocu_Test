@@ -2,7 +2,7 @@
 
 namespace lab3
 {
-	TimeSheet::TimeSheet() : mTimeLocate(0), mName("")
+	TimeSheet::TimeSheet() : mTimeLocate(0), mName(""), mMax(0)
 	{
 		mTime = NULL;
 	}
@@ -12,7 +12,7 @@ namespace lab3
 	}
 	TimeSheet::TimeSheet(const TimeSheet& other)
 	{
-		//mTime = new int[_msize(other.mTime) / 4];
+		mTime = new int[mMax];
 	}
 
 	void TimeSheet::AddTime(int timeInHours)

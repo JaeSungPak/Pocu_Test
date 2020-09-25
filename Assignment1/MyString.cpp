@@ -179,6 +179,14 @@ namespace assignment1
 
     void MyString::Reverse()
     {
+        int length = GetLength();
+
+        for (int i = 0; i < length / 2; i++)
+        {
+            char temp = mString[i];
+            mString[i] = mString[length - i - 1];
+            mString[length - i - 1] = temp;
+        }
     }
 
     bool MyString::operator==(const MyString& rhs) const

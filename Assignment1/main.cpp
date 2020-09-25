@@ -4,10 +4,10 @@ using namespace assignment1;
 
 int main()
 {
-	MyString s("hello");
+	MyString s("abcdef");
 	MyString s2(s);
 
-	s.PadRight(8);
+	s.Reverse();
 	std::cout << s.GetLength() << ' ' << s.GetCString() << std::endl << (s + s2).GetLength() << ' ' << (s + s2).GetCString() << std::endl;
 	
 	return 0;
