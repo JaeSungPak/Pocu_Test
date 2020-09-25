@@ -13,11 +13,11 @@ namespace lab3
 	}
 	TimeSheet::TimeSheet(const TimeSheet& other)
 	{
-		mTimeLocate = other.mTimeLocate;
-		mName = other.mName;
+		mTimeLocate = other.GetLocate();
+		mName = other.GetName();
 
-		mTime = new int[_msize(other.mTime) / 4];
-		memcpy(mTime, other.mTime, _msize(other.mTime));
+		mTime = new int[_msize(other.GetTime()) / 4];
+		memcpy(mTime, other.GetTime(), _msize(other.GetTime()));
 	}
 
 	void TimeSheet::AddTime(int timeInHours)
@@ -47,6 +47,17 @@ namespace lab3
 	{
 		return mName;
 	}
+
+	const int TimeSheet::GetLocate() const
+	{
+		return mTimeLocate;
+	}
+
+	int* TimeSheet::GetTime() const
+	{
+		return mTime;
+	}
+	
 	TimeSheet::~TimeSheet()
 	{
 		//delete[] mTime;

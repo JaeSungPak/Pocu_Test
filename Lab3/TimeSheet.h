@@ -18,8 +18,10 @@ namespace lab3
 		float GetAverageTime() const;
 		float GetStandardDeviation() const;
 		const std::string& GetName() const;
+		const int GetLocate() const;
 		~TimeSheet();
 		TimeSheet& operator= (const TimeSheet& other);
+		int* GetTime() const;
 
 	private:
 		std::string mName;
