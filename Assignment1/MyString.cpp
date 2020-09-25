@@ -4,10 +4,8 @@ namespace assignment1
 {
     MyString::MyString(const char* s)
     {
-        int length = GetLength(s);
-        mString = new char[5];
-        
-        for (int i = 0; i < length; i++)
+        mString = new char[15];
+        for (int i = 0; s < "\0"; i++)
         {
             mString[i] = s[i];
         }
