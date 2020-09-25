@@ -201,9 +201,21 @@ namespace assignment1
 
     void MyString::ToLower()
     {
+        int length = GetLength();
+
+        for (int i = 0; i < length; i++)
+        {
+            mString[i] = mString[i] >= 65 && mString[i] <= 90 ? mString[i] + 32 : mString[i];
+        }
     }
 
     void MyString::ToUpper()
     {
+        int length = GetLength();
+
+        for (int i = 0; i < length; i++)
+        {
+            mString[i] = mString[i] >= 97 && mString[i] <= 122 ? mString[i] - 32 : mString[i];
+        }
     }
 }
