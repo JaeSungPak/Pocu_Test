@@ -12,7 +12,7 @@ namespace lab3
 	}
 	TimeSheet::TimeSheet(const TimeSheet& other)
 	{
-		mTime = new int[mMax];
+		//mTime = new int[mMax];
 	}
 
 	void TimeSheet::AddTime(int timeInHours)
