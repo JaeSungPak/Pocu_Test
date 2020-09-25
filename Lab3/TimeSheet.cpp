@@ -5,16 +5,16 @@ namespace lab3
 {
 	TimeSheet::TimeSheet() : mTimeLocate(0), mName("")
 	{
-		mTime = NULL;
+		//mTime = NULL;
 	}
 	TimeSheet::TimeSheet(const char* name, unsigned int maxEntries) : mTimeLocate(0), mName(name)
 	{
-		mTime = new int[maxEntries];
+		//mTime = new int[maxEntries];
 	}
 	TimeSheet::TimeSheet(const TimeSheet& other) : mTimeLocate(other.mTimeLocate), mName(other.mName)
 	{
-		mTime = new int[_msize(other.mTime) / 4];
-		memcpy(mTime, other.mTime, _msize(other.mTime));
+		//mTime = new int[_msize(other.mTime) / 4];
+		//memcpy(mTime, other.mTime, _msize(other.mTime));
 	}
 	
 	void TimeSheet::AddTime(int timeInHours)
@@ -73,15 +73,15 @@ namespace lab3
 	}
 	const std::string& TimeSheet::GetName() const
 	{
-		return mName;
+		return ""; //mName;
 	}
 	TimeSheet::~TimeSheet()
 	{
-		delete[] mTime;
+		//delete[] mTime;
 	}
 	TimeSheet& TimeSheet::operator= (const TimeSheet& other)
 	{
-		/*
+		
 		if (reinterpret_cast<int>(this) == reinterpret_cast<int>(&other))
 		{
 			return *this;
@@ -91,7 +91,7 @@ namespace lab3
 		delete[] mTime;
 		mTime = new int[_msize(other.mTime) / 4];
 		memcpy(mTime, other.mTime, _msize(other.mTime));
-		*/
+		
 		return *this;
 	}
 
