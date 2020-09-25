@@ -12,7 +12,6 @@ namespace assignment1
 
     MyString::MyString(const MyString& other)
     {
-        delete[] mString;
         mString = new char[MAX_LENGTH];
         for (int i = 0; mString[i] = other.GetCString()[i]; i++);
     }
@@ -43,11 +42,19 @@ namespace assignment1
 
     void MyString::Append(const char* s)
     {
+        int length = GetLength();
+        int i = 0;
+
+        for (int i = 0; mString[length] = s[i]; i++, length++);
     }
 
     MyString MyString::operator+(const MyString& other) const
     {
-        return MyString("temporary");
+        MyString clone(*this);
+
+        clone.Append(other.GetCString());
+
+        return clone;
     }
 
     int MyString::IndexOf(const char* s)
