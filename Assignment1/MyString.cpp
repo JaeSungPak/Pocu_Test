@@ -61,19 +61,19 @@ namespace assignment1
 	int MyString::IndexOf(const char* s)
 	{
 		int length = GetLength();
-		int s_length = GetLength(s);
+		int sLength = GetLength(s);
 
 		int index = -1;
 
 		for (int i = 0; i < length; i++)
 		{
-			for (int j = 0; j < s_length; j++)
+			for (int j = 0; j < sLength; j++)
 			{
 				if (mString[i + j] != s[j])
 				{
 					break;
 				}
-				index = j == s_length - 1 ? i : -1;
+				index = j == sLength - 1 ? i : -1;
 			}
 			if (index > 0)
 			{
@@ -86,19 +86,19 @@ namespace assignment1
 	int MyString::LastIndexOf(const char* s)
 	{
 		int length = GetLength();
-		int s_length = GetLength(s);
+		int sLength = GetLength(s);
 
 		int index = -1;
 
 		for (int i = length - 1; i >= 0; i--)
 		{
-			for (int j = 0; j < s_length; j++)
+			for (int j = 0; j < sLength; j++)
 			{
 				if (mString[i + j] != s[j])
 				{
 					break;
 				}
-				index = j == s_length - 1 ? i : -1;
+				index = j == sLength - 1 ? i : -1;
 			}
 			if (index > 0)
 			{
@@ -114,32 +114,32 @@ namespace assignment1
 
 		for (int i = 0; temp[i] = mString[i]; i++);
 
-		int this_Length = GetLength();
-		int s_Length = GetLength(s);
+		int thisLength = GetLength();
+		int sLength = GetLength(s);
 
-		int temp_Local = 0;
-		int s_Local = 0;
+		int tempLocal = 0;
+		int sLocal = 0;
 
-		for (int i = 0; i < this_Length + s_Length;)
+		for (int i = 0; i < thisLength + sLength;)
 		{
-			this_Length > temp_Local ? mString[i++] = temp[temp_Local++] : false;
+			thisLength > tempLocal ? mString[i++] = temp[tempLocal++] : false;
 
-			s_Length > s_Local ? mString[i++] = s[s_Local++] : false;
+			sLength > sLocal ? mString[i++] = s[sLocal++] : false;
 		}
 
-		mString[s_Length + this_Length] = '\0';
+		mString[sLength + thisLength] = '\0';
 	}
 
 	bool MyString::RemoveAt(unsigned int index)
 	{
-		int length = GetLength();
+		unsigned int length = GetLength();
 
 		if (index > length)
 		{
 			return false;
 		}
 
-		for (int i = index; i < length; i++)
+		for (unsigned int i = index; i < length; i++)
 		{
 			mString[i] = mString[i + 1];
 		}
@@ -151,7 +151,7 @@ namespace assignment1
 
 	void MyString::PadLeft(unsigned int totalLength)
 	{
-		int length = GetLength();
+		unsigned int length = GetLength();
 
 		if (totalLength < length)
 		{
@@ -163,7 +163,7 @@ namespace assignment1
 			mString[i + totalLength - length] = mString[i];
 		}
 
-		for (int i = 0; i < totalLength - length; i++)
+		for (unsigned int i = 0; i < totalLength - length; i++)
 		{
 			mString[i] = ' ';
 		}
@@ -173,7 +173,7 @@ namespace assignment1
 
 	void MyString::PadLeft(unsigned int totalLength, const char c)
 	{
-		int length = GetLength();
+		unsigned int length = GetLength();
 
 		if (totalLength < length)
 		{
@@ -185,7 +185,7 @@ namespace assignment1
 			mString[i + totalLength - length] = mString[i];
 		}
 
-		for (int i = 0; i < totalLength - length; i++)
+		for (unsigned int i = 0; i < totalLength - length; i++)
 		{
 			mString[i] = c;
 		}
@@ -197,7 +197,7 @@ namespace assignment1
 	{
 		int length = GetLength();
 
-		for (int i = length; i < totalLength; i++)
+		for (unsigned int i = length; i < totalLength; i++)
 		{
 			mString[i] = ' ';
 		}
@@ -209,7 +209,7 @@ namespace assignment1
 	{
 		int length = GetLength();
 
-		for (int i = length; i < totalLength; i++)
+		for (unsigned int i = length; i < totalLength; i++)
 		{
 			mString[i] = c;
 		}
