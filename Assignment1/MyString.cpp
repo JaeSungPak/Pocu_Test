@@ -74,36 +74,95 @@ namespace assignment1
 
         for (int i = 0; temp[i] = mString[i]; i++);
 
-        int thisLength = GetLength();
-        int sLength = GetLength(s);
-        int tempLocal = 0;
-        int sLocal = 0;
+        int this_Length = GetLength();
+        int s_Length = GetLength(s);
 
-        for (int i = 0; i < thisLength + sLength;)
+        int temp_Local = 0;
+        int s_Local = 0;
+
+        for (int i = 0; i < this_Length + s_Length;)
         {
-            thisLength > tempLocal ? mString[i++] = temp[tempLocal++] : false;
+            this_Length > temp_Local ? mString[i++] = temp[temp_Local++] : false;
 
-            sLength > sLocal ? mString[i++] = s[sLocal++] : false;
+            s_Length > s_Local ? mString[i++] = s[s_Local++] : false;
         }
         
-        mString[sLength + thisLength] = '\0';
+        mString[s_Length + this_Length] = '\0';
     }
 
     bool MyString::RemoveAt(unsigned int index)
     {
-        return false;
+        int length = GetLength();
+
+        if (index > length)
+        {
+            return false;
+        }
+
+        for (int i = index; i < length; i++)
+        {
+            mString[i] = mString[i + 1];
+        }
+
+        mString[length - 1] = NULL;
+
+        return true;
     }
 
     void MyString::PadLeft(unsigned int totalLength)
     {
+        int length = GetLength();
+
+        if (totalLength < length)
+        {
+            return;
+        }
+
+        for (int i = length - 1; i >= 0; i--)
+        {
+            mString[i + totalLength - length] = mString[i];
+        }
+
+        for (int i = 0; i < totalLength - length; i++)
+        {
+            mString[i] = ' ';
+        }
+
+        mString[totalLength] = '\0';
     }
 
     void MyString::PadLeft(unsigned int totalLength, const char c)
     {
+        int length = GetLength();
+
+        if (totalLength < length)
+        {
+            return;
+        }
+
+        for (int i = length - 1; i >= 0; i--)
+        {
+            mString[i + totalLength - length] = mString[i];
+        }
+
+        for (int i = 0; i < totalLength - length; i++)
+        {
+            mString[i] = c;
+        }
+
+        mString[totalLength] = '\0';
     }
 
     void MyString::PadRight(unsigned int totalLength)
     {
+        int length = GetLength();
+
+        for (int i = length; i < totalLength; i++)
+        {
+            mString[i] = '-';
+        }
+
+        mString[totalLength] = '\0';
     }
 
     void MyString::PadRight(unsigned int totalLength, const char c)
