@@ -2,23 +2,21 @@
 
 namespace lab3
 {
-	TimeSheet::TimeSheet() : mTimeLocate(0), mName(""), mMax(0)
+	TimeSheet::TimeSheet() : mTimeLocate(0), mName("")
 	{
 		mTime = NULL;
 	}
-	TimeSheet::TimeSheet(const char* name, unsigned int maxEntries) : mTimeLocate(0), mName(name), mMax(maxEntries)
+	TimeSheet::TimeSheet(const char* name, unsigned int maxEntries) : mTimeLocate(0), mName(name)
 	{
-		mTime = new int[mMax];
 	}
 	TimeSheet::TimeSheet(const TimeSheet& other)
 	{
-		//mTime = new int[mMax];
 	}
 
 	void TimeSheet::AddTime(int timeInHours)
 	{
 
-		if (timeInHours >= 1 && timeInHours <= 10 && mMax > mTimeLocate)
+		if (timeInHours >= 1 && timeInHours <= 10)
 		{
 			mTime[mTimeLocate] = timeInHours;
 			mTimeLocate += 1;
@@ -97,9 +95,8 @@ namespace lab3
 		}
 		mTimeLocate = other.mTimeLocate;
 		mName = other.mName;
-		mMax = other.mMax;
 		delete[] mTime;
-		mTime = new int[mMax];
+		mTime = new int[_msize(other.mTime) / 4];
 		memcpy(mTime, other.mTime, _msize(other.mTime));
 
 		return *this;
