@@ -6,6 +6,14 @@ namespace lab3
     {
     }
 
+    TimeSheet::TimeSheet()
+    {
+    }
+
+    TimeSheet::TimeSheet(const TimeSheet& other)
+    {
+    }
+
     void TimeSheet::AddTime(int timeInHours)
     {
     }
