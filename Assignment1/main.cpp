@@ -4,12 +4,16 @@ using namespace assignment1;
 
 int main()
 {
-	MyString s("aBcDeF");
+	MyString s("Hello");
 	MyString s2(s);
 
-	s.ToUpper();
+	s2 = s;
 	std::cout << s.GetLength() << ' ' << s.GetCString() << std::endl << (s + s2).GetLength() << ' ' << (s + s2).GetCString() << std::endl;
-	std::cout << 'A' + 32 << std::endl;
+
+	int i = s.LastIndexOf("ell"); // i는 1
+	int j = s.LastIndexOf("l"); // j는 3
+	int z = s.LastIndexOf("This"); // z는 -1
+	std::cout << i << j << z << std::endl;
 
 	return 0;
 	// 여기에 중단점을 설정해서 b 값을 살펴보거나
