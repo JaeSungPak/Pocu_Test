@@ -19,11 +19,22 @@ namespace lab3
 	void TimeSheet::AddTime(int timeInHours)
 	{
 
-		
+		if (timeInHours >= 1 && timeInHours <= 10 && static_cast<unsigned>(mTimeLocate) < _msize(mTime) / sizeof(int))
+		{
+			mTime[mTimeLocate] = timeInHours;
+			mTimeLocate += 1;
+		}
+
 	}
 	int TimeSheet::GetTimeEntry(unsigned int index) const
 	{
-		return 0;
+
+		if (index <= static_cast<unsigned int>(mTimeLocate) && index >= 0)
+		{
+			return mTime[index];
+		}
+
+		return -1;
 	}
 
 	int TimeSheet::GetTotalTime() const
