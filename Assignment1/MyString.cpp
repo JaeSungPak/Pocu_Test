@@ -243,6 +243,10 @@ namespace assignment1
 				}
 			}
 		}
+		else
+		{
+			return false;
+		}
 
 		return true;
 	}
