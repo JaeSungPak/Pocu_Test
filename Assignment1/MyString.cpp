@@ -4,6 +4,7 @@ namespace assignment1
 {
     MyString::MyString(const char* s)
     {
+        mString = new char[];
     }
 
     MyString::MyString(const MyString& other)
@@ -16,7 +17,16 @@ namespace assignment1
 
     unsigned int MyString::GetLength() const
     {
-        return 0;
+        int length;
+        for (length = 0; mString[length]; length++);
+        return length;
+    }
+
+    unsigned int MyString::GetLength(const char* string) const
+    {
+        int length;
+        for (length = 0; string[length]; length++);
+        return length;
     }
 
     const char* MyString::GetCString() const

@@ -9,6 +9,7 @@ namespace assignment1
 		~MyString();
 
 		unsigned int GetLength() const;
+		unsigned int GetLength(const char* string) const;
 		const char* GetCString() const;
 		void Append(const char* s);
 		MyString operator+(const MyString& other) const;
@@ -25,5 +26,9 @@ namespace assignment1
 		MyString& operator=(const MyString& rhs);
 		void ToLower();
 		void ToUpper();
+
+
+	private:
+		char* mString;
 	};
 }
