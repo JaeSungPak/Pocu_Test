@@ -24,7 +24,8 @@ namespace lab3
 		{ 
 			mTime[mTimeLocate] = timeInHours;
 			mTimeLocate += 1;
-		}*/
+		}
+		*/
 	}
 	int TimeSheet::GetTimeEntry(unsigned int index) const
 	{
@@ -39,14 +40,15 @@ namespace lab3
 	
 	int TimeSheet::GetTotalTime() const
 	{
+		/*
 		int total = 0;
 		
 		for (int i = 0; i < mTimeLocate; i++)
 		{
 			total += mTime[i];
 		}
-		
-		return total;
+		*/
+		return 0; //total;
 	}
 	
 	float TimeSheet::GetAverageTime() const
