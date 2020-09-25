@@ -1,56 +1,87 @@
 #include "TimeSheet.h"
+#include <iostream>
 
 namespace lab3
 {
-    TimeSheet::TimeSheet(const char* name, unsigned int maxEntries)
-    {
-    }
+	TimeSheet::TimeSheet() : mTimeLocate(0), mName("")
+	{
+		
+	}
+	TimeSheet::TimeSheet(const char* name, unsigned int maxEntries) : mTimeLocate(0), mName(name)
+	{
+		
+	}
+	TimeSheet::TimeSheet(const TimeSheet& other) : mTimeLocate(other.mTimeLocate), mName(other.mName)
+	{
+		
+	}
 
-    TimeSheet::TimeSheet()
-    {
-    }
+	void TimeSheet::AddTime(int timeInHours)
+	{
 
-    TimeSheet::TimeSheet(const TimeSheet& other)
-    {
-    }
+		
+	}
+	int TimeSheet::GetTimeEntry(unsigned int index) const
+	{
 
-    void TimeSheet::AddTime(int timeInHours)
-    {
-    }
+		
+	}
 
-    int TimeSheet::GetTimeEntry(unsigned int index) const
-    {
-        return 0;
-    }
+	int TimeSheet::GetTotalTime() const
+	{
 
-    int TimeSheet::GetTotalTime() const
-    {
-        return 0;
-    }
+		int total = 0;
 
-    float TimeSheet::GetAverageTime() const
-    {
-        return 0.0f;
-    }
+		for (int i = 0; i < mTimeLocate; i++)
+		{
+			total += mTime[i];
+		}
 
-    float TimeSheet::GetStandardDeviation() const
-    {
-        return 0.0f;
-    }
+		return total;
+	}
 
-    const std::string& TimeSheet::GetName() const
-    {
-        return "temporary";
-    }
+	float TimeSheet::GetAverageTime() const
+	{
+		float average = static_cast<float>(GetTotalTime()) / mTimeLocate;
 
-    TimeSheet::~TimeSheet()
-    {
-        //delete[] mTime;
-    }
+		return average;
+	}
+	float TimeSheet::GetStandardDeviation() const
+	{
 
-    TimeSheet& TimeSheet::operator= (const TimeSheet& other)
-    {
+		float average = GetAverageTime();
+		float temp = 0;
 
-        return *this;
-    }
+		for (int i = 0; i < mTimeLocate; i++)
+		{
+			float minus = static_cast<float>(mTime[i]);
+			temp += (minus - average) * (minus - average);
+		}
+
+		return static_cast<float>(sqrt(temp / static_cast<float>(mTimeLocate)));
+	}
+	const std::string& TimeSheet::GetName() const
+	{
+		return mName;
+	}
+	TimeSheet::~TimeSheet()
+	{
+		//delete[] mTime;
+	}
+	TimeSheet& TimeSheet::operator= (const TimeSheet& other)
+	{
+
+		if (reinterpret_cast<int>(this) == reinterpret_cast<int>(&other))
+		{
+			return *this;
+		}
+		mTimeLocate = other.mTimeLocate;
+		mName = other.mName;
+		delete[] mTime;
+		mTime = new int[_msize(other.mTime) / 4];
+		memcpy(mTime, other.mTime, _msize(other.mTime));
+
+		return *this;
+	}
+
 }
