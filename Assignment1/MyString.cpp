@@ -70,26 +70,23 @@ namespace assignment1
 
     void MyString::Interleave(const char* s)
     {
-        int thisLength = GetLength();
-
-        int sLength = GetLength(s);
-
-        int bigger = sLength > thisLength ? sLength : thisLength;
-
         char temp[MAX_LENGTH];
 
         for (int i = 0; temp[i] = mString[i]; i++);
 
-        for (int i = 0; i < bigger; i++)
+        int thisLength = GetLength();
+        int sLength = GetLength(s);
+        int tempLocal = 0;
+        int sLocal = 0;
+
+        for (int i = 0; i < thisLength + sLength;)
         {
-            std::cout << i << std::endl;
+            thisLength > tempLocal ? mString[i++] = temp[tempLocal++] : false;
 
-            thisLength > i ? mString[i * 2] = temp[i] : false;
-
-            sLength > i ? mString[i * 2 + 1] = s[i] : false;
+            sLength > sLocal ? mString[i++] = s[sLocal++] : false;
         }
         
-        mString[sLength + thisLength + 1] = '\0';
+        mString[sLength + thisLength] = '\0';
     }
 
     bool MyString::RemoveAt(unsigned int index)
