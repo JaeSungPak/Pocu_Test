@@ -34,4 +34,15 @@ namespace lab3
     {
         return "temporary";
     }
+
+    TimeSheet::~TimeSheet()
+    {
+        //delete[] mTime;
+    }
+
+    TimeSheet& TimeSheet::operator= (const TimeSheet& other)
+    {
+
+        return *this;
+    }
 }
