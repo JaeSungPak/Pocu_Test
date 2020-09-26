@@ -136,7 +136,7 @@ namespace assignment1
 		int thisLength = GetLength();
 		int sLength = GetLength(s);
 
-		char *temp = new char[thisLength + sLength + 1];
+		char* temp = new char[thisLength + sLength + 1];
 
 		int tempLocal = 0;
 		int sLocal = 0;
@@ -307,7 +307,7 @@ namespace assignment1
 		}
 	}
 
-	void MyString::Renew(char* &newC)
+	void MyString::Renew(char*& newC)
 	{
 		delete[] mString;
 
