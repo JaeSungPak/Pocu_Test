@@ -1,7 +1,7 @@
 #include "MyString.h"
 #include <iostream>
 
-#define MAX_LENGTH (64)
+#define MAX_LENGTH (32)
 
 namespace assignment1
 {
@@ -143,7 +143,7 @@ namespace assignment1
 	{
 		unsigned int length = GetLength();
 
-		if (index > length)
+		if (index >= length)
 		{
 			return false;
 		}
@@ -152,8 +152,6 @@ namespace assignment1
 		{
 			mString[i] = mString[i + 1];
 		}
-
-		mString[length - 1] = NULL;
 
 		return true;
 	}
@@ -206,6 +204,11 @@ namespace assignment1
 	{
 		int length = GetLength();
 
+		if (totalLength <= length)
+		{
+			return;
+		}
+
 		for (unsigned int i = length; i < totalLength; i++)
 		{
 			mString[i] = ' ';
@@ -217,6 +220,11 @@ namespace assignment1
 	void MyString::PadRight(unsigned int totalLength, const char c)
 	{
 		int length = GetLength();
+
+		if (totalLength <= length)
+		{
+			return;
+		}
 
 		for (unsigned int i = length; i < totalLength; i++)
 		{
