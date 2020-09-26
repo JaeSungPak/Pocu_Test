@@ -1,4 +1,5 @@
 #include "TimeSheet.h"
+#include <iostream>
 
 namespace lab3
 {
@@ -8,15 +9,18 @@ namespace lab3
 	}
 	TimeSheet::TimeSheet(const char* name, unsigned int maxEntries) : mTimeLocate(0), mName(name)
 	{
+		mTime = new int[maxEntries];
 	}
-	TimeSheet::TimeSheet(const TimeSheet& other)
+	TimeSheet::TimeSheet(const TimeSheet& other) : mTimeLocate(other.mTimeLocate), mName(other.mName)
 	{
+		mTime = new int[_msize(other.mTime) / 4];
+		memcpy(mTime, other.mTime, _msize(other.mTime));
 	}
 
 	void TimeSheet::AddTime(int timeInHours)
 	{
 
-		if (timeInHours >= 1 && timeInHours <= 10)
+		if (timeInHours >= 1 && timeInHours <= 10 && static_cast<unsigned>(mTimeLocate) < _msize(mTime) / sizeof(int))
 		{
 			mTime[mTimeLocate] = timeInHours;
 			mTimeLocate += 1;
@@ -33,7 +37,6 @@ namespace lab3
 
 		return -1;
 	}
-
 
 	int TimeSheet::GetTotalTime() const
 	{
@@ -72,23 +75,13 @@ namespace lab3
 	{
 		return mName;
 	}
-
-	const int TimeSheet::GetLocate() const
-	{
-		return mTimeLocate;
-	}
-
-	int* TimeSheet::GetTime() const
-	{
-		return mTime;
-	}
-
 	TimeSheet::~TimeSheet()
 	{
-		delete[] mTime;
+		//delete[] mTime;
 	}
 	TimeSheet& TimeSheet::operator= (const TimeSheet& other)
 	{
+
 		if (reinterpret_cast<int>(this) == reinterpret_cast<int>(&other))
 		{
 			return *this;
@@ -103,3 +96,4 @@ namespace lab3
 	}
 
 }
+
