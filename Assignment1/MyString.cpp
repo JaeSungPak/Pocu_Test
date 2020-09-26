@@ -1,7 +1,7 @@
 #include "MyString.h"
 #include <iostream>
 
-#define MAX_LENGTH (32)
+#define MAX_LENGTH (46)
 
 namespace assignment1
 {
@@ -202,7 +202,7 @@ namespace assignment1
 
 	void MyString::PadRight(unsigned int totalLength)
 	{
-		int length = GetLength();
+		unsigned int length = GetLength();
 
 		if (totalLength <= length)
 		{
@@ -219,7 +219,7 @@ namespace assignment1
 
 	void MyString::PadRight(unsigned int totalLength, const char c)
 	{
-		int length = GetLength();
+		unsigned int length = GetLength();
 
 		if (totalLength <= length)
 		{
