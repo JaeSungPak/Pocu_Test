@@ -1,7 +1,7 @@
 #include "MyString.h"
 #include <iostream>
 
-#define MAX_LENGTH (256)
+#define MAX_LENGTH (64)
 
 namespace assignment1
 {
@@ -60,12 +60,17 @@ namespace assignment1
 
 	int MyString::IndexOf(const char* s)
 	{
+		if (s == "")
+		{
+			return 0;
+		}
+
 		int length = GetLength();
 		int sLength = GetLength(s);
 
 		int index = -1;
 
-		for (int i = 0; i < length; i++)
+		for (int i = 0; i < length - sLength + 1; i++)
 		{
 			for (int j = 0; j < sLength; j++)
 			{
@@ -75,7 +80,7 @@ namespace assignment1
 				}
 				index = j == sLength - 1 ? i : -1;
 			}
-			if (index > 0)
+			if (index >= 0)
 			{
 				break;
 			}
@@ -85,6 +90,10 @@ namespace assignment1
 
 	int MyString::LastIndexOf(const char* s)
 	{
+		if (s == "")
+		{
+			return GetLength();
+		}
 		int length = GetLength();
 		int sLength = GetLength(s);
 
