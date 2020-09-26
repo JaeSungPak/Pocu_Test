@@ -12,8 +12,8 @@ int main()
 {
 	
 	MyString s10("Hello");
-	s10.Append("World");  // "Hello"
-	cout << s10.GetCString() << endl;
+	s10.PadRight(8);  // "Hello"
+	cout << s10.GetCString() << "a" << endl;
 	
 
 

@@ -7,13 +7,15 @@ namespace assignment1
 {
 	MyString::MyString(const char* s)
 	{
-		mString = new char[MAX_LENGTH];
+		const int length = GetLength(s);
+		mString = new char[length + 1];
 		for (int i = 0; mString[i] = s[i]; i++);
 	}
 
 	MyString::MyString(const MyString& other)
 	{
-		mString = new char[MAX_LENGTH];
+		const int length = GetLength(other.GetCString());
+		mString = new char[length + 1];
 		for (int i = 0; mString[i] = other.GetCString()[i]; i++);
 	}
 
@@ -44,9 +46,12 @@ namespace assignment1
 	void MyString::Append(const char* s)
 	{
 		int length = GetLength();
-		int i = 0;
+		char* temp = new char[length + GetLength(s) + 1];
 
-		for (int i = 0; mString[length] = s[i]; i++, length++);
+		for (int i = 0; temp[i] = mString[i]; i++);
+		for (int i = 0; temp[length] = s[i]; i++, length++);
+		
+		Renew(temp);
 	}
 
 	MyString MyString::operator+(const MyString& other) const
@@ -119,24 +124,24 @@ namespace assignment1
 
 	void MyString::Interleave(const char* s)
 	{
-		char temp[MAX_LENGTH];
-
-		for (int i = 0; temp[i] = mString[i]; i++);
-
 		int thisLength = GetLength();
 		int sLength = GetLength(s);
+
+		char *temp = new char[thisLength + sLength + 1];
 
 		int tempLocal = 0;
 		int sLocal = 0;
 
 		for (int i = 0; i < thisLength + sLength;)
 		{
-			thisLength > tempLocal ? mString[i++] = temp[tempLocal++] : false;
+			thisLength > tempLocal ? temp[i++] = mString[tempLocal++] : false;
 
-			sLength > sLocal ? mString[i++] = s[sLocal++] : false;
+			sLength > sLocal ? temp[i++] = s[sLocal++] : false;
 		}
 
-		mString[sLength + thisLength] = '\0';
+		temp[sLength + thisLength] = '\0';
+
+		Renew(temp);
 	}
 
 	bool MyString::RemoveAt(unsigned int index)
@@ -148,34 +153,26 @@ namespace assignment1
 			return false;
 		}
 
+		char* temp = new char[GetLength() + 3];
+
+		for (unsigned int i = 0; i < index; i++)
+		{
+			temp[i] = mString[i];
+		}
+
 		for (unsigned int i = index; i < length; i++)
 		{
-			mString[i] = mString[i + 1];
+			temp[i] = mString[i + 1];
 		}
+		
+		Renew(temp);
 
 		return true;
 	}
 
 	void MyString::PadLeft(unsigned int totalLength)
 	{
-		unsigned int length = GetLength();
-
-		if (totalLength < length)
-		{
-			return;
-		}
-
-		for (int i = length - 1; i >= 0; i--)
-		{
-			mString[i + totalLength - length] = mString[i];
-		}
-
-		for (unsigned int i = 0; i < totalLength - length; i++)
-		{
-			mString[i] = ' ';
-		}
-
-		mString[totalLength] = '\0';
+		PadLeft(totalLength, ' ');
 	}
 
 	void MyString::PadLeft(unsigned int totalLength, const char c)
@@ -187,34 +184,26 @@ namespace assignment1
 			return;
 		}
 
+		char* temp = new char[GetLength() + totalLength + 1];
+
 		for (int i = length - 1; i >= 0; i--)
 		{
-			mString[i + totalLength - length] = mString[i];
+			temp[i + totalLength - length] = mString[i];
 		}
 
 		for (unsigned int i = 0; i < totalLength - length; i++)
 		{
-			mString[i] = c;
+			temp[i] = c;
 		}
 
-		mString[totalLength] = '\0';
+		temp[totalLength] = '\0';
+
+		Renew(temp);
 	}
 
 	void MyString::PadRight(unsigned int totalLength)
 	{
-		unsigned int length = GetLength();
-
-		if (totalLength <= length)
-		{
-			return;
-		}
-
-		for (unsigned int i = length; i < totalLength; i++)
-		{
-			mString[i] = ' ';
-		}
-
-		mString[totalLength] = '\0';
+		PadRight(totalLength, ' ');
 	}
 
 	void MyString::PadRight(unsigned int totalLength, const char c)
@@ -226,12 +215,18 @@ namespace assignment1
 			return;
 		}
 
+		char* temp = new char[GetLength() + totalLength + 1];
+
+		for (int i = 0; temp[i] = mString[i]; i++);
+
 		for (unsigned int i = length; i < totalLength; i++)
 		{
-			mString[i] = c;
+			temp[i] = c;
 		}
 
-		mString[totalLength] = '\0';
+		temp[totalLength] = '\0';
+
+		Renew(temp);
 	}
 
 	void MyString::Reverse()
@@ -270,6 +265,8 @@ namespace assignment1
 
 	MyString& MyString::operator=(const MyString& rhs)
 	{
+		const int length = GetLength(rhs.GetCString());
+		mString = new char[length + 1];
 		for (int i = 0; mString[i] = rhs.GetCString()[i]; i++);
 
 		return *this;
@@ -293,5 +290,15 @@ namespace assignment1
 		{
 			mString[i] = mString[i] >= 97 && mString[i] <= 122 ? mString[i] - 32 : mString[i];
 		}
+	}
+
+	void MyString::Renew(char* &newC)
+	{
+		delete[] mString;
+
+		const int size = GetLength(newC);
+		mString = new char[size + 2];
+		for (int i = 0; mString[i] = newC[i]; i++);
+		delete[] newC;
 	}
 }
