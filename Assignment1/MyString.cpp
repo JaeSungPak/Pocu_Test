@@ -274,7 +274,13 @@ namespace assignment1
 
 	MyString& MyString::operator=(const MyString& rhs)
 	{
+		if (reinterpret_cast<int>(&rhs) == reinterpret_cast<int>(this))
+		{
+			return *this;
+		}
+
 		const int length = GetLength(rhs.GetCString());
+		delete[] mString;
 		mString = new char[length + 1];
 		for (int i = 0; mString[i] = rhs.GetCString()[i]; i++);
 
