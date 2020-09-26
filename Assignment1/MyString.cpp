@@ -56,7 +56,7 @@ namespace assignment1
 		for (int i = 0; temp[i] = mString[i]; i++);
 		for (int i = 0; temp[length] = s[i]; i++, length++);
 		
-		reNew(temp);
+		renew(temp);
 	}
 
 	MyString MyString::operator+(const MyString& other) const
@@ -150,7 +150,7 @@ namespace assignment1
 
 		temp[sLength + thisLength] = '\0';
 
-		reNew(temp);
+		renew(temp);
 	}
 
 	bool MyString::RemoveAt(unsigned int index)
@@ -174,7 +174,7 @@ namespace assignment1
 			temp[i] = mString[i + 1];
 		}
 		
-		reNew(temp);
+		renew(temp);
 
 		return true;
 	}
@@ -207,7 +207,7 @@ namespace assignment1
 
 		temp[totalLength] = '\0';
 
-		reNew(temp);
+		renew(temp);
 	}
 
 	void MyString::PadRight(unsigned int totalLength)
@@ -235,7 +235,7 @@ namespace assignment1
 
 		temp[totalLength] = '\0';
 
-		reNew(temp);
+		renew(temp);
 	}
 
 	void MyString::Reverse()
@@ -307,7 +307,7 @@ namespace assignment1
 		}
 	}
 
-	void MyString::reNew(char*& newC)
+	void MyString::renew(char*& newC)
 	{
 		delete[] mString;
 

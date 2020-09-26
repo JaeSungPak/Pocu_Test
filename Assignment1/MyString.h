@@ -29,7 +29,7 @@ namespace assignment1
 
 
 	private:
-		void reNew(char*& newC);
+		void renew(char*& newC);
 		char* mString;
 	};
 }
