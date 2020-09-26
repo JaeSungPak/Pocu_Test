@@ -12,8 +12,8 @@ namespace lab3
 	}
 	TimeSheet::TimeSheet(const TimeSheet& other) : mTimeLocate(other.mTimeLocate), mName(other.mName)
 	{
-		mTime = new int[_msize(other.mTime) / 4];
-		memcpy(mTime, other.mTime, _msize(other.mTime));
+		//mTime = new int[_msize(other.mTime) / 4];
+		//memcpy(mTime, other.mTime, _msize(other.mTime));
 	}
 
 	void TimeSheet::AddTime(int timeInHours)
