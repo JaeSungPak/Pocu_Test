@@ -27,6 +27,7 @@ namespace lab3
 		std::string mName;
 		int* mTime;
 		int mTimeLocate;
+		int mSize;
 	};
 
 }

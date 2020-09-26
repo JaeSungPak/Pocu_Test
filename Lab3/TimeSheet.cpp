@@ -2,18 +2,18 @@
 
 namespace lab3
 {
-	TimeSheet::TimeSheet() : mTimeLocate(0), mName("")
+	TimeSheet::TimeSheet() : mTimeLocate(0), mName(""), mSize(0)
 	{
 		mTime = NULL;
 	}
-	TimeSheet::TimeSheet(const char* name, unsigned int maxEntries) : mTimeLocate(0), mName(name)
+	TimeSheet::TimeSheet(const char* name, unsigned int maxEntries) : mTimeLocate(0), mName(name), mSize(maxEntries)
 	{
 		mTime = new int[maxEntries];
 	}
-	TimeSheet::TimeSheet(const TimeSheet& other) : mTimeLocate(other.mTimeLocate), mName(other.mName)
+	TimeSheet::TimeSheet(const TimeSheet& other) : mTimeLocate(other.mTimeLocate), mName(other.mName), mSize(other.mSize)
 	{
-		//mTime = new int[_msize(other.mTime) / 4];
-		//memcpy(mTime, other.mTime, _msize(other.mTime));
+		mTime = new int[mSize];
+		memcpy(mTime, other.mTime, mSize);
 	}
 
 	void TimeSheet::AddTime(int timeInHours)
