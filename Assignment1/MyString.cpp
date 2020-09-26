@@ -45,6 +45,11 @@ namespace assignment1
 
 	void MyString::Append(const char* s)
 	{
+		if (s == "")
+		{
+			return;
+		}
+
 		int length = GetLength();
 		char* temp = new char[length + GetLength(s) + 1];
 
@@ -124,6 +129,10 @@ namespace assignment1
 
 	void MyString::Interleave(const char* s)
 	{
+		if (s == "")
+		{
+			return;
+		}
 		int thisLength = GetLength();
 		int sLength = GetLength(s);
 
