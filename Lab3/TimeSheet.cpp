@@ -18,7 +18,7 @@ namespace lab3
 
 	void TimeSheet::AddTime(int timeInHours)
 	{
-		if (timeInHours >= 1 && timeInHours <= 10 && static_cast<unsigned>(mTimeLocate) < mSize)
+		if (timeInHours >= 1 && timeInHours <= 10 && (mTimeLocate) < mSize)
 		{
 			mTime[mTimeLocate] = timeInHours;
 			mTimeLocate += 1;
@@ -71,16 +71,6 @@ namespace lab3
 		return mName;
 	}
 
-	const int TimeSheet::GetLocate() const
-	{
-		return mTimeLocate;
-	}
-
-	int* TimeSheet::GetTime() const
-	{
-		return mTime;
-	}
-
 	TimeSheet::~TimeSheet()
 	{
 		delete[] mTime;
@@ -88,6 +78,20 @@ namespace lab3
 
 	TimeSheet& TimeSheet::operator= (const TimeSheet& other)
 	{
+		if (reinterpret_cast<int>(this) == reinterpret_cast<int>(&other))
+		{
+			return *this;
+		}
+		delete[] mTime;
+
+		mTimeLocate = other.mTimeLocate;
+		mName = other.mName;
+		mSize = other.mSize;
+
+		mTime = new int[mSize];
+		memcpy(mTime, other.mTime, mSize);
+
+		return *this;
 		return *this;
 	}
 
