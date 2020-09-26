@@ -13,12 +13,15 @@ namespace lab3
 	TimeSheet::TimeSheet(const TimeSheet& other) : mTimeLocate(other.mTimeLocate), mName(other.mName), mSize(other.mSize)
 	{
 		mTime = new int[mSize];
-		memcpy(mTime, other.mTime, mSize);
+		for (int i = 0; i < mSize; i++)
+		{
+			mTime[i] = other.mTime[i];
+		}
 	}
 
 	void TimeSheet::AddTime(int timeInHours)
 	{
-		if (timeInHours >= 1 && timeInHours <= 10 && (mTimeLocate) < mSize)
+		if (timeInHours >= 1 && timeInHours <= 10 && mTimeLocate < mSize)
 		{
 			mTime[mTimeLocate] = timeInHours;
 			mTimeLocate += 1;
@@ -26,7 +29,7 @@ namespace lab3
 	}
 	int TimeSheet::GetTimeEntry(unsigned int index) const
 	{
-		if (index <= static_cast<unsigned int>(mTimeLocate) && index >= 0)
+		if (index <= static_cast<unsigned int>(mTimeLocate - 1) && index < static_cast<unsigned int>(mSize))
 		{
 			return mTime[index];
 		}
@@ -49,12 +52,20 @@ namespace lab3
 
 	float TimeSheet::GetAverageTime() const
 	{
+		if (mTimeLocate == 0)
+		{
+			return 0.0f;
+		}
 		float average = static_cast<float>(GetTotalTime()) / mTimeLocate;
 
 		return average;
 	}
 	float TimeSheet::GetStandardDeviation() const
 	{
+		if (mTimeLocate == 0)
+		{
+			return 0.0f;
+		}
 		float average = GetAverageTime();
 		float temp = 0;
 
@@ -89,9 +100,11 @@ namespace lab3
 		mSize = other.mSize;
 
 		mTime = new int[mSize];
-		memcpy(mTime, other.mTime, mSize);
+		for (int i = 0; i < mSize; i++)
+		{
+			mTime[i] = other.mTime[i];
+		}
 
-		return *this;
 		return *this;
 	}
 
