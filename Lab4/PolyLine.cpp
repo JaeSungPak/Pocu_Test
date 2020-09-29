@@ -26,15 +26,6 @@ namespace lab4
 
 	bool PolyLine::AddPoint(float x, float y)
 	{
-		if (mLocate < 10)
-		{
-			mLine[mLocate] = Point(x, y);
-
-			mLocate += 1;
-
-			return true;
-		}
-
 		return false;
 	}
 
@@ -45,6 +36,18 @@ namespace lab4
 
 	bool PolyLine::RemovePoint(unsigned int i)
 	{
+		if (static_cast<signed int>(i) < mLocate)
+		{
+			for (int j = i; j < mLocate - 1; j++)
+			{
+				mLine[j] = mLine[j + 1];
+			}
+
+			mLocate--;
+
+			return true;
+		}
+
 		return false;
 	}
 
