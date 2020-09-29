@@ -71,7 +71,28 @@ namespace lab4
 
 	bool PolyLine::TryGetMinBoundingRectangle(Point* outMin, Point* outMax) const
 	{
-		return false;
+		if (mLocate < 1)
+		{
+			return false;
+		}
+
+		float maxX = LONG_MIN;
+		float minX = LONG_MAX;
+		float maxY = LONG_MIN;
+		float minY = LONG_MAX;
+
+		for (int i = 0; i < mLocate; i++)
+		{
+			maxX = maxX < mLine[i].GetX() ? mLine[i].GetX() : maxX;
+			minX = minX > mLine[i].GetX() ? mLine[i].GetX() : minX;
+			maxY = maxY < mLine[i].GetY() ? mLine[i].GetY() : maxY;
+			minY = minY > mLine[i].GetY() ? mLine[i].GetY() : minY;
+		}
+
+		*outMin = Point(minX, minY);
+		*outMax = Point(maxX, maxY);
+
+		return true;
 	}
 
 	const Point* PolyLine::operator[](unsigned int i) const
@@ -81,6 +102,6 @@ namespace lab4
 			return &mLine[i];
 		}
 
-		return 0;
+		return NULL;
 	}
 }
