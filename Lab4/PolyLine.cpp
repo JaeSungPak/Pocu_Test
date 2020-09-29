@@ -54,6 +54,18 @@ namespace lab4
 
 	bool PolyLine::RemovePoint(unsigned int i)
 	{
+		if (static_cast<signed int>(i) < mLocate)
+		{
+			for (int j = i; j < mLocate - 1; j++)
+			{
+				mLine[j] = mLine[j + 1];
+			}
+
+			mLocate--;
+
+			return true;
+		}
+
 		return false;
 	}
 
