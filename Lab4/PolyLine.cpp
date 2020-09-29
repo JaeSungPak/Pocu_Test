@@ -28,7 +28,9 @@ namespace lab4
 	{
 		if (mLocate < 10)
 		{
-			mLine[mLocate] = Point(x, y);
+			delete &mLine[mLocate];
+
+			mLine[mLocate] = * new Point(x, y);
 
 			mLocate += 1;
 
