@@ -2,11 +2,11 @@
 
 namespace lab4
 {
-	Point::Point() : mX(0), mY(0)
+	Point::Point() : mX(0), mY(0), mPointer(this)
 	{
 	}
 
-	Point::Point(float x, float y) : mX(x), mY(y)
+	Point::Point(float x, float y) : mX(x), mY(y), mPointer(this)
 	{
 	}
 
@@ -18,6 +18,7 @@ namespace lab4
 	{
 		mX = other.mX;
 		mY = other.mY;
+		mPointer = other.mPointer;
 
 		return *this;
 	}
@@ -26,6 +27,7 @@ namespace lab4
 	{
 		return *this;
 	}
+
 	
 	Point Point::operator+(const Point& other) const
 	{

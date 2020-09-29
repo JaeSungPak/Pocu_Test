@@ -46,9 +46,7 @@ namespace lab4
 	{
 		if (mLocate < 10)
 		{
-			mLine[mLocate] = new Point(point->GetX(), point->GetY());
-
-			*mLine[mLocate] = *point;
+			mLine[mLocate] = point->mPointer;
 
 			mLocate += 1;
 
