@@ -62,7 +62,7 @@ namespace lab4
 		{
 			delete mLine[i];
 
-			for (int j = i; j < mLocate - 1; j++)
+			for (int j = i; j < mLocate; j++)
 			{
 				mLine[j] = mLine[j + 1];
 			}
