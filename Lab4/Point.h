@@ -16,6 +16,7 @@ namespace lab4
 		Point& operator=(const Point& other);
 		friend Point operator*(float operand, const Point& point);
 		bool operator==(const Point& other) const;
+		void SetPoint(float x, float y);
 
 		float GetX() const;
 		float GetY() const;
