@@ -28,15 +28,13 @@ namespace lab4
 	{	
 		if (mLocate < 10)
 		{
-			delete &mLine[mLocate];
-
-			mLine[mLocate] = *new Point(x, y);
+			mLine[mLocate] = Point(x, y);
 
 			mLocate += 1;
 
 			return true;
 		}
-		
+
 		return false;
 	}
 
