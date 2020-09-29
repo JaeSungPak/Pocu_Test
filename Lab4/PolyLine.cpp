@@ -46,7 +46,7 @@ namespace lab4
 	{
 		if (mLocate < 10)
 		{
-			mLine[mLocate] = const_cast<Point*>(point);
+			mLine[mLocate] = &(point->GetThis());
 
 			mLocate += 1;
 
@@ -113,5 +113,23 @@ namespace lab4
 		}
 		
 		return NULL;
+	}
+
+	const PolyLine& PolyLine::operator=(PolyLine* other)
+	{
+		for (int i = 0; i < mLocate; i++)
+		{
+			delete mLine[i];
+		}
+
+		mLocate = other->mLocate;
+
+		for (int i = 0; i < mLocate; i++)
+		{
+			mLine[i] = new Point();
+			*mLine[i] = *other[i];
+		}
+
+		return *this;
 	}
 }
