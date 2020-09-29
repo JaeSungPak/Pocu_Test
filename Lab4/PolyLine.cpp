@@ -42,11 +42,13 @@ namespace lab4
 		return false;
 	}
 
-	bool PolyLine::AddPoint(Point* point)
+	bool PolyLine::AddPoint(const Point* point)
 	{
 		if (mLocate < 10)
 		{
-			mLine[mLocate] = point;
+			mLine[mLocate] = new Point(point->GetX(), point->GetY());
+
+			*mLine[mLocate] = *point;
 
 			mLocate += 1;
 
