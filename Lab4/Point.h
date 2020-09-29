@@ -22,11 +22,12 @@ namespace lab4
 		float GetX() const;
 		float GetY() const;
 
-		Point* mPointer;
+		
 
 	private:
 		float mX;
 		float mY;
-		
+		Point* mPointer;
+		friend class PolyLine;
 	};
 }
