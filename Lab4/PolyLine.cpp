@@ -76,6 +76,11 @@ namespace lab4
 
 	const Point* PolyLine::operator[](unsigned int i) const
 	{
-		return new Point(0.0f, 0.0f);
+		if (static_cast<signed int>(i) < mLocate)
+		{
+			return &mLine[i];
+		}
+
+		return 0;
 	}
 }
