@@ -30,7 +30,7 @@ namespace lab4
 		{
 			delete &mLine[mLocate];
 
-			mLine[mLocate] = * new Point(x, y);
+			mLine[mLocate] = *new Point(x, y);
 
 			mLocate += 1;
 
