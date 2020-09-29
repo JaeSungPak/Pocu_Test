@@ -45,7 +45,7 @@ namespace lab4
 		{
 			return true;
 		}
-		
+		*/
 
 		if (mLocate < 10)
 		{
@@ -55,7 +55,7 @@ namespace lab4
 
 			return true;
 		}
-		*/
+		
 		return false;
 	}
 
@@ -92,10 +92,9 @@ namespace lab4
 
 	const Point* PolyLine::operator[](unsigned int i) const
 	{
-		
 		if (static_cast<signed int>(i) < mLocate)
 		{
-			return &mLine[i];
+			return new Point(mLine[i].GetX(), mLine[i].GetY());
 		}
 		
 		return NULL;
