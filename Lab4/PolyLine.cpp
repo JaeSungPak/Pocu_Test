@@ -16,7 +16,7 @@ namespace lab4
 		for (int i = 0; i < mLocate; i++)
 		{
 			mLine[i] = new Point();
-			*mLine[i] = * other[i];
+			*mLine[i] = *other[i];
 		}
 	}
 
@@ -42,11 +42,11 @@ namespace lab4
 		return false;
 	}
 
-	bool PolyLine::AddPoint(const Point* point)
+	bool PolyLine::AddPoint(Point* point)
 	{
 		if (mLocate < 10)
 		{
-			mLine[mLocate] = &(point->GetThis());
+			mLine[mLocate] = point;
 
 			mLocate += 1;
 
