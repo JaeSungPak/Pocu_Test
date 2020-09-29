@@ -25,8 +25,7 @@ namespace lab4
 	}
 
 	bool PolyLine::AddPoint(float x, float y)
-	{	
-		/*
+	{
 		if (mLocate < 10)
 		{
 			mLine[mLocate] = Point(x, y);
@@ -35,17 +34,38 @@ namespace lab4
 
 			return true;
 		}
-		*/
+
 		return false;
 	}
 
 	bool PolyLine::AddPoint(const Point* point)
 	{
+		if (mLocate < 10)
+		{
+			mLine[mLocate] = *point;
+
+			mLocate += 1;
+
+			return true;
+		}
+
 		return false;
 	}
 
 	bool PolyLine::RemovePoint(unsigned int i)
 	{
+		if (static_cast<signed int>(i) < mLocate && static_cast<signed int>(i) >= 0)
+		{
+			for (int j = i; j < mLocate - 1; j++)
+			{
+				mLine[j] = mLine[j + 1];
+			}
+
+			mLocate--;
+
+			return true;
+		}
+
 		return false;
 	}
 
@@ -77,11 +97,12 @@ namespace lab4
 
 	const Point* PolyLine::operator[](unsigned int i) const
 	{
+		/*
 		if (static_cast<signed int>(i) < mLocate && static_cast<signed int>(i) >= 0)
 		{
 			return &mLine[i];
 		}
-
+		*/
 		return NULL;
 	}
 }
