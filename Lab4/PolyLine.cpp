@@ -6,12 +6,12 @@ namespace lab4
 {
 	PolyLine::PolyLine() : mLocate(0)
 	{
-		mLine[10];
+		mLine[11] = NULL;
 	}
 
 	PolyLine::PolyLine(const PolyLine& other) : mLocate(other.mLocate)
 	{
-		mLine[10];
+		mLine[11];
 
 		for (int i = 0; i < mLocate; i++)
 		{
@@ -115,14 +115,14 @@ namespace lab4
 		return NULL;
 	}
 
-	const PolyLine& PolyLine::operator=(PolyLine* other)
+	const PolyLine& PolyLine::operator=(PolyLine other)
 	{
 		for (int i = 0; i < mLocate; i++)
 		{
 			delete mLine[i];
 		}
 
-		mLocate = other->mLocate;
+		mLocate = other.mLocate;
 
 		for (int i = 0; i < mLocate; i++)
 		{
