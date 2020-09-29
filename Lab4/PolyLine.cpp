@@ -28,7 +28,9 @@ namespace lab4
 	{	/*
 		if (mLocate < 10)
 		{
-			mLine[mLocate] = Point(x, y);
+			delete &mLine[mLocate];
+
+			mLine[mLocate] = *new Point(x, y);
 
 			mLocate += 1;
 
@@ -40,22 +42,6 @@ namespace lab4
 
 	bool PolyLine::AddPoint(const Point* point)
 	{
-		/*
-		if (point = &mLine[mLocate])
-		{
-			return true;
-		}
-		
-
-		if (mLocate < 10)
-		{
-			mLine[mLocate] = *point;
-
-			mLocate += 1;
-
-			return true;
-		}
-		*/
 		return false;
 	}
 
@@ -66,38 +52,16 @@ namespace lab4
 
 	bool PolyLine::TryGetMinBoundingRectangle(Point* outMin, Point* outMax) const
 	{
-		if (mLocate < 1)
-		{
-			return false;
-		}
-
-		float maxX = LONG_MIN;
-		float minX = static_cast<float>(LONG_MAX);
-		float maxY = LONG_MIN;
-		float minY = static_cast<float>(LONG_MAX);
-
-		for (int i = 0; i < mLocate; i++)
-		{
-			maxX = maxX < mLine[i].GetX() ? mLine[i].GetX() : maxX;
-			minX = minX > mLine[i].GetX() ? mLine[i].GetX() : minX;
-			maxY = maxY < mLine[i].GetY() ? mLine[i].GetY() : maxY;
-			minY = minY > mLine[i].GetY() ? mLine[i].GetY() : minY;
-		}
-
-		*outMin = Point(minX, minY);
-		*outMax = Point(maxX, maxY);
-
-		return true;
+		return false;
 	}
 
 	const Point* PolyLine::operator[](unsigned int i) const
 	{
-		
-		if (static_cast<signed int>(i) < mLocate)
+		if (static_cast<signed int>(i) < mLocate && static_cast<signed int>(i) >= 0)
 		{
 			return &mLine[i];
 		}
-		
+
 		return NULL;
 	}
 }
