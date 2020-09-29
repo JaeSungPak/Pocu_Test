@@ -45,7 +45,8 @@ namespace lab4
 		{
 			return true;
 		}
-		*/
+		
+
 		if (mLocate < 10)
 		{
 			mLine[mLocate] = *point;
@@ -54,7 +55,7 @@ namespace lab4
 
 			return true;
 		}
-
+		*/
 		return false;
 	}
 
