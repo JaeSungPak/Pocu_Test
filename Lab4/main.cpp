@@ -42,6 +42,7 @@ int main()
 	std::cout << pl1[5]->GetX() << " " << pl1[5]->GetY() << std::endl;
 	std::cout << pl1[6]->GetX() << " " << pl1[6]->GetY() << std::endl;
 
+	pl1.AddPoint(pl1[2]);
 
 	return 0;
 }
