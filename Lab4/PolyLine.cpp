@@ -6,12 +6,12 @@ namespace lab4
 {
 	PolyLine::PolyLine() : mLocate(0)
 	{
-		mLine = new Point[10];
+		mLine[10];
 	}
 
 	PolyLine::PolyLine(const PolyLine& other) : mLocate(other.mLocate)
 	{
-		mLine = new Point[10];
+		mLine[10];
 
 		for (int i = 0; i < mLocate; i++)
 		{
@@ -21,7 +21,6 @@ namespace lab4
 
 	PolyLine::~PolyLine()
 	{
-		delete[] mLine;
 	}
 
 	bool PolyLine::AddPoint(float x, float y)
