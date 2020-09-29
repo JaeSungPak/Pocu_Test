@@ -26,36 +26,11 @@ namespace lab4
 
 	bool PolyLine::AddPoint(float x, float y)
 	{
-		if (mLocate < 10)
-		{
-			mLine[mLocate] = Point(x, y);
-
-			mLocate += 1;
-
-			return true;
-		}
-
 		return false;
 	}
 
 	bool PolyLine::AddPoint(const Point* point)
 	{
-		/*
-		if (point = &mLine[mLocate])
-		{
-			return true;
-		}
-		*/
-
-		if (mLocate < 10)
-		{
-			mLine[mLocate] = *point;
-
-			mLocate += 1;
-
-			return true;
-		}
-		
 		return false;
 	}
 
@@ -94,9 +69,9 @@ namespace lab4
 	{
 		if (static_cast<signed int>(i) < mLocate)
 		{
-			return new Point(mLine[i].GetX(), mLine[i].GetY());
+			return &mLine[i];
 		}
-		
+
 		return NULL;
 	}
 }
