@@ -21,6 +21,11 @@ namespace lab4
 
 		return *this;
 	}
+
+	Point Point::GetThis() const
+	{
+		return *this;
+	}
 	
 	Point Point::operator+(const Point& other) const
 	{

@@ -6,23 +6,33 @@ namespace lab4
 {
 	PolyLine::PolyLine() : mLocate(0)
 	{
-		mLine[11];
+		mLine[10];
 	}
 
 	PolyLine::PolyLine(const PolyLine& other) : mLocate(other.mLocate)
 	{
-		mLine[11];
+		mLine[10];
+
+		for (int i = 0; i < mLocate; i++)
+		{
+			mLine[i] = new Point();
+			*mLine[i] = * other[i];
+		}
 	}
 
 	PolyLine::~PolyLine()
 	{
+		for (int i = 0; i < mLocate; i++)
+		{
+			delete mLine[i];
+		}
 	}
 
 	bool PolyLine::AddPoint(float x, float y)
 	{
 		if (mLocate < 10)
 		{
-			mLine[mLocate] = Point(x, y);
+			mLine[mLocate] = new Point(x, y);
 
 			mLocate += 1;
 
@@ -36,7 +46,7 @@ namespace lab4
 	{
 		if (mLocate < 10)
 		{
-			mLine[mLocate] = *point;
+			mLine[mLocate] = const_cast<Point*>(point);
 
 			mLocate += 1;
 
@@ -50,10 +60,14 @@ namespace lab4
 	{
 		if (static_cast<signed int>(i) < mLocate && static_cast<signed int>(i) >= 0)
 		{
+			delete mLine[i];
+
 			for (int j = i; j < mLocate - 1; j++)
 			{
 				mLine[j] = mLine[j + 1];
 			}
+
+			mLine[mLocate] = nullptr;
 
 			mLocate--;
 
@@ -77,10 +91,10 @@ namespace lab4
 
 		for (int i = 0; i < mLocate; i++)
 		{
-			maxX = maxX < mLine[i].GetX() ? mLine[i].GetX() : maxX;
-			minX = minX > mLine[i].GetX() ? mLine[i].GetX() : minX;
-			maxY = maxY < mLine[i].GetY() ? mLine[i].GetY() : maxY;
-			minY = minY > mLine[i].GetY() ? mLine[i].GetY() : minY;
+			maxX = maxX < mLine[i]->GetX() ? mLine[i]->GetX() : maxX;
+			minX = minX > mLine[i]->GetX() ? mLine[i]->GetX() : minX;
+			maxY = maxY < mLine[i]->GetY() ? mLine[i]->GetY() : maxY;
+			minY = minY > mLine[i]->GetY() ? mLine[i]->GetY() : minY;
 		}
 
 		*outMin = Point(minX, minY);
@@ -95,7 +109,7 @@ namespace lab4
 
 		if (j < mLocate && j >= 0)
 		{
-			return &mLine[j];
+			return mLine[j];
 		}
 		
 		return NULL;
