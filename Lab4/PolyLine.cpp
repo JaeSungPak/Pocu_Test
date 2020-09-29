@@ -25,7 +25,7 @@ namespace lab4
 	}
 
 	bool PolyLine::AddPoint(float x, float y)
-	{
+	{	/*
 		if (mLocate < 10)
 		{
 			mLine[mLocate] = Point(x, y);
@@ -34,7 +34,7 @@ namespace lab4
 
 			return true;
 		}
-
+		*/
 		return false;
 	}
 
