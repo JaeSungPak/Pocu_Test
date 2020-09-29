@@ -100,7 +100,7 @@ namespace lab4
 		
 		if (i < mLocate)
 		{
-			return &mLine[i];
+			return &Point(mLine[i].GetX(), mLine[i].GetY());
 		}
 		
 		return NULL;
