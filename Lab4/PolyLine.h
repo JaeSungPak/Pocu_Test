@@ -20,7 +20,7 @@ namespace lab4
 		const PolyLine& operator=(PolyLine other);
 
 	private:
-		Point* mLine[10];
+		Point* mLine[11];
 		int mLocate;
 	};
 }
