@@ -19,7 +19,7 @@ namespace lab4
 		const Point* operator[](unsigned int i) const;
 
 	private:
-		Point* mLine;
+		Point mLine[10];
 		int mLocate;
 	};
 }
