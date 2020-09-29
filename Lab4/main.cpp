@@ -54,7 +54,13 @@ int main()
 
 	pl1.TryGetMinBoundingRectangle(&minP, &maxP);
 
-	std::cout << pl1[0]->GetX() << " " << pl1[0]->GetY();
+	std::cout << pl1[0]->GetX() << " " << pl1[0]->GetY() << std::endl;
+	std::cout << pl1[1]->GetX() << " " << pl1[1]->GetY() << std::endl;
+	std::cout << pl1[2]->GetX() << " " << pl1[2]->GetY() << std::endl;
+	std::cout << pl1[3]->GetX() << " " << pl1[3]->GetY() << std::endl;
+	std::cout << pl1[4]->GetX() << " " << pl1[4]->GetY() << std::endl;
+	std::cout << pl1[5]->GetX() << " " << pl1[5]->GetY() << std::endl;
+	std::cout << pl1[6]->GetX() << " " << pl1[6]->GetY() << std::endl;
 
 	assert(minP.GetX() == -2.2f);
 	assert(minP.GetY() == 2.1f);
