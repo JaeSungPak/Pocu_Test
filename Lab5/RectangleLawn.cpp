@@ -23,7 +23,7 @@ namespace lab5
 	{
 		double result = (mHeight + mWidth) * 2 / FENCEWIDTH;
 
-		return result - static_cast<int>(result) == 0 ? result : result + 1;
+		return static_cast<unsigned int>(result - static_cast<int>(result) == 0 ? result : result + 1);
 	}
 
 	unsigned int RectangleLawn::GetFencePrice(eFenceType fenceType) const
