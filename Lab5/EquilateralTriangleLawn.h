@@ -13,9 +13,6 @@ namespace lab5
 
 		virtual unsigned int GetArea() const;
 
-		unsigned int GetGrassPrice(eGrassType grassType) const;
-		unsigned int GetMinimumSodRollsCount() const;
-
 		virtual unsigned int GetMinimumFencesCount() const;
 		virtual unsigned int GetFencePrice(eFenceType fenceType) const;
 

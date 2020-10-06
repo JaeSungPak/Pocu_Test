@@ -18,21 +18,15 @@ namespace lab5
 		return mHeight * mHeight;
 	}
 
-	unsigned int SquareLawn::GetGrassPrice(eGrassType grassType) const
-	{
-		return 0;
-	}
-	unsigned int SquareLawn::GetMinimumSodRollsCount() const
-	{
-		return 0;
-	}
-
 	unsigned int SquareLawn::GetMinimumFencesCount() const
 	{
-		return 0;
+		double result = mHeight * 4 / FENCEWIDTH;
+
+		return result - static_cast<int>(result) == 0 ? result : result + 1;
 	}
+
 	unsigned int SquareLawn::GetFencePrice(eFenceType fenceType) const
 	{
-		return 0;
+		return fenceType * mHeight * 4 / 100;
 	}
 }

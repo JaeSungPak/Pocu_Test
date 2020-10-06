@@ -2,7 +2,7 @@
 
 #include "eFenceType.h"
 
-#define FENCEWIDTH (25)
+#define FENCEWIDTH (0.25f)
 
 namespace lab5
 {

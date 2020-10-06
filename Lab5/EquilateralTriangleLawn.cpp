@@ -1,4 +1,5 @@
 #include "EquilateralTriangleLawn.h"
+#include <math.h>
 
 namespace lab5
 {
@@ -13,24 +14,20 @@ namespace lab5
 
 	unsigned int EquilateralTriangleLawn::GetArea() const
 	{
-		return mWidth * mWidth;
-	}
+		double height = sqrt(pow(mWidth, 2) - pow(static_cast<double>(mWidth) / 2, 2));
 
-	unsigned int EquilateralTriangleLawn::GetGrassPrice(eGrassType grassType) const
-	{
-		return 0;
-	}
-	unsigned int EquilateralTriangleLawn::GetMinimumSodRollsCount() const
-	{
-		return 0;
+		return height * mWidth / 2;
 	}
 
 	unsigned int EquilateralTriangleLawn::GetMinimumFencesCount() const
 	{
-		return 0;
+		double result = mWidth * 3 / FENCEWIDTH;
+
+		return result - static_cast<int>(result) == 0 ? result : result + 1;
 	}
+
 	unsigned int EquilateralTriangleLawn::GetFencePrice(eFenceType fenceType) const
 	{
-		return 0;
+		return fenceType * mWidth * 3 / 100;
 	}
 }

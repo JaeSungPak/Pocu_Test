@@ -19,21 +19,15 @@ namespace lab5
 		return mHeight * mWidth;
 	}
 
-	unsigned int RectangleLawn::GetGrassPrice(eGrassType grassType) const
-	{
-		return 0;
-	}
-	unsigned int RectangleLawn::GetMinimumSodRollsCount() const
-	{
-		return 0;
-	}
-
 	unsigned int RectangleLawn::GetMinimumFencesCount() const
 	{
-		return 0;
+		double result = (mHeight + mWidth) * 2 / FENCEWIDTH;
+
+		return result - static_cast<int>(result) == 0 ? result : result + 1;
 	}
+
 	unsigned int RectangleLawn::GetFencePrice(eFenceType fenceType) const
 	{
-		return 0;
+		return fenceType * (mHeight + mWidth) * 2 / 100;
 	}
 }
