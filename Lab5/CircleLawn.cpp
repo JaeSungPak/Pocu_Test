@@ -14,7 +14,7 @@ namespace lab5
 
 	unsigned int CircleLawn::GetArea() const
 	{
-		return mRadius * mRadius * PIE;
+		return mRadius * mRadius * PIE + 0.5f;
 	}
 
 }

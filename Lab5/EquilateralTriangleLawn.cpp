@@ -16,7 +16,7 @@ namespace lab5
 	{
 		double height = sqrt(pow(mWidth, 2) - pow(static_cast<double>(mWidth) / 2, 2));
 
-		return height * mWidth / 2;
+		return height * mWidth / 2 + 0.5f;
 	}
 
 	unsigned int EquilateralTriangleLawn::GetMinimumFencesCount() const
