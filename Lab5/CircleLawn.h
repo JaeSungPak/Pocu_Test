@@ -10,7 +10,7 @@ namespace lab5
 	class CircleLawn : public Lawn, public IFenceable
 	{
 	public:
-		CircleLawn(double radius);
+		CircleLawn(unsigned int radius);
 		virtual ~CircleLawn();
 
 		virtual unsigned int GetArea() const;
@@ -21,5 +21,7 @@ namespace lab5
 		virtual unsigned int GetMinimumFencesCount() const;
 		virtual unsigned int GetFencePrice(eFenceType fenceType) const;
 
+	private:
+		unsigned int mRadius;
 	};
 }

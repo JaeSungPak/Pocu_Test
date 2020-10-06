@@ -3,7 +3,8 @@
 namespace lab5
 {
 	RectangleLawn::RectangleLawn(unsigned int height, unsigned int width)
-		:Lawn(height * width)
+		: mHeight(height)
+		, mWidth(width)
 	{
 
 	}
@@ -15,7 +16,7 @@ namespace lab5
 
 	unsigned int RectangleLawn::GetArea() const
 	{
-		return 0;
+		return mHeight * mWidth;
 	}
 
 	unsigned int RectangleLawn::GetGrassPrice(eGrassType grassType) const

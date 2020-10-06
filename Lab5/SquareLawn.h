@@ -8,7 +8,7 @@ namespace lab5
 	class SquareLawn : public Lawn, public IFenceable
 	{
 	public:
-		SquareLawn(double height);
+		SquareLawn(unsigned int height);
 		virtual ~SquareLawn();
 
 		virtual unsigned int GetArea() const;
@@ -18,5 +18,8 @@ namespace lab5
 
 		virtual unsigned int GetMinimumFencesCount() const;
 		virtual unsigned int GetFencePrice(eFenceType fenceType) const;
+
+	private:
+		unsigned int mHeight;
 	};
 }

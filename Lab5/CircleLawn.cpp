@@ -2,8 +2,8 @@
 
 namespace lab5
 {
-	CircleLawn::CircleLawn(double radius)
-		: Lawn(radius * radius * 3.14)
+	CircleLawn::CircleLawn(unsigned int radius)
+		: mRadius(radius)
 	{
 		
 	}
@@ -14,7 +14,7 @@ namespace lab5
 
 	unsigned int CircleLawn::GetArea() const
 	{
-		return 0;
+		return mRadius * mRadius * 3.14f;
 	}
 
 	unsigned int CircleLawn::GetGrassPrice(eGrassType grassType) const

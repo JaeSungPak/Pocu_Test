@@ -8,7 +8,7 @@ namespace lab5
 	class EquilateralTriangleLawn : public Lawn, public IFenceable
 	{
 	public:
-		EquilateralTriangleLawn(double width);
+		EquilateralTriangleLawn(unsigned int width);
 		virtual ~EquilateralTriangleLawn();
 
 		virtual unsigned int GetArea() const;
@@ -18,5 +18,8 @@ namespace lab5
 
 		virtual unsigned int GetMinimumFencesCount() const;
 		virtual unsigned int GetFencePrice(eFenceType fenceType) const;
+
+	private:
+		unsigned int mWidth;
 	};
 }

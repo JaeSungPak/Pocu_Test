@@ -2,8 +2,8 @@
 
 namespace lab5
 {
-	SquareLawn::SquareLawn(double height)
-		:Lawn(height * height)
+	SquareLawn::SquareLawn(unsigned int height)
+		:mHeight(height)
 	{
 
 	}
@@ -15,7 +15,7 @@ namespace lab5
 
 	unsigned int SquareLawn::GetArea() const
 	{
-		return 0;
+		return mHeight * mHeight;
 	}
 
 	unsigned int SquareLawn::GetGrassPrice(eGrassType grassType) const

@@ -2,20 +2,18 @@
 
 namespace lab5
 {
-	EquilateralTriangleLawn::EquilateralTriangleLawn(double width)
-		: Lawn((width * width))
+	EquilateralTriangleLawn::EquilateralTriangleLawn(unsigned int width)
+		: mWidth(width)
 	{
 
 	}
 	EquilateralTriangleLawn::~EquilateralTriangleLawn()
 	{
-
-
 	}
 
 	unsigned int EquilateralTriangleLawn::GetArea() const
 	{
-		return 0;
+		return mWidth * mWidth;
 	}
 
 	unsigned int EquilateralTriangleLawn::GetGrassPrice(eGrassType grassType) const

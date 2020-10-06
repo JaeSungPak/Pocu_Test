@@ -18,5 +18,9 @@ namespace lab5
 
 		virtual unsigned int GetMinimumFencesCount() const;
 		virtual unsigned int GetFencePrice(eFenceType fenceType) const;
+
+	private:
+		unsigned int mHeight;
+		unsigned int mWidth;
 	};
 }

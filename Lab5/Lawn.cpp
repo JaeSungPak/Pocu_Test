@@ -6,17 +6,14 @@ namespace lab5
 	{
 	}
 
-	Lawn::Lawn(double area)
-		: mArea(area)
-	{
-	}
-
 	Lawn::~Lawn()
 	{
 	}
 
 	unsigned int Lawn::GetGrassPrice(eGrassType grassType) const
 	{
+		int a = eGrassType::BAHIA;
+
 		return 0;
 	}
 

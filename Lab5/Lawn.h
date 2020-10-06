@@ -10,15 +10,11 @@ namespace lab5
 	{
 	public:
 		Lawn();
-		Lawn(double area);
 		virtual ~Lawn();
 
 		virtual unsigned int GetArea() const = 0;
 
 		unsigned int GetGrassPrice(eGrassType grassType) const;
 		unsigned int GetMinimumSodRollsCount() const;
-	
-	private:
-		double mArea;
 	};
 }
