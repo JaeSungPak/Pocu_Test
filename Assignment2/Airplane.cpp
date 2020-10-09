@@ -34,10 +34,10 @@ namespace assignment2
 
 	Boatplane Airplane::operator+(Boat& boat)
 	{
-		Boatplane* instance;
+		int index = boat.GetPassengersCount() + GetPassengersCount();
+		Boatplane bp(index);
 
 
-		Boatplane bp(0);
 		return bp;
 	}
 }

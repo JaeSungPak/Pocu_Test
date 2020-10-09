@@ -9,7 +9,7 @@ namespace assignment2
 {
 	class Boat;
 
-	class Airplane : Vehicle, IDivable, IFlyable
+	class Airplane : public Vehicle, public IDivable, public IFlyable
 	{
 	public:
 		Airplane(unsigned int maxPassengersCount);
