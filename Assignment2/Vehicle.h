@@ -20,7 +20,7 @@ namespace assignment2
 
 	private:
 		int mMaxCount;
-		Person* mPeople[101];
-		int mCount;
+		int mCurrentCount;
+		Person** mPeople;
 	};
 }
