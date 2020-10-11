@@ -20,7 +20,8 @@ namespace assignment2
 
 	bool Vehicle::AddPassenger(const Person* person)
 	{
-		if (mCurrentCount < mMaxCount && person != nullptr){
+		if (mCurrentCount < mMaxCount && person != nullptr)
+		{
 
 			mPeople[mCurrentCount] = person->mPointer;
 
@@ -34,7 +35,7 @@ namespace assignment2
 
 	bool Vehicle::RemovePassenger(unsigned int i)
 	{
-		if (mCurrentCount > i && i >= 0)
+		if (mCurrentCount > static_cast<int>(i) && i >= 0)
 		{
 			for (int index = i; index < mCurrentCount - 1; index++)
 			{
@@ -65,7 +66,7 @@ namespace assignment2
 	{
 		int index = 0;
 
-		for (int i = 0; i < GetPassengersCount(); i++)
+		for (unsigned int i = 0; i < GetPassengersCount(); i++)
 		{
 			index += GetPassenger(i)->GetWeight();
 		}
@@ -74,7 +75,7 @@ namespace assignment2
 
 	const Person* Vehicle::GetPassenger(unsigned int i) const
 	{
-		if (mCurrentCount > i && i >= 0)
+		if (mCurrentCount > static_cast<int>(i) && i >= 0)
 		{
 			return mPeople[i];
 		}

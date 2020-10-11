@@ -19,6 +19,6 @@ namespace assignment2
 	{
 		double x = static_cast<double>(GetPassengersWeight());
 
-		return (-pow(x / 15, 3) + (x * 2) + 400 > 0) ? (-pow(x / 15, 3) + (x * 2) + 400) : 0;
+		return (-pow(x / 15, 3) + (x * 2) + 400 > 0) ? static_cast<unsigned int>(-pow(x / 15, 3) + (x * 2) + 400) : 0;
 	}
 }
