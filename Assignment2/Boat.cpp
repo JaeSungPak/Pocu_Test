@@ -1,4 +1,6 @@
+#include "Airplane.h"
 #include "Boat.h"
+#include "Boatplane.h"
 
 namespace assignment2
 {
@@ -17,12 +19,30 @@ namespace assignment2
 	}
 	unsigned int Boat::GetSailSpeed() const
 	{
-		return (800 - GetPassengersCount() > 20) ? 800 - GetPassengersCount() : 20;
+		return (800 - GetPassengersWeight() > 20) ? 800 - GetPassengersWeight() : 20;
 	}
 
 	Boatplane Boat::operator+(Airplane& plane)
 	{
-		Boatplane bp(5);
-		return bp;
+		int index = plane.GetMaxPassengersCount() + GetMaxPassengersCount();
+		Boatplane* bp = new Boatplane(index);
+
+		index = GetPassengersCount();
+
+		for (int i = 0; i < index; i++)
+		{
+			bp->AddPassenger(GetPassenger(0));
+			RemovePassenger(0);
+		}
+
+		index = plane.GetPassengersCount();
+
+		for (int i = 0; i < index; i++)
+		{
+			bp->AddPassenger(plane.GetPassenger(0));
+			plane.RemovePassenger(0);
+		}
+
+		return *bp;
 	}
 }

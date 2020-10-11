@@ -5,8 +5,8 @@ namespace assignment2
 	Vehicle::Vehicle(unsigned int maxPassengersCount) 
 		: mMaxCount(maxPassengersCount)
 		, mCurrentCount(0)
-		, mPeople(nullptr)
 	{
+		mPeople = new Person* [maxPassengersCount];
 	}
 
 	Vehicle::~Vehicle()
@@ -15,6 +15,7 @@ namespace assignment2
 		{
 			delete mPeople[i];
 		}
+		delete[] mPeople;
 	}
 
 	bool Vehicle::AddPassenger(const Person* person)
@@ -58,6 +59,17 @@ namespace assignment2
 	unsigned int Vehicle::GetMaxPassengersCount() const
 	{
 		return mMaxCount;
+	}
+
+	unsigned int Vehicle::GetPassengersWeight() const
+	{
+		int index = 0;
+
+		for (int i = 0; i < GetPassengersCount(); i++)
+		{
+			index += GetPassenger(i)->GetWeight();
+		}
+		return index;
 	}
 
 	const Person* Vehicle::GetPassenger(unsigned int i) const

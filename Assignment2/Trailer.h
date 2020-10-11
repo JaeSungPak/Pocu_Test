@@ -1,5 +1,7 @@
 #pragma once
 
+
+
 namespace assignment2
 {
 	class Trailer
@@ -12,5 +14,7 @@ namespace assignment2
 
 	private:
 		int mWeight;
+		Trailer* mPointer;
+		friend class Sedan;
 	};
 }

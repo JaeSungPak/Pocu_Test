@@ -50,9 +50,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IDivable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IFlyable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -87,6 +84,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DeusExMachina.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IDrivable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IDivable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

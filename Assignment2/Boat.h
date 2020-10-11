@@ -18,5 +18,8 @@ namespace assignment2
 		virtual unsigned int GetSailSpeed() const;
 
 		Boatplane operator+(Airplane& plane);
+
+	private:
+		friend class Airplane;
 	};
 }
