@@ -7,6 +7,8 @@ namespace assignment2
 		: Vehicle(4)
 	{
 		mTrailer = nullptr;
+
+		SetTravelAndRestTime(eTravelInfo::SEDAN_TRAVEL, eRestInfo::SEDAN_REST);
 	}
 
 	Sedan::~Sedan()
@@ -20,6 +22,8 @@ namespace assignment2
 		{
 			mTrailer = trailer->mPointer;
 
+			SetTravelAndRestTime(eTravelInfo::SEDAN_TRAVEL, eRestInfo::TRAILERSEDAN_REST);
+
 			return true;
 		}
 
@@ -31,6 +35,8 @@ namespace assignment2
 		if (mTrailer != nullptr)
 		{
 			delete mTrailer;
+
+			SetTravelAndRestTime(eTravelInfo::SEDAN_TRAVEL, eRestInfo::SEDAN_REST);
 
 			mTrailer = nullptr;
 

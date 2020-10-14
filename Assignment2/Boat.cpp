@@ -7,6 +7,7 @@ namespace assignment2
 	Boat::Boat(unsigned int maxPassengersCount)
 		: Vehicle(maxPassengersCount)
 	{
+		SetTravelAndRestTime(eTravelInfo::BOAT_TRAVEL, eRestInfo::BOAT_REST);
 	}
 
 	Boat::~Boat()
@@ -19,7 +20,7 @@ namespace assignment2
 	}
 	unsigned int Boat::GetSailSpeed() const
 	{
-		return (800 - GetPassengersWeight() > 20) ? 800 - GetPassengersWeight() : 20;
+		return (800 - GetPassengersWeight() > 20) ? (800 - GetPassengersWeight() + 0.5f) : 20;
 	}
 
 	Boatplane Boat::operator+(Airplane& plane)

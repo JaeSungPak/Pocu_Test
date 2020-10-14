@@ -5,6 +5,7 @@ namespace assignment2
 	Boatplane::Boatplane(unsigned int maxPassengersCount)
 		: Vehicle(maxPassengersCount)
 	{
+		SetTravelAndRestTime(eTravelInfo::BOATPLANE_TRAVEL, eRestInfo::BOATPLANE_REST);
 	}
 
 	unsigned int Boatplane::GetMaxSpeed() const
@@ -16,23 +17,23 @@ namespace assignment2
 
 	unsigned int Boatplane::GetFlySpeed() const
 	{
-		double index = 200 * exp((-(static_cast<int>(GetPassengersWeight())) + 800) / 500);
+		double index = 200 * exp((-(static_cast<double>(GetPassengersWeight())) + 800) / 500);
 
-		return static_cast<int>(index);
+		return static_cast<int>(index + 0.5f);
 	}
 
 	unsigned int Boatplane::GetDriveSpeed() const
 	{
-		double index = 4 * exp((-(static_cast<int>(GetPassengersWeight())) + 400) / 70);
+		double index = 4 * exp((-(static_cast<double>(GetPassengersWeight())) + 400) / 70);
 
-		return static_cast<int>(index);
+		return static_cast<int>(index + 0.5f);
 	}
 
 	unsigned int Boatplane::GetSailSpeed() const
 	{
 		double index = (800 - GetPassengersWeight() > 20) ? 800 - GetPassengersWeight() : 20;
 
-		return static_cast<int>(index);
+		return static_cast<int>(index + 0.5f);
 	}
 
 	Boatplane* Boatplane::operator=(Boatplane other)

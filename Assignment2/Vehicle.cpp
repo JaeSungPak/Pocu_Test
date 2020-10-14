@@ -5,6 +5,10 @@ namespace assignment2
 	Vehicle::Vehicle(unsigned int maxPassengersCount) 
 		: mMaxCount(maxPassengersCount)
 		, mCurrentCount(0)
+		, mTravelTime(eTravelInfo::DEFAULT_TRAVEL)
+		, mRestTime(eRestInfo::DEFAULT_REST)
+		, mCurrentTravelTime(0)
+		, mCurrentRestTime(0)
 	{
 		mPeople = new Person* [maxPassengersCount];
 	}
@@ -42,7 +46,7 @@ namespace assignment2
 				mPeople[i] = mPeople[i + 1];
 			}
 
-			mPeople[mCurrentCount] = nullptr;
+			mPeople[mCurrentCount - 1] = nullptr;
 
 			mCurrentCount--;
 
@@ -81,5 +85,33 @@ namespace assignment2
 		}
 
 		return NULL;
+	}
+
+	void Vehicle::SetTravelAndRestTime(eTravelInfo travel, eRestInfo rest)
+	{
+		mTravelTime = travel;
+		
+		mRestTime = rest;
+	}
+
+	unsigned int Vehicle::TravelVehicle()
+	{
+		if (mCurrentRestTime == 0)
+		{
+			mCurrentTravelTime++;
+
+			if (mCurrentTravelTime == mTravelTime)
+			{
+				mCurrentRestTime = mRestTime;
+
+				mCurrentTravelTime = 0;
+			}
+
+			return GetMaxSpeed();
+		}
+
+		mCurrentRestTime--;
+
+		return 0;
 	}
 }
