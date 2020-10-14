@@ -19,7 +19,7 @@ namespace assignment2
 
 	unsigned int UBoat::GetSailSpeed() const
 	{
-		return (550 - static_cast<double>(GetPassengersWeight()) / 10 > 200) ? (550 - static_cast<double>(GetPassengersWeight()) / 10 + 0.5f) : 200;
+		return (550 - static_cast<double>(GetPassengersWeight()) / 10 > 200) ? static_cast<unsigned int>(550 - static_cast<double>(GetPassengersWeight()) / 10 + 0.5f) : 200;
 	}
 
 	unsigned int UBoat::GetDiveSpeed() const

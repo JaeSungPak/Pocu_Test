@@ -47,7 +47,7 @@ namespace assignment2
 
 	bool DeusExMachina::RemoveVehicle(unsigned int i)
 	{
-		if (i < mSize && i >= 0)
+		if (static_cast<int>(i) < mSize && i >= 0)
 		{
 			for (int index = i; index < mSize - 1; index++)
 			{
@@ -68,7 +68,7 @@ namespace assignment2
 
 	Vehicle* DeusExMachina::GetVehicle(unsigned int i) const
 	{
-		if (mSize > i)
+		if (mSize > static_cast<int>(i))
 		{
 			return mVehicle[i];
 		}

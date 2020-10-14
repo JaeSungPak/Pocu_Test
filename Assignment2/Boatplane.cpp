@@ -10,21 +10,12 @@ namespace assignment2
 
 	unsigned int Boatplane::GetMaxSpeed() const
 	{
-		unsigned int index = GetDriveSpeed() > GetFlySpeed() ? GetDriveSpeed() : GetFlySpeed();
-
-		return index > GetSailSpeed() ? index : GetSailSpeed();
+		return GetFlySpeed() > GetSailSpeed() ? GetFlySpeed() : GetSailSpeed();
 	}
 
 	unsigned int Boatplane::GetFlySpeed() const
 	{
 		double index = 200 * exp((-(static_cast<double>(GetPassengersWeight())) + 800) / 500);
-
-		return static_cast<int>(index + 0.5f);
-	}
-
-	unsigned int Boatplane::GetDriveSpeed() const
-	{
-		double index = 4 * exp((-(static_cast<double>(GetPassengersWeight())) + 400) / 70);
 
 		return static_cast<int>(index + 0.5f);
 	}

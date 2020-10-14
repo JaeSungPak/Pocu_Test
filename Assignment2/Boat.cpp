@@ -20,7 +20,7 @@ namespace assignment2
 	}
 	unsigned int Boat::GetSailSpeed() const
 	{
-		return (800 - GetPassengersWeight() > 20) ? (800 - GetPassengersWeight() + 0.5f) : 20;
+		return (800 - GetPassengersWeight() > 20) ? static_cast<unsigned int>(800 - GetPassengersWeight() + 0.5f) : 20;
 	}
 
 	Boatplane Boat::operator+(Airplane& plane)
