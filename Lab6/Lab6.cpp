@@ -1,4 +1,4 @@
-#include "Lap6.h"
+#include "Lab6.h"
 
 namespace lab6
 {
