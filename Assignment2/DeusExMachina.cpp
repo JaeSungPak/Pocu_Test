@@ -13,8 +13,6 @@ namespace assignment2
 			
 			mInstance->mSize = 0;
 
-			mInstance->mVehicle = new Vehicle*[10];
-
 			mInstance->mTravelDistance = new int [10];
 		}
 
@@ -49,6 +47,8 @@ namespace assignment2
 	{
 		if (static_cast<int>(i) < mSize && i >= 0)
 		{
+			delete mVehicle[i];
+
 			for (int index = i; index < mSize - 1; index++)
 			{
 				mVehicle[index] = mVehicle[index + 1];
@@ -68,7 +68,7 @@ namespace assignment2
 
 	Vehicle* DeusExMachina::GetVehicle(unsigned int i) const
 	{
-		if (mSize > static_cast<int>(i))
+		if (mSize > static_cast<int>(i) && i >= 0)
 		{
 			return mVehicle[i];
 		}
@@ -83,11 +83,6 @@ namespace assignment2
 		for (int i = 0; i < mSize; i++)
 		{
 			max = mTravelDistance[i] > mTravelDistance[max] ? i : max;
-		}
-
-		for (int i = 0; i < mSize; i++)
-		{
-			std::cout << mTravelDistance[i] << " : " << typeid(*mVehicle[i]).name() << std::endl;
 		}
 
 		return mVehicle[max];

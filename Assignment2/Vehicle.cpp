@@ -13,6 +13,22 @@ namespace assignment2
 		mPeople = new Person* [maxPassengersCount];
 	}
 
+	Vehicle::Vehicle(const Vehicle& other)
+		: mMaxCount(other.mMaxCount)
+		, mCurrentCount(other.mCurrentCount)
+		, mTravelTime(other.mTravelTime)
+		, mRestTime(other.mRestTime)
+		, mCurrentTravelTime(other.mCurrentTravelTime)
+		, mCurrentRestTime(other.mCurrentRestTime)
+	{
+		mPeople = new Person * [mMaxCount + 1];
+
+		for (int i = 0; i < mCurrentCount; i++)
+		{
+			mPeople[i] = new Person(*other.mPeople[i]);
+		}
+	}
+
 	Vehicle::~Vehicle()
 	{
 		for (int i = 0; i < mCurrentCount; i++)
@@ -24,6 +40,14 @@ namespace assignment2
 
 	bool Vehicle::AddPassenger(const Person* person)
 	{
+		for (int i = 0; i < mCurrentCount; i++)
+		{
+			if (person == mPeople[i])
+			{
+				return false;
+			}
+		}
+
 		if (mCurrentCount < mMaxCount && person != nullptr)
 		{
 
@@ -43,7 +67,7 @@ namespace assignment2
 		{
 			for (int index = i; index < mCurrentCount - 1; index++)
 			{
-				mPeople[i] = mPeople[i + 1];
+				mPeople[index] = mPeople[index + 1];
 			}
 
 			mPeople[mCurrentCount - 1] = nullptr;

@@ -15,7 +15,7 @@ namespace assignment2
 		Vehicle* GetVehicle(unsigned int i) const;
 
 	private:
-		Vehicle** mVehicle;
+		Vehicle* mVehicle[11];
 		int* mTravelDistance;
 		int mSize;
 	};
