@@ -15,7 +15,7 @@ namespace assignment2
 
 	unsigned int Boatplane::GetFlySpeed() const
 	{
-		double index = static_cast <double>(150) * exp(static_cast<double>(-GetPassengersWeight() + 500) / 300);
+		double index = static_cast <double>(150) * exp((-static_cast<double>(GetPassengersWeight()) + 500) / 300);
 
 		return static_cast<int>(index + 0.5f);
 	}
