@@ -69,17 +69,17 @@ namespace lab6
 
 		for (int i = 0; i < index; i++)
 		{
-			bool same = false;
+			bool bSame = false;
 			for (unsigned int j = 0; j < element.size(); j++)
 			{
 				if (v[i] == element[j])
 				{
 					count[j] += 1;
-					same = true;
+					bSame = true;
 					break;
 				}
 			}
-			if (!same)
+			if (!bSame)
 			{
 				element.push_back(v[i]);
 				count.push_back(0);
