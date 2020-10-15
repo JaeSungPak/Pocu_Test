@@ -88,6 +88,25 @@ namespace assignment2
 		return false;
 	}
 
+	bool Vehicle::RemovePassengerWithoutDelete(unsigned int i)
+	{
+		if (mCurrentCount > static_cast<int>(i) && i >= 0)
+		{
+			for (int index = i; index < mCurrentCount - 1; index++)
+			{
+				mPeople[index] = mPeople[index + 1];
+			}
+
+			mPeople[mCurrentCount - 1] = nullptr;
+
+			mCurrentCount--;
+
+			return true;
+		}
+
+		return false;
+	}
+
 	unsigned int Vehicle::GetPassengersCount() const
 	{
 		return mCurrentCount;
@@ -151,25 +170,23 @@ namespace assignment2
 	{
 		const Vehicle* thisPointer = this;
 
-		if (&other == thisPointer)
+		if (&other != thisPointer)
 		{
-			return this;
-		}
+			RemoveAllPassenger();
 
-		RemoveAllPassenger();
+			mMaxCount = other.mMaxCount;
+			mCurrentCount = other.mCurrentCount;
+			mTravelTime = other.mTravelTime;
+			mRestTime = other.mRestTime;
+			mCurrentTravelTime = other.mCurrentTravelTime;
+			mCurrentRestTime = other.mCurrentRestTime;
 
-		mMaxCount = other.mMaxCount;
-		mCurrentCount = other.mCurrentCount;
-		mTravelTime = other.mTravelTime;
-		mRestTime = other.mRestTime;
-		mCurrentTravelTime = other.mCurrentTravelTime;
-		mCurrentRestTime = other.mCurrentRestTime;
+			mPeople = new Person * [mMaxCount + 1];
 
-		mPeople = new Person * [mMaxCount + 1];
-
-		for (int i = 0; i < mCurrentCount; i++)
-		{
-			mPeople[i] = new Person(*other.mPeople[i]);
+			for (int i = 0; i < mCurrentCount; i++)
+			{
+				mPeople[i] = new Person(*other.mPeople[i]);
+			}
 		}
 
 		return this;

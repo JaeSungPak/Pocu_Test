@@ -28,25 +28,21 @@ namespace assignment2
 		int index = plane.GetMaxPassengersCount() + GetMaxPassengersCount();
 		Boatplane* bp = new Boatplane(index);
 
+		index = GetPassengersCount();
+
+		for (int i = 0; i < index; i++)
+		{
+			bp->AddPassenger(GetPassenger(0));
+			RemovePassengerWithoutDelete(0);
+		}
+
 		index = plane.GetPassengersCount();
 
 		for (int i = 0; i < index; i++)
 		{
 			bp->AddPassenger(plane.GetPassenger(0));
-			plane.mPeople[i] = NULL;
+			plane.RemovePassengerWithoutDelete(0);
 		}
-
-		plane.mCurrentCount = 0;
-
-		index = GetPassengersCount();
-
-		for (int i = 0; i < index; i++)
-		{
-			bp->AddPassenger(GetPassenger(i));
-			mPeople[i] = NULL;
-		}
-
-		mCurrentCount = 0;
 
 		return *bp;
 	}

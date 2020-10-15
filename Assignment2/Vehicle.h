@@ -47,6 +47,7 @@ namespace assignment2
 
 		void SetTravelAndRestTime(eTravelInfo travel, eRestInfo rest);
 		void RemoveAllPassenger();
+		bool RemovePassengerWithoutDelete(unsigned int i);
 		unsigned int TravelVehicle();
 		const Vehicle* operator=(const Vehicle& other);
 
