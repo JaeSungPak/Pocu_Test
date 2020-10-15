@@ -45,7 +45,7 @@ namespace lab6
 	{
 		int sum = Sum(v);
 
-		return static_cast<double>(sum) / v.size();
+		return static_cast<float>(sum) / v.size();
 	}
 
 	int NumberWithMaxOccurrence(const std::vector<int>& v)
@@ -65,7 +65,7 @@ namespace lab6
 		for (int i = 0; i < index; i++)
 		{
 			bool same = false;
-			for (int j = 0; j < element.size(); j++)
+			for (unsigned int j = 0; j < element.size(); j++)
 			{
 				if (v[i] == element[j])
 				{
@@ -85,7 +85,7 @@ namespace lab6
 
 		int max = 0;
 
-		for (int i = 0; i < count.size(); i++)
+		for (unsigned int i = 0; i < count.size(); i++)
 		{
 			max = count[i] > count[max] ? i : max;
 		}
