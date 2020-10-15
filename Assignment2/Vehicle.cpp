@@ -31,10 +31,16 @@ namespace assignment2
 
 	Vehicle::~Vehicle()
 	{
+		RemoveAllPassenger();
+	}
+
+	void Vehicle::RemoveAllPassenger()
+	{
 		for (int i = 0; i < mCurrentCount; i++)
 		{
 			delete mPeople[i];
 		}
+
 		delete[] mPeople;
 	}
 
@@ -65,6 +71,8 @@ namespace assignment2
 	{
 		if (mCurrentCount > static_cast<int>(i) && i >= 0)
 		{
+			delete mPeople[i];
+
 			for (int index = i; index < mCurrentCount - 1; index++)
 			{
 				mPeople[index] = mPeople[index + 1];
@@ -137,5 +145,33 @@ namespace assignment2
 		mCurrentRestTime--;
 
 		return 0;
+	}
+
+	const Vehicle* Vehicle::operator=(const Vehicle& other)
+	{
+		const Vehicle* thisPointer = this;
+
+		if (&other == thisPointer)
+		{
+			return this;
+		}
+
+		RemoveAllPassenger();
+
+		mMaxCount = other.mMaxCount;
+		mCurrentCount = other.mCurrentCount;
+		mTravelTime = other.mTravelTime;
+		mRestTime = other.mRestTime;
+		mCurrentTravelTime = other.mCurrentTravelTime;
+		mCurrentRestTime = other.mCurrentRestTime;
+
+		mPeople = new Person * [mMaxCount + 1];
+
+		for (int i = 0; i < mCurrentCount; i++)
+		{
+			mPeople[i] = new Person(*other.mPeople[i]);
+		}
+
+		return this;
 	}
 }

@@ -46,7 +46,9 @@ namespace assignment2
 		unsigned int GetPassengersWeight() const;
 
 		void SetTravelAndRestTime(eTravelInfo travel, eRestInfo rest);
+		void RemoveAllPassenger();
 		unsigned int TravelVehicle();
+		const Vehicle* operator=(const Vehicle& other);
 
 	protected:
 		int mMaxCount;
