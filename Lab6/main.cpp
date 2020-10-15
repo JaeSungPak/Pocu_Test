@@ -14,6 +14,5 @@ int main()
 
 	std::cout << lab6::NumberWithMaxOccurrence(v);
 
-
 	return 0;
 }
