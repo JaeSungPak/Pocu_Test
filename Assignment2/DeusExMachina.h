@@ -17,7 +17,7 @@ namespace assignment2
 
 	private:
 		Vehicle* mVehicle[11];
-		int* mTravelDistance;
+		int mTravelDistance[11] = { 0, };
 		int mSize;
 	};
 }

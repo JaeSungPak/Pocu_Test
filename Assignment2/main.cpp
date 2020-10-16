@@ -113,27 +113,13 @@ int main()
 	static_cast<Sedan*>(demSedan2)->AddTrailer(demTrailer);
 	Vehicle* demUBoat = new UBoat();
 
-	d->AddVehicle(demAirplain);
-	d->AddVehicle(demBoat);
-	d->AddVehicle(demBoatplain);
-	d->AddVehicle(demMotorcycle);
-	d->AddVehicle(demSedan1);
-	d->AddVehicle(demSedan2);
-	d->AddVehicle(demUBoat);
-
-	for (size_t i = 0; i < 7; i++)
-	{
-		Vehicle* tempVPointer = d->GetVehicle(i);
-		for (size_t j = tempVPointer->GetPassengersCount(); j < tempVPointer->GetMaxPassengersCount(); j++)
-		{
-			tempVPointer->AddPassenger(new Person(STR((i + j)), 10));
-		}
-	}
-
-	for (size_t i = 0; i < 10; i++)
-	{
-		d->Travel();
-	}
+	delete demAirplain;
+	delete demBoat;
+	delete demBoatplain;
+	delete demMotorcycle;
+	delete demSedan1;
+	delete demSedan2;
+	delete demUBoat;
 
 	delete d;
 

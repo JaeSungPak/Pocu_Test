@@ -12,8 +12,6 @@ namespace assignment2
 			mInstance = new DeusExMachina();
 			
 			mInstance->mSize = 0;
-
-			mInstance->mTravelDistance = new int [10];
 		}
 
 		return mInstance;
@@ -25,6 +23,10 @@ namespace assignment2
 		{
 			delete mVehicle[i];
 		}
+
+		delete mTravelDistance;
+		
+		delete this;
 	}
 
 	void DeusExMachina::Travel() const
