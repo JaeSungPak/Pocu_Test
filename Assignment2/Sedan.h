@@ -11,7 +11,7 @@ namespace assignment2
 	public:
 		Sedan();
 		Sedan(const Sedan& other);
-		~Sedan();
+		virtual ~Sedan();
 
 		virtual unsigned int GetMaxSpeed() const;
 		virtual unsigned int GetDriveSpeed() const;

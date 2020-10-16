@@ -11,7 +11,7 @@ namespace assignment2
 	{
 	public:
 		Boatplane(unsigned int maxPassengersCount);
-		~Boatplane();
+		virtual ~Boatplane();
 
 		virtual unsigned int GetMaxSpeed() const;
 		virtual unsigned int GetFlySpeed() const;

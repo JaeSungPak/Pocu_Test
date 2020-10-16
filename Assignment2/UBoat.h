@@ -9,7 +9,7 @@ namespace assignment2
 	{
 	public:
 		UBoat();
-		~UBoat();
+		virtual ~UBoat();
 
 		virtual unsigned int GetMaxSpeed() const;
 		virtual unsigned int GetSailSpeed() const;

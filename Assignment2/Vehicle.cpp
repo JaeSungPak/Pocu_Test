@@ -168,14 +168,7 @@ namespace assignment2
 
 	const Vehicle* Vehicle::operator=(const Vehicle& other)
 	{
-		if (&other == this)
-		{
-			return this;
-		}
-
-		const Vehicle* thisPointer = this;
-
-		if (&other != thisPointer)
+		if (&other != this)
 		{
 			RemoveAllPassenger();
 

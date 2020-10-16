@@ -19,6 +19,14 @@ namespace assignment2
 		return mInstance;
 	}
 
+	DeusExMachina::~DeusExMachina()
+	{
+		for (int i = 0; i < mSize; i++)
+		{
+			delete mVehicle[i];
+		}
+	}
+
 	void DeusExMachina::Travel() const
 	{
 		for (int i = 0; i < mSize; i++)
