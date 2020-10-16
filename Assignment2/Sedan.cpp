@@ -19,7 +19,8 @@ namespace assignment2
 
 	Sedan::~Sedan()
 	{
-		if (mTrailer != NULL) {
+		if (mTrailer != NULL) 
+		{
 			delete mTrailer;
 		}
 	}
@@ -90,6 +91,11 @@ namespace assignment2
 
 	const Sedan* Sedan::operator=(const Sedan& other)
 	{
+		if (&other == this)
+		{
+			return this;
+		}
+
 		Vehicle::operator=(other);
 
 		if (other.mTrailer != NULL)
