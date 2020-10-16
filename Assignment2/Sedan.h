@@ -20,8 +20,7 @@ namespace assignment2
 		bool RemoveTrailer();
 		const Sedan* operator=(const Sedan& other);
 
-		
-	private:
 		Trailer* mTrailer;
+	private:
 	};
 }

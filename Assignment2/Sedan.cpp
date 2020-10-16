@@ -97,19 +97,20 @@ namespace assignment2
 		}
 
 		Vehicle::operator=(other);
+		
+		if (mTrailer != NULL)
+		{
+			delete mTrailer;
+
+			mTrailer = NULL;
+		}
 
 		if (other.mTrailer != NULL)
 		{
-			if (mTrailer != NULL)
-			{
-				delete mTrailer;
-
-				mTrailer = NULL;
-			}
-
-			mTrailer = new Trailer(*other.mTrailer);
+			mTrailer = new Trailer(other.mTrailer->GetWeight());
 		}
 
 		return this;
 	}
+
 }

@@ -8,7 +8,6 @@ namespace assignment2
 	{
 	public:
 		static DeusExMachina* GetInstance();
-		virtual ~DeusExMachina();
 		void Travel() const;
 		bool AddVehicle(Vehicle* vehicle);
 		bool RemoveVehicle(unsigned int i);
@@ -17,7 +16,7 @@ namespace assignment2
 
 	private:
 		Vehicle* mVehicle[11];
-		int mTravelDistance[11] = { 0, };
+		int* mTravelDistance;
 		int mSize;
 	};
 }
