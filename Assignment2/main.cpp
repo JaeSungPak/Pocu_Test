@@ -26,11 +26,7 @@ int main()
 	Trailer* demTrailer = new Trailer(10);
 	(demSedan1)->AddTrailer(demTrailer);
 
-	*demSedan2 = *demSedan1;
-
-	assert(demSedan1->mTrailer != demSedan2->mTrailer);
-	assert(demSedan1->mTrailer->GetWeight() == 10);
-	assert(demSedan2->mTrailer->GetWeight() == 10);
+	*demSedan1 = *demSedan2;
 
 	return 0;
 }

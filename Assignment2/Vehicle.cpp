@@ -11,6 +11,11 @@ namespace assignment2
 		, mCurrentRestTime(0)
 	{
 		mPeople = new Person* [maxPassengersCount];
+
+		for (int i = 0; i < mMaxCount; i++)
+		{
+			mPeople[i] = NULL;
+		}
 	}
 
 	Vehicle::Vehicle(const Vehicle& other)
@@ -22,6 +27,11 @@ namespace assignment2
 		, mCurrentRestTime(other.mCurrentRestTime)
 	{
 		mPeople = new Person * [mMaxCount + 1];
+
+		for (int i = 0; i < mMaxCount; i++)
+		{
+			mPeople[i] = NULL;
+		}
 
 		for (int i = 0; i < mCurrentCount; i++)
 		{
@@ -38,7 +48,11 @@ namespace assignment2
 	{
 		for (int i = 0; i < mCurrentCount; i++)
 		{
-			delete mPeople[i];
+			if(mPeople != NULL)
+			{
+				delete mPeople[i];
+			}
+			
 		}
 
 		delete[] mPeople;
@@ -78,7 +92,7 @@ namespace assignment2
 				mPeople[index] = mPeople[index + 1];
 			}
 
-			mPeople[mCurrentCount - 1] = nullptr;
+			mPeople[mCurrentCount - 1] = NULL;
 
 			mCurrentCount--;
 
@@ -97,7 +111,7 @@ namespace assignment2
 				mPeople[index] = mPeople[index + 1];
 			}
 
-			mPeople[mCurrentCount - 1] = nullptr;
+			mPeople[mCurrentCount - 1] = NULL;
 
 			mCurrentCount--;
 
@@ -180,6 +194,11 @@ namespace assignment2
 			mCurrentRestTime = other.mCurrentRestTime;
 
 			mPeople = new Person * [mMaxCount + 1];
+
+			for (int i = 0; i < mMaxCount; i++)
+			{
+				mPeople[i] = NULL;
+			}
 
 			for (int i = 0; i < mCurrentCount; i++)
 			{

@@ -14,7 +14,7 @@ namespace assignment2
 	Sedan::Sedan(const Sedan& other)
 		: Vehicle(other)
 	{
-		mTrailer = new Trailer(*other.mTrailer);
+		mTrailer = new Trailer(other.mTrailer->GetWeight());
 	}
 
 	Sedan::~Sedan()
@@ -27,7 +27,7 @@ namespace assignment2
 
 	bool Sedan::AddTrailer(const Trailer* trailer)
 	{
-		if (mTrailer == nullptr)
+		if (mTrailer == NULL)
 		{
 			mTrailer = trailer->mPointer;
 
@@ -41,13 +41,13 @@ namespace assignment2
 
 	bool Sedan::RemoveTrailer()
 	{
-		if (mTrailer != nullptr)
+		if (mTrailer != NULL)
 		{
 			delete mTrailer;
 
 			SetTravelAndRestTime(eTravelInfo::SEDAN_TRAVEL, eRestInfo::SEDAN_REST);
 
-			mTrailer = nullptr;
+			mTrailer = NULL;
 
 			return true;
 		}
@@ -62,7 +62,7 @@ namespace assignment2
 
 	unsigned int Sedan::GetDriveSpeed() const
 	{
-		unsigned int weight = mTrailer != nullptr ? mTrailer->GetWeight() + GetPassengersWeight() : GetPassengersWeight();
+		unsigned int weight = mTrailer != NULL ? mTrailer->GetWeight() + GetPassengersWeight() : GetPassengersWeight();
 		unsigned int speed;
 
 		if (weight > 350)
