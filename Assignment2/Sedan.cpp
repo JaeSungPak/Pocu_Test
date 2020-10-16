@@ -6,14 +6,22 @@ namespace assignment2
 	Sedan::Sedan()
 		: Vehicle(4)
 	{
-		mTrailer = nullptr;
+		mTrailer = NULL;
 
 		SetTravelAndRestTime(eTravelInfo::SEDAN_TRAVEL, eRestInfo::SEDAN_REST);
 	}
 
+	Sedan::Sedan(const Sedan& other)
+		: Vehicle(other)
+	{
+		mTrailer = new Trailer(*other.mTrailer);
+	}
+
 	Sedan::~Sedan()
 	{
-		delete mTrailer;
+		if (mTrailer != NULL) {
+			delete mTrailer;
+		}
 	}
 
 	bool Sedan::AddTrailer(const Trailer* trailer)
@@ -78,5 +86,24 @@ namespace assignment2
 		}
 
 		return speed;
+	}
+
+	const Sedan* Sedan::operator=(const Sedan& other)
+	{
+		Vehicle::operator=(other);
+
+		if (other.mTrailer != NULL)
+		{
+			if (mTrailer != NULL)
+			{
+				delete mTrailer;
+
+				mTrailer = NULL;
+			}
+
+			mTrailer = new Trailer(*other.mTrailer);
+		}
+
+		return this;
 	}
 }

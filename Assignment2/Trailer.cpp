@@ -8,6 +8,13 @@ namespace assignment2
 	{
 	}
 
+	Trailer::Trailer(const Trailer& other)
+		: mWeight(other.mWeight)
+		, mPointer(other.mPointer)
+	{
+
+	}
+
 	Trailer::~Trailer()
 	{
 	}
