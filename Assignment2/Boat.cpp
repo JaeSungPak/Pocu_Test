@@ -27,6 +27,14 @@ namespace assignment2
 	{
 		int index = plane.GetMaxPassengersCount() + GetMaxPassengersCount();
 		Boatplane bp(index);
+		
+		index = plane.GetPassengersCount();
+
+		for (int i = 0; i < index; i++)
+		{
+			bp.AddPassenger(plane.GetPassenger(0));
+			plane.RemovePassengerWithoutDelete(0);
+		}
 
 		index = GetPassengersCount();
 
@@ -34,14 +42,6 @@ namespace assignment2
 		{
 			bp.AddPassenger(GetPassenger(0));
 			RemovePassengerWithoutDelete(0);
-		}
-
-		index = plane.GetPassengersCount();
-
-		for (int i = 0; i < index; i++)
-		{
-			bp.AddPassenger(plane.GetPassenger(0));
-			plane.RemovePassengerWithoutDelete(0);
 		}
 
 		return bp;
