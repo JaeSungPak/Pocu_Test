@@ -17,6 +17,6 @@ namespace assignment2
 		virtual unsigned int GetFlySpeed() const;
 		virtual unsigned int GetSailSpeed() const;
 
-		Boatplane* operator= (Boatplane other);
+		Boatplane* operator= (const Boatplane& other);
 	};
 }

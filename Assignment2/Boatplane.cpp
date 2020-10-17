@@ -27,7 +27,7 @@ namespace assignment2
 		return static_cast<int>(index + 0.5f);
 	}
 
-	Boatplane* Boatplane::operator=(Boatplane other)
+	Boatplane* Boatplane::operator=(const Boatplane& other)
 	{
 		mMaxCount = other.GetMaxPassengersCount();
 		mCurrentCount = other.GetPassengersCount();
@@ -37,13 +37,12 @@ namespace assignment2
 			delete mPeople[i];
 		}
 
-		delete mPeople;
+		delete[] mPeople;
 
 		mPeople = new Person * [mMaxCount + 1];
-
 		for (int i = 0; i < mCurrentCount; i++)
 		{
-			mPeople[i] = other.mPeople[i];
+			mPeople[i] = other.mPeople[i]->mPointer;
 		}
 
 		return this;

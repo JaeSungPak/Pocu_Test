@@ -19,5 +19,6 @@ namespace assignment2
 		int mWeight;
 		Person* mPointer;
 		friend class Vehicle;
+		friend class Boatplane;
 	};
 }

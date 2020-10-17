@@ -38,13 +38,13 @@ namespace assignment2
 	Boatplane Airplane::operator+(Boat& boat)
 	{
 		int index = boat.GetMaxPassengersCount() + GetMaxPassengersCount();
-		Boatplane* bp = new Boatplane(index);
+		Boatplane bp(index);
 
 		index = GetPassengersCount();
 
 		for (int i = 0; i < index; i++)
 		{
-			bp->AddPassenger(GetPassenger(0));
+			bp.AddPassenger(GetPassenger(0));
 			RemovePassengerWithoutDelete(0);
 		}
 
@@ -52,10 +52,10 @@ namespace assignment2
 
 		for (int i = 0; i < index; i++)
 		{
-			bp->AddPassenger(boat.GetPassenger(0));
+			bp.AddPassenger(boat.GetPassenger(0));
 			boat.RemovePassengerWithoutDelete(0);
 		}
 
-		return *bp;
+		return bp;
 	}
 }
