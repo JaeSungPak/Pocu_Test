@@ -48,11 +48,7 @@ namespace assignment2
 	{
 		for (int i = 0; i < mCurrentCount; i++)
 		{
-			if(mPeople != NULL)
-			{
-				delete mPeople[i];
-			}
-			
+			delete mPeople[i];
 		}
 
 		delete[] mPeople;
