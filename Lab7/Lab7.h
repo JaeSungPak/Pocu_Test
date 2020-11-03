@@ -16,7 +16,7 @@ namespace lab7
 
 		for (; i < keys.size(); i++)
 		{
-			std::pair<std::map<K, V>::iterator, bool> check = m.insert(std::pair(keys[i], values[j]));
+			std::pair<std::map<K, V>::iterator, bool> check = m.insert(std::pair<K, V>(keys[i], values[j]));
 
 			if (check.second)
 			{
