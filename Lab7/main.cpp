@@ -21,6 +21,18 @@ int main()
 	v3.push_back(5);
 	v3.push_back(6);
 
+	std::vector<int> v4;
+	v4.push_back(1);
+	v4.push_back(1);
+	v4.push_back(2);
+	v4.push_back(3);
+
+	std::vector<int> v5;
+	v5.push_back(1);
+	v5.push_back(2);
+	v5.push_back(4);
+	v5.push_back(3);
+
 	std::map<char, int> m1;
 	m1['a'] = 1;
 	m1['b'] = 2;
@@ -44,7 +56,7 @@ int main()
 		assert(it->first == 3);
 		assert(it->second == 'c');
 	}
-	
+
 	std::vector<char> keys = lab7::GetKeys(m1);
 	{
 		std::vector<char>::const_iterator it = keys.begin();
@@ -55,7 +67,7 @@ int main()
 		it++;
 		assert(*it == 'c');
 	}
-	
+
 	std::vector<int> values = lab7::GetValues(m1);
 	{
 		std::vector<int>::const_iterator it = values.begin();
@@ -66,14 +78,14 @@ int main()
 		it++;
 		assert(*it == 3);
 	}
-	
+
 	std::vector<int> reversedV1 = lab7::Reverse(v1);
 	{
 		assert(reversedV1[0] == v1[2]);
 		assert(reversedV1[1] == v1[1]);
 		assert(reversedV1[2] == v1[0]);
 	}
-	
+
 	std::vector<int> combinedVector = v1 + v3;
 	{
 		assert(combinedVector.size() == 6);
@@ -84,7 +96,24 @@ int main()
 		assert(combinedVector[4] == 5);
 		assert(combinedVector[5] == 6);
 	}
-	
+
+	std::vector<int> v4plusv5 = v4 + v5;   // v4에 중복된 원소가 있을 경우
+	{
+		std::vector<int>::const_iterator it = v4plusv5.begin();
+
+		std::cout << v4plusv5;
+
+		assert(v4plusv5.size() == 4);
+
+		assert(*it == 1);
+		it++;
+		assert(*it == 2);
+		it++;
+		assert(*it == 3);
+		it++;
+		assert(*it == 4);
+	}
+
 	std::map<char, int> combinedMap = m1 + m2;
 	{
 		std::map<char, int>::const_iterator it = combinedMap.begin();
@@ -112,6 +141,7 @@ int main()
 
 	std::cout << v1 << std::endl;
 	std::cout << m1 << std::endl;
-	
+
 	return 0;
+
 }

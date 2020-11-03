@@ -78,20 +78,38 @@ namespace lab7
 
 		for (unsigned int i = 0; i < v1.size(); i++)
 		{
-			combined.push_back(v1[i]);
+			bool same = false;
+
+			for (unsigned int j = 0; j < combined.size(); j++)
+			{
+				if (v1[i] == combined[j])
+				{
+					same = true;
+				}
+			}
+
+			if (!same)
+			{
+				combined.push_back(v1[i]);
+			}
 		}
 
 		for (unsigned int i = 0; i < v2.size(); i++)
 		{
-			for (unsigned int j = 0; j < v1.size(); j++)
+			bool same = false;
+
+			for (unsigned int j = 0; j < combined.size(); j++)
 			{
-				if (v2[i] == v1[j])
+				if (v2[i] == combined[j])
 				{
-					break;
+					same = true;
 				}
 			}
 
-			combined.push_back(v2[i]);
+			if (!same)
+			{
+				combined.push_back(v2[i]);
+			}
 		}
 
 		return combined;
