@@ -16,9 +16,9 @@ namespace lab7
 
 		for (; i < keys.size(); i++)
 		{
-			std::pair<std::map<K, V>::iterator, bool> check = m.insert(std::pair<K, V>(keys[i], values[j]));
+			std::pair<std::map<K, V>::iterator, bool> bCheck = m.insert(std::pair<K, V>(keys[i], values[j]));
 
-			if (check.second)
+			if (bCheck.second)
 			{
 				j++;
 			}
@@ -78,17 +78,17 @@ namespace lab7
 
 		for (unsigned int i = 0; i < v1.size(); i++)
 		{
-			bool same = false;
+			bool bSame = false;
 
 			for (unsigned int j = 0; j < combined.size(); j++)
 			{
 				if (v1[i] == combined[j])
 				{
-					same = true;
+					bSame = true;
 				}
 			}
 
-			if (!same)
+			if (!bSame)
 			{
 				combined.push_back(v1[i]);
 			}
@@ -96,17 +96,17 @@ namespace lab7
 
 		for (unsigned int i = 0; i < v2.size(); i++)
 		{
-			bool same = false;
+			bool bSame = false;
 
 			for (unsigned int j = 0; j < combined.size(); j++)
 			{
 				if (v2[i] == combined[j])
 				{
-					same = true;
+					bSame = true;
 				}
 			}
 
-			if (!same)
+			if (!bSame)
 			{
 				combined.push_back(v2[i]);
 			}
