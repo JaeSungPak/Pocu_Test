@@ -62,4 +62,5 @@ namespace assignment2
 
 		Person** mPeople;
 	};
+
 }

@@ -1,11 +1,34 @@
 #include "Boatplane.h"
 
+#include <iostream>
+
 namespace assignment2
 {
 	Boatplane::Boatplane(unsigned int maxPassengersCount)
 		: Vehicle(maxPassengersCount)
 	{
 		SetTravelAndRestTime(eTravelInfo::BOATPLANE_TRAVEL, eRestInfo::BOATPLANE_REST);
+	}
+
+	Boatplane::Boatplane(const Boatplane& other)
+		:Vehicle(other)
+	{
+		if (other.IsOperated)
+		{
+			RemoveAllPassenger();
+
+			mPeople = new Person * [mMaxCount + 1];
+
+			for (int i = 0; i < mMaxCount; i++)
+			{
+				mPeople[i] = NULL;
+			}
+
+			for (int i = 0; i < mCurrentCount; i++)
+			{
+				mPeople[i] = other.mPeople[i]->mPointer;
+			}
+		}
 	}
 
 	unsigned int Boatplane::GetMaxSpeed() const

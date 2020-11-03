@@ -44,17 +44,23 @@ namespace assignment2
 
 		for (int i = 0; i < index; i++)
 		{
-			bp.AddPassenger(GetPassenger(0));
-			RemovePassengerWithoutDelete(0);
+			bp.AddPassenger(mPeople[i]->mPointer);
+			mPeople[i] = NULL;
 		}
+
+		mCurrentCount = 0;
 
 		index = boat.GetPassengersCount();
 
 		for (int i = 0; i < index; i++)
 		{
-			bp.AddPassenger(boat.GetPassenger(0));
-			boat.RemovePassengerWithoutDelete(0);
+			bp.AddPassenger(boat.mPeople[i]->mPointer);
+			boat.mPeople[i] = NULL;
 		}
+
+		boat.mCurrentCount = 0;
+
+		bp.IsOperated = true;
 
 		return bp;
 	}

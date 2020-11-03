@@ -13,12 +13,14 @@ namespace assignment2
 
 		const std::string& GetName() const;
 		unsigned int GetWeight() const;
-		
+
 	private:
 		std::string mName;
 		int mWeight;
 		Person* mPointer;
 		friend class Vehicle;
+		friend class Airplane;
+		friend class Boat;
 		friend class Boatplane;
 	};
 }
