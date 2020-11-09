@@ -20,26 +20,27 @@ namespace assignment3
 		T GetMin();
 		double GetAverage();
 		T GetSum();
-		double GetVariance();
-		double GetStandardDeviation();
 		unsigned int GetCount();
+		unsigned int GetStackCount();
 
 	private:
 		std::queue<std::stack<T>> mQueue;
-		int mCurrentSize;
-		int mMaxStackSize;
+		const int mMaxStackSize;
 	};
 
 	//---------------------------------------------------------
 
 	template<typename T>
 	QueueStack<T>::QueueStack(unsigned int maxStackSize)
+		: mMaxStackSize(maxStackSize)
 	{
-		
+		mQueue.push({});
 	}
 
 	template<typename T>
 	QueueStack<T>::QueueStack(const QueueStack& other)
+		: mQueue(other.mQueue)
+		, mMaxStackSize(other.mMaxStackSize)
 	{
 
 	}
@@ -54,6 +55,12 @@ namespace assignment3
 	template<typename T>
 	void QueueStack<T>::Enqueue(T number)
 	{
+		if (mQueue.back().size() >= mMaxStackSize)
+		{
+			mQueue.push({});
+		}
+
+		mQueue.back().push(number);
 	}
 
 	template<typename T>
@@ -65,48 +72,110 @@ namespace assignment3
 	template<typename T>
 	T QueueStack<T>::Dequeue()
 	{
-		return 0;
+		T temp = mQueue.front().top();
+
+		mQueue.front().pop();
+
+		if (mQueue.front().size() == 0)
+		{
+			mQueue.pop();
+		}
+
+		return temp;
 	}
 
 	template<typename T>
 	T QueueStack<T>::GetMax()
 	{
-		return 0;
+		T temp = std::numeric_limits<T>::min();
+
+		QueueStack<T> clone(*this);
+
+		unsigned int size = clone.GetCount();
+
+		for (unsigned int i = 0; i < size; i++)
+		{
+			T pop = clone.Dequeue();
+
+			if (pop > temp)
+			{
+				temp = pop;
+			}
+			
+		}
+
+		return temp;
 	}
 
 	template<typename T>
 	T QueueStack<T>::GetMin()
 	{
-		return 0;
+		T temp = std::numeric_limits<T>::max();
+
+		QueueStack<T> clone(*this);
+
+		unsigned int size = clone.GetCount();
+
+		for (unsigned int i = 0; i < size; i++)
+		{
+			T pop = clone.Dequeue();
+
+			if (pop < temp)
+			{
+				temp = pop;
+			}
+
+		}
+
+		return temp;
 	}
 
 	template<typename T>
 	double QueueStack<T>::GetAverage()
 	{
-		return 0;
+		return static_cast<double>(GetSum()) / GetCount();
 	}
 
 	template<typename T>
 	T QueueStack<T>::GetSum()
 	{
-		return 0;
+		int sum = 0;
+
+		QueueStack<T> clone(*this);
+
+		unsigned int size = clone.GetCount();
+
+		for (unsigned int i = 0; i < size; i++)
+		{
+			sum += clone.Dequeue();
+		}
+
+		return sum;
 	}
 
-	template<typename T>
-	double QueueStack<T>::GetVariance()
-	{
-		return 0;
-	}
 
 	template<typename T>
-	double QueueStack<T>::GetStandardDeviation()
+	unsigned int QueueStack<T>::GetStackCount()
 	{
-		return 0;
+		return mQueue.size();
 	}
 
 	template<typename T>
 	unsigned int QueueStack<T>::GetCount()
 	{
-		return 0;
+		unsigned int count = 0;
+
+		std::queue clone(mQueue);
+
+		int size = clone.size();
+
+		for (int i = 0; i < size; i++)
+		{
+			count += clone.front().size();
+
+			clone.pop();
+		}
+
+		return count;
 	}
 }
