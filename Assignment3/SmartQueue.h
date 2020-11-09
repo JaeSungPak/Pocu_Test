@@ -24,6 +24,7 @@ namespace assignment3
 		double GetVariance();
 		double GetStandardDeviation();
 		unsigned int GetCount();
+		SmartQueue operator=(const SmartQueue& other);
 
 	private:
 		std::queue<T> mQueue;
@@ -169,5 +170,16 @@ namespace assignment3
 	unsigned int SmartQueue<T>::GetCount()
 	{
 		return mQueue.size();
+	}
+
+	template<typename T>
+	SmartQueue<T> SmartQueue<T>::operator=(const SmartQueue<T>& other)
+	{
+		if (this != &other) {
+
+			mQueue = other.mQueue;
+
+		}
+		return *this;
 	}
 }

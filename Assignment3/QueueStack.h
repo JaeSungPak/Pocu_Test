@@ -22,10 +22,11 @@ namespace assignment3
 		T GetSum();
 		unsigned int GetCount();
 		unsigned int GetStackCount();
+		QueueStack operator=(const QueueStack& other);
 
 	private:
 		std::queue<std::stack<T>> mQueue;
-		const int mMaxStackSize;
+		int mMaxStackSize;
 	};
 
 	//---------------------------------------------------------
@@ -177,5 +178,17 @@ namespace assignment3
 		}
 
 		return count;
+	}
+
+	template<typename T>
+	QueueStack<T> QueueStack<T>::operator=(const QueueStack<T>& other)
+	{
+		if (this != &other) {
+
+			mQueue = other.mQueue;
+
+			mMaxStackSize = other.mMaxStackSize;
+		}
+		return *this;
 	}
 }

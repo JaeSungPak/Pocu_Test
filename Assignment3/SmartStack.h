@@ -24,7 +24,8 @@ namespace assignment3
 		double GetVariance();
 		double GetStandardDeviation();
 		unsigned int GetCount();
-		
+		SmartStack operator=(const SmartStack& other);
+
 	private:
 		std::stack<T> mStack;
 		
@@ -170,5 +171,16 @@ namespace assignment3
 	unsigned int SmartStack<T>::GetCount()
 	{
 		return mStack.size();
+	}
+
+	template<typename T>
+	SmartStack<T> SmartStack<T>::operator=(const SmartStack<T>& other)
+	{
+		if (this != &other) {
+
+			mStack = other.mStack;
+
+		}
+		return *this;
 	}
 }
