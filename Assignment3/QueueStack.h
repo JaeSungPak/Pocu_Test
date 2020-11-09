@@ -166,7 +166,9 @@ namespace assignment3
 	{
 		unsigned int count = 0;
 
-		std::queue clone(mQueue);
+		std::queue<std::stack<T>> clone;
+
+		clone = mQueue;
 
 		int size = clone.size();
 
