@@ -25,7 +25,7 @@ namespace assignment3
 		unsigned int GetCount();
 
 	private:
-		std::queue<std::stack<int>> mQueue;
+		std::queue<std::stack<T>> mQueue;
 		int mCurrentSize;
 		int mMaxStackSize;
 	};
