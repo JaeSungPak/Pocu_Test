@@ -82,7 +82,7 @@ namespace assignment3
 
 		T temp = std::numeric_limits<T>::min();
 
-		for (int i = 0; i < mStack.size(); i++)
+		for (unsigned int i = 0; i < mStack.size(); i++)
 		{
 			T pop = clone.top();
 
@@ -104,7 +104,7 @@ namespace assignment3
 
 		T temp = std::numeric_limits<T>::max();
 
-		for (int i = 0; i < mStack.size(); i++)
+		for (unsigned int i = 0; i < mStack.size(); i++)
 		{
 			T pop = clone.top();
 
@@ -134,7 +134,7 @@ namespace assignment3
 
 		T sum = 0;
 
-		for (int i = 0; i < mStack.size(); i++)
+		for (unsigned int i = 0; i < mStack.size(); i++)
 		{
 			sum += clone.Pop();
 		}

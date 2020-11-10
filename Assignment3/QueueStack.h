@@ -26,7 +26,7 @@ namespace assignment3
 
 	private:
 		std::queue<std::stack<T>> mQueue;
-		int mMaxStackSize;
+		unsigned int mMaxStackSize;
 	};
 
 	//---------------------------------------------------------
@@ -140,7 +140,7 @@ namespace assignment3
 	template<typename T>
 	T QueueStack<T>::GetSum()
 	{
-		int sum = 0;
+		T sum = 0;
 
 		QueueStack<T> clone(*this);
 
