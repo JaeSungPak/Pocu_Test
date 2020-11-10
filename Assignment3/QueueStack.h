@@ -185,12 +185,13 @@ namespace assignment3
 	template<typename T>
 	QueueStack<T> QueueStack<T>::operator=(const QueueStack<T>& other)
 	{
-		if (this != &other) {
-
+		if (this != &other) 
+		{
 			mQueue = other.mQueue;
 
 			mMaxStackSize = other.mMaxStackSize;
 		}
+
 		return *this;
 	}
 }

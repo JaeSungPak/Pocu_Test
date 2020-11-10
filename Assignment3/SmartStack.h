@@ -42,7 +42,7 @@ namespace assignment3
 
 	template<typename T>
 	SmartStack<T>::SmartStack(const SmartStack& other)
-		:mStack(other.mStack)
+		: mStack(other.mStack)
 	{
 		
 	}
@@ -176,7 +176,8 @@ namespace assignment3
 	template<typename T>
 	SmartStack<T> SmartStack<T>::operator=(const SmartStack<T>& other)
 	{
-		if (this != &other) {
+		if (this != &other) 
+		{
 
 			mStack = other.mStack;
 

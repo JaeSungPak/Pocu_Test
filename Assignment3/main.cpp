@@ -20,9 +20,7 @@ int main()
 
 	ss.Push(6);
 
-	SmartStack<float> sss;
-
-	sss = ss;
+	std::cout << ss.GetMax() << std::endl;
 
 	return 0;
 

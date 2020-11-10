@@ -41,7 +41,7 @@ namespace assignment3
 
 	template<typename T>
 	SmartQueue<T>::SmartQueue(const SmartQueue& other)
-		:mQueue(other.mQueue)
+		: mQueue(other.mQueue)
 	{
 
 	}
@@ -175,7 +175,8 @@ namespace assignment3
 	template<typename T>
 	SmartQueue<T> SmartQueue<T>::operator=(const SmartQueue<T>& other)
 	{
-		if (this != &other) {
+		if (this != &other) 
+		{
 
 			mQueue = other.mQueue;
 
