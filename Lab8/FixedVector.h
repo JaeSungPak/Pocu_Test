@@ -9,12 +9,12 @@ namespace lab8
 	public:
 		FixedVector();
 		~FixedVector() = default;
-		bool Add(const T t);
-		bool Remove(const T t);
-		T Get(unsigned int index);
+		bool Add(const T& t);
+		bool Remove(const T& t);
+		const T& Get(unsigned int index);
 		T& operator[](unsigned int index);
-		int GetIndex(const T t);
-		size_t GetSize();
+		int GetIndex(const T& t);
+		const size_t& GetSize() const;
 		size_t GetCapacity();
 
 	private:
@@ -32,7 +32,7 @@ namespace lab8
 	}
 
 	template <typename T, size_t N>
-	bool FixedVector<T, N>::Add(const T t)
+	bool FixedVector<T, N>::Add(const T& t)
 	{
 		if (mSize < N)
 		{
@@ -47,7 +47,7 @@ namespace lab8
 	}
 
 	template <typename T, size_t N>
-	bool FixedVector<T, N>::Remove(const T t)
+	bool FixedVector<T, N>::Remove(const T& t)
 	{
 		int location = GetIndex(t);
 
@@ -67,7 +67,7 @@ namespace lab8
 	}
 
 	template <typename T, size_t N>
-	T FixedVector<T, N>::Get(unsigned int index)
+	const T& FixedVector<T, N>::Get(unsigned int index)
 	{
 		return mArray[index];
 	}
@@ -79,7 +79,7 @@ namespace lab8
 	}
 
 	template <typename T, size_t N>
-	int FixedVector<T, N>::GetIndex(const T t)
+	int FixedVector<T, N>::GetIndex(const T& t)
 	{
 		for (size_t i = 0; i < mSize; i++)
 		{
@@ -93,7 +93,7 @@ namespace lab8
 	}
 
 	template <typename T, size_t N>
-	size_t FixedVector<T, N>::GetSize()
+	const size_t& FixedVector<T, N>::GetSize() const
 	{
 		return mSize;
 	}

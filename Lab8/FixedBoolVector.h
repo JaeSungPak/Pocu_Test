@@ -34,11 +34,11 @@ namespace lab8
 	}
 
 	template <size_t N>
-	bool FixedVector<bool, N>::Add(const bool t)
+	bool FixedVector<bool, N>::Add(const bool bIndex)
 	{
 		if (mSize < N)
 		{
-			if (t)
+			if (bIndex)
 			{
 				mArray |= (1 << mSize++);
 			}
@@ -54,21 +54,21 @@ namespace lab8
 	}
 
 	template <size_t N>
-	bool FixedVector<bool, N>::Remove(const bool t)
+	bool FixedVector<bool, N>::Remove(const bool bIndex)
 	{
-		int location = GetIndex(t);
+		int location = GetIndex(bIndex);
 
 		if (location == -1)
 		{
 			return false;
 		}
 
-		int32_t temp_1 = pow(2, location) - 1;
-		temp_1 &= mArray;
-		int32_t temp_2 = mArray >> location + 1;
-		temp_2 <<= location;
+		int32_t temp1 = static_cast<int32_t>(pow(2, location)) - 1;
+		temp1 &= mArray;
+		int32_t temp2 = mArray >> (location + 1);
+		temp2 <<= location;
 
-		mArray = temp_1 + temp_2;
+		mArray = temp1 + temp2;
 
 		mSize--;
 
@@ -88,13 +88,11 @@ namespace lab8
 	}
 
 	template <size_t N>
-	int FixedVector<bool, N>::GetIndex(const bool t)
+	int FixedVector<bool, N>::GetIndex(const bool bIndex)
 	{
-		int temp = t ? 1 : 0;
-
 		for (size_t i = 0; i < mSize; i++)
 		{
-			if (Get(i) == temp)
+			if (Get(i) == bIndex)
 			{
 				return i;
 			}
