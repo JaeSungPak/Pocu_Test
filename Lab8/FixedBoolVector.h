@@ -10,17 +10,17 @@ namespace lab8
 	public:
 		FixedVector();
 		~FixedVector() = default;
-		bool Add(const bool t);
-		bool Remove(const bool t);
+		bool Add(const bool& t);
+		bool Remove(const bool& t);
 		bool Get(unsigned int index);
-		bool operator[](unsigned int index);
-		int GetIndex(const bool t);
-		size_t GetSize();
+		bool operator[](unsigned int& index);
+		int GetIndex(const bool& t);
+		size_t& GetSize();
 		size_t GetCapacity();
 		
 	private:
 		size_t mSize;
-		int32_t mArray;
+		int32_t mArray[N / 32 + 1];
 	};
 
 	//------------------------------
@@ -28,23 +28,31 @@ namespace lab8
 	template <size_t N>
 	FixedVector<bool, N>::FixedVector()
 		: mSize(0)
-		, mArray(0)
 	{
+		int32_t mArray[N / 32 + 1];
 
+		for (int i = 0; i < N / 32; i++)
+		{
+			mArray[i] = 0;
+		}
 	}
 
 	template <size_t N>
-	bool FixedVector<bool, N>::Add(const bool bIndex)
+	bool FixedVector<bool, N>::Add(const bool& bIndex)
 	{
 		if (mSize < N)
 		{
 			if (bIndex)
 			{
-				mArray |= (1 << mSize++);
+				mArray[N / 32] |= (1 << mSize - (N / 32) * 32);
+
+				mSize++;
 			}
 			else
 			{
-				mArray &= ~(1 << mSize++);
+				mArray[N / 32] &= ~(1 << mSize - (N / 32) * 32);
+
+				mSize++;
 			}
 
 			return true;
@@ -54,7 +62,7 @@ namespace lab8
 	}
 
 	template <size_t N>
-	bool FixedVector<bool, N>::Remove(const bool bIndex)
+	bool FixedVector<bool, N>::Remove(const bool& bIndex)
 	{
 		int location = GetIndex(bIndex);
 
@@ -64,11 +72,11 @@ namespace lab8
 		}
 
 		int32_t temp1 = static_cast<int32_t>(pow(2, location)) - 1;
-		temp1 &= mArray;
-		int32_t temp2 = mArray >> (location + 1);
+		temp1 &= mArray[0];
+		int32_t temp2 = mArray[0] >> (location + 1);
 		temp2 <<= location;
 
-		mArray = temp1 + temp2;
+		mArray[0] = temp1 + temp2;
 
 		mSize--;
 
@@ -78,17 +86,17 @@ namespace lab8
 	template <size_t N>
 	bool FixedVector<bool, N>::Get(unsigned int index)
 	{
-		return (mArray >> index) % 2 == 0 ? false : true;
+		return (mArray[0] >> index) % 2 == 0 ? false : true;
 	}
 
 	template <size_t N>
-	bool FixedVector<bool, N>::operator[](unsigned int index)
+	bool FixedVector<bool, N>::operator[](unsigned int& index)
 	{
-		return (mArray >> index) % 2 == 0 ? false : true;
+		return (mArray[0] >> index) % 2 == 0 ? false : true;
 	}
 
 	template <size_t N>
-	int FixedVector<bool, N>::GetIndex(const bool bIndex)
+	int FixedVector<bool, N>::GetIndex(const bool& bIndex)
 	{
 		for (size_t i = 0; i < mSize; i++)
 		{
@@ -102,7 +110,7 @@ namespace lab8
 	}
 
 	template <size_t N>
-	size_t FixedVector<bool, N>::GetSize()
+	size_t& FixedVector<bool, N>::GetSize()
 	{
 		return mSize;
 	}
