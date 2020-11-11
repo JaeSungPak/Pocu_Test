@@ -27,6 +27,7 @@ namespace assignment3
 	private:
 		std::queue<std::stack<T>> mQueue;
 		unsigned int mMaxStackSize;
+		unsigned int mCurrentSize;
 	};
 
 	//---------------------------------------------------------
@@ -34,6 +35,7 @@ namespace assignment3
 	template<typename T>
 	QueueStack<T>::QueueStack(unsigned int maxStackSize)
 		: mMaxStackSize(maxStackSize)
+		, mCurrentSize(0)
 	{
 		mQueue.push({});
 	}
@@ -42,6 +44,7 @@ namespace assignment3
 	QueueStack<T>::QueueStack(const QueueStack& other)
 		: mQueue(other.mQueue)
 		, mMaxStackSize(other.mMaxStackSize)
+		, mCurrentSize(other.mCurrentSize)
 	{
 
 	}
@@ -62,6 +65,8 @@ namespace assignment3
 		}
 
 		mQueue.back().push(number);
+
+		mCurrentSize++;
 	}
 
 	template<typename T>
@@ -82,6 +87,8 @@ namespace assignment3
 			mQueue.pop();
 		}
 
+		mCurrentSize--;
+
 		return temp;
 	}
 
@@ -92,9 +99,7 @@ namespace assignment3
 
 		QueueStack<T> clone(*this);
 
-		unsigned int size = clone.GetCount();
-
-		for (unsigned int i = 0; i < size; i++)
+		for (unsigned int i = 0; i < mCurrentSize; i++)
 		{
 			T pop = clone.Dequeue();
 
@@ -102,7 +107,6 @@ namespace assignment3
 			{
 				temp = pop;
 			}
-			
 		}
 
 		return temp;
@@ -115,9 +119,7 @@ namespace assignment3
 
 		QueueStack<T> clone(*this);
 
-		unsigned int size = clone.GetCount();
-
-		for (unsigned int i = 0; i < size; i++)
+		for (unsigned int i = 0; i < mCurrentSize; i++)
 		{
 			T pop = clone.Dequeue();
 
@@ -144,9 +146,7 @@ namespace assignment3
 
 		QueueStack<T> clone(*this);
 
-		unsigned int size = clone.GetCount();
-
-		for (unsigned int i = 0; i < size; i++)
+		for (unsigned int i = 0; i < mCurrentSize; i++)
 		{
 			sum += clone.Dequeue();
 		}
@@ -164,22 +164,7 @@ namespace assignment3
 	template<typename T>
 	unsigned int QueueStack<T>::GetCount()
 	{
-		unsigned int count = 0;
-
-		std::queue<std::stack<T>> clone;
-
-		clone = mQueue;
-
-		int size = clone.size();
-
-		for (int i = 0; i < size; i++)
-		{
-			count += clone.front().size();
-
-			clone.pop();
-		}
-
-		return count;
+		return mCurrentSize;
 	}
 
 	template<typename T>
@@ -190,6 +175,8 @@ namespace assignment3
 			mQueue = other.mQueue;
 
 			mMaxStackSize = other.mMaxStackSize;
+
+			mCurrentSize = other.mCurrentSize;
 		}
 
 		return *this;

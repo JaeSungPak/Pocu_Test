@@ -10,17 +10,17 @@ int main()
 {
 	const double EPSILON = 0.0009765625;
 
-	SmartStack<float> ss;
+	QueueStack<float> ss(3);
 
-	ss.Push(3);
+	ss.Enqueue(3);
 
-	ss.Push(4);
+	ss.Enqueue(4);
 
-	ss.Push(5);
+	ss.Enqueue(5);
 
-	ss.Push(6);
+	ss.Enqueue(6);
 
-	std::cout << ss.GetMax() << std::endl;
+	std::cout << ss.GetAverage() << std::endl;
 
 	return 0;
 
