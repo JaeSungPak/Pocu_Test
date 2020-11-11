@@ -1,37 +1,7 @@
-#pragma once
-
-#include <queue>
-#include <stack>
+#include "QueueStack.h"
 
 namespace assignment3
 {
-	template <typename T>
-	class QueueStack final
-	{
-	public:
-		QueueStack() = delete;
-		QueueStack(unsigned int maxStackSize);
-		QueueStack(const QueueStack& other);
-		~QueueStack() = default;
-		void Enqueue(T number);
-		T Dequeue();
-		T Peek();
-		T GetMax();
-		T GetMin();
-		double GetAverage();
-		T GetSum();
-		unsigned int GetCount();
-		unsigned int GetStackCount();
-		QueueStack operator=(const QueueStack& other);
-
-	private:
-		std::queue<std::stack<T>> mQueue;
-		unsigned int mMaxStackSize;
-		unsigned int mCurrentSize;
-	};
-
-	//---------------------------------------------------------
-
 	template<typename T>
 	QueueStack<T>::QueueStack(unsigned int maxStackSize)
 		: mMaxStackSize(maxStackSize)
@@ -92,7 +62,7 @@ namespace assignment3
 
 		QueueStack<T> clone(*this);
 
-		while (!clone.mQueue.empty())
+		for (unsigned int i = 0; i < mCurrentSize; i++)
 		{
 			T pop = clone.Dequeue();
 
@@ -112,7 +82,7 @@ namespace assignment3
 
 		QueueStack<T> clone(*this);
 
-		while (!clone.mQueue.empty())
+		for (unsigned int i = 0; i < mCurrentSize; i++)
 		{
 			T pop = clone.Dequeue();
 
@@ -120,6 +90,7 @@ namespace assignment3
 			{
 				temp = pop;
 			}
+
 		}
 
 		return temp;
@@ -138,7 +109,7 @@ namespace assignment3
 
 		QueueStack<T> clone(*this);
 
-		while (!clone.mQueue.empty())
+		for (unsigned int i = 0; i < mCurrentSize; i++)
 		{
 			sum += clone.Dequeue();
 		}
@@ -162,7 +133,7 @@ namespace assignment3
 	template<typename T>
 	QueueStack<T> QueueStack<T>::operator=(const QueueStack<T>& other)
 	{
-		if (this != &other) 
+		if (this != &other)
 		{
 			mQueue = other.mQueue;
 

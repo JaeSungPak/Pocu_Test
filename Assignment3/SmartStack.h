@@ -1,18 +1,17 @@
 #pragma once
 
 #include <stack>
-#include <limits>
 
 namespace assignment3
 {
 	template <typename T>
-	class SmartStack
+	class SmartStack final
 	{
 
 	public:
-		SmartStack();
+		SmartStack() = default;
 		SmartStack(const SmartStack& other);
-		~SmartStack();
+		~SmartStack() = default;
 
 		void Push(T number);
 		T Pop();
@@ -35,22 +34,10 @@ namespace assignment3
 	//---------------------------------------------------------
 
 	template<typename T>
-	SmartStack<T>::SmartStack()
-	{
-
-	}
-
-	template<typename T>
 	SmartStack<T>::SmartStack(const SmartStack& other)
 		: mStack(other.mStack)
 	{
 		
-	}
-
-	template<typename T>
-	SmartStack<T>::~SmartStack()
-	{
-
 	}
 
 	template<typename T>
@@ -82,9 +69,7 @@ namespace assignment3
 
 		T temp = std::numeric_limits<T>::min();
 
-		unsigned int size = mStack.size();
-
-		for (unsigned int i = 0; i < size; i++)
+		while(!clone.empty())
 		{
 			T pop = clone.top();
 
@@ -105,10 +90,7 @@ namespace assignment3
 		std::stack<T> clone(mStack);
 
 		T temp = std::numeric_limits<T>::max();
-
-		unsigned int size = mStack.size();
-
-		for (unsigned int i = 0; i < size; i++)
+		while (!clone.empty())
 		{
 			T pop = clone.top();
 
@@ -138,9 +120,7 @@ namespace assignment3
 
 		T sum = 0;
 
-		unsigned int size = mStack.size();
-
-		for (unsigned int i = 0; i < size; i++)
+		while (!clone.mStack.empty())
 		{
 			sum += clone.Pop();
 		}
@@ -157,16 +137,14 @@ namespace assignment3
 
 		SmartStack clone(*this);
 
-		unsigned int size = mStack.size();
-
-		for (unsigned int i = 0; i < size; i++)
+		while (!clone.mStack.empty())
 		{
 			double deviation = clone.Pop() - average;
 
 			temp += pow(deviation, 2);
 		}
 
-		return temp / size;
+		return temp / mStack.size();
 	}
 
 	template<typename T>

@@ -1,18 +1,17 @@
 #pragma once
 
 #include <queue>
-#include <limits>
 
 namespace assignment3
 {
 	template <typename T>
-	class SmartQueue
+	class SmartQueue final
 	{
 
 	public:
-		SmartQueue();
+		SmartQueue() = default;
 		SmartQueue(const SmartQueue& other);
-		~SmartQueue();
+		~SmartQueue() = default;
 
 		void Enqueue(T number);
 		T Dequeue();
@@ -34,20 +33,8 @@ namespace assignment3
 	//---------------------------------------------------------
 
 	template<typename T>
-	SmartQueue<T>::SmartQueue()
-	{
-
-	}
-
-	template<typename T>
 	SmartQueue<T>::SmartQueue(const SmartQueue& other)
 		: mQueue(other.mQueue)
-	{
-
-	}
-
-	template<typename T>
-	SmartQueue<T>::~SmartQueue()
 	{
 
 	}
@@ -81,9 +68,7 @@ namespace assignment3
 
 		T temp = std::numeric_limits<T>::min();
 
-		unsigned int size = mQueue.size();
-
-		for (unsigned int i = 0; i < size; i++)
+		while (!clone.empty())
 		{
 			T pop = clone.front();
 
@@ -105,9 +90,7 @@ namespace assignment3
 
 		T temp = std::numeric_limits<T>::max();
 
-		unsigned int size = mQueue.size();
-
-		for (unsigned int i = 0; i < size; i++)
+		while(!clone.empty())
 		{
 			T pop = clone.front();
 
@@ -135,11 +118,9 @@ namespace assignment3
 	{
 		SmartQueue clone(*this);
 
-		unsigned int size = mQueue.size();
-
 		T sum = 0;
 
-		for (unsigned int i = 0; i < size; i++)
+		while (!clone.mQueue.empty())
 		{
 			sum += clone.Dequeue();
 		}
@@ -156,9 +137,7 @@ namespace assignment3
 
 		SmartQueue clone(*this);
 
-		unsigned int size = mQueue.size();
-
-		for (unsigned int i = 0; i < size; i++)
+		while (!clone.mQueue.empty())
 		{
 			double deviation = clone.Dequeue() - average;
 
