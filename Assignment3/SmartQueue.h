@@ -81,7 +81,9 @@ namespace assignment3
 
 		T temp = std::numeric_limits<T>::min();
 
-		for (unsigned int i = 0; i < mQueue.size(); i++)
+		unsigned int size = mQueue.size();
+
+		for (unsigned int i = 0; i < size; i++)
 		{
 			T pop = clone.front();
 
@@ -103,7 +105,9 @@ namespace assignment3
 
 		T temp = std::numeric_limits<T>::max();
 
-		for (unsigned int i = 0; i < mQueue.size(); i++)
+		unsigned int size = mQueue.size();
+
+		for (unsigned int i = 0; i < size; i++)
 		{
 			T pop = clone.front();
 
@@ -131,9 +135,11 @@ namespace assignment3
 	{
 		SmartQueue clone(*this);
 
+		unsigned int size = mQueue.size();
+
 		T sum = 0;
 
-		for (unsigned int i = 0; i < mQueue.size(); i++)
+		for (unsigned int i = 0; i < size; i++)
 		{
 			sum += clone.Dequeue();
 		}
@@ -150,7 +156,9 @@ namespace assignment3
 
 		SmartQueue clone(*this);
 
-		for (unsigned int i = 0; i < mQueue.size(); i++)
+		unsigned int size = mQueue.size();
+
+		for (unsigned int i = 0; i < size; i++)
 		{
 			double deviation = clone.Dequeue() - average;
 

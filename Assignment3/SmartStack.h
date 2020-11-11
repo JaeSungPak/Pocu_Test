@@ -82,7 +82,9 @@ namespace assignment3
 
 		T temp = std::numeric_limits<T>::min();
 
-		for (unsigned int i = 0; i < mStack.size(); i++)
+		unsigned int size = mStack.size();
+
+		for (unsigned int i = 0; i < size; i++)
 		{
 			T pop = clone.top();
 
@@ -104,7 +106,9 @@ namespace assignment3
 
 		T temp = std::numeric_limits<T>::max();
 
-		for (unsigned int i = 0; i < mStack.size(); i++)
+		unsigned int size = mStack.size();
+
+		for (unsigned int i = 0; i < size; i++)
 		{
 			T pop = clone.top();
 
@@ -134,7 +138,9 @@ namespace assignment3
 
 		T sum = 0;
 
-		for (unsigned int i = 0; i < mStack.size(); i++)
+		unsigned int size = mStack.size();
+
+		for (unsigned int i = 0; i < size; i++)
 		{
 			sum += clone.Pop();
 		}
@@ -151,14 +157,16 @@ namespace assignment3
 
 		SmartStack clone(*this);
 
-		for (unsigned int i = 0; i < mStack.size(); i++)
+		unsigned int size = mStack.size();
+
+		for (unsigned int i = 0; i < size; i++)
 		{
 			double deviation = clone.Pop() - average;
 
 			temp += pow(deviation, 2);
 		}
 
-		return temp / mStack.size();
+		return temp / size;
 	}
 
 	template<typename T>
@@ -178,9 +186,7 @@ namespace assignment3
 	{
 		if (this != &other) 
 		{
-
 			mStack = other.mStack;
-
 		}
 		return *this;
 	}
