@@ -32,7 +32,7 @@ namespace lab8
 	{
 		for (int i = 0; i < N; i++)
 		{
-			mArray[i] = 0;
+			mArray[i] = static_cast<T>(0);
 		}
 	}
 
