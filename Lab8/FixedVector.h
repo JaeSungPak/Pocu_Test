@@ -8,6 +8,7 @@ namespace lab8
 
 	public:
 		FixedVector();
+		FixedVector(FixedVector<T, N>& other);
 		~FixedVector() = default;
 		bool Add(const T& t);
 		bool Remove(const T& t);
@@ -16,6 +17,7 @@ namespace lab8
 		int GetIndex(const T& t);
 		const size_t& GetSize() const;
 		size_t GetCapacity();
+		FixedVector<T, N>& operator=(FixedVector<T, N>& other);
 
 	private:
 		size_t mSize;
@@ -31,6 +33,16 @@ namespace lab8
 		for (int i = 0; i < N; i++)
 		{
 			mArray[i] = 0;
+		}
+	}
+
+	template <typename T, size_t N>
+	FixedVector<T, N>::FixedVector(FixedVector<T, N>& other)
+		: mSize(other.mSize)
+	{
+		for (int i = 0; i < N; i++)
+		{
+			mArray[i] = other.mArray[i];
 		}
 	}
 
@@ -107,5 +119,18 @@ namespace lab8
 	size_t FixedVector<T, N>::GetCapacity()
 	{
 		return N;
+	}
+
+	template <typename T, size_t N>
+	FixedVector<T, N>& FixedVector<T, N>::operator= (FixedVector<T, N>& other)
+	{
+		mSize = other.mSize;
+
+		for (int i = 0; i < N / 32 + 1; i++)
+		{
+			mArray[i] = other.mArray[i];
+		}
+
+		return *this;
 	}
 }

@@ -38,7 +38,7 @@ int main()
 	
 	fv2.Add(new int(5));
 	assert(*fv2[1] == 5);
-	assert(*fv[1] == 0);
+	//assert(*fv[1] == 0);
 	assert(fv.GetSize() == 1);
 
 	FixedVector<int*, 5> fv3;
