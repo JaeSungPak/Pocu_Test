@@ -133,6 +133,7 @@ int main()
 
 	assert(boolVector2.Add(true) == false);
 	assert(boolVector2.GetSize() == 65);
+	std::cout << boolVector2.GetIndex(true) << std::endl;
 	assert(boolVector2.GetIndex(true) == -1);
 	std::cout << "Test FixedBoolVector GetIndex(): PASS" << std::endl;
 

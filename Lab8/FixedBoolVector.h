@@ -31,7 +31,7 @@ namespace lab8
 	{
 		int32_t mArray[N / 32 + 1];
 
-		for (int i = 0; i < N / 32; i++)
+		for (int i = 0; i < N / 32 + 1; i++)
 		{
 			mArray[i] = 0;
 		}
@@ -44,13 +44,13 @@ namespace lab8
 		{
 			if (bIndex)
 			{
-				mArray[N / 32] |= (1 << mSize - (N / 32) * 32);
+				mArray[mSize / 32] |= (1 << mSize);
 
 				mSize++;
 			}
 			else
 			{
-				mArray[N / 32] &= ~(1 << mSize - (N / 32) * 32);
+				mArray[mSize / 32] &= ~(1 << mSize);
 
 				mSize++;
 			}
@@ -86,13 +86,13 @@ namespace lab8
 	template <size_t N>
 	bool FixedVector<bool, N>::Get(unsigned int index)
 	{
-		return (mArray[0] >> index) % 2 == 0 ? false : true;
+		return (mArray[index / 32] >> index % 32) % 2 == 0 ? false : true;
 	}
 
 	template <size_t N>
 	bool FixedVector<bool, N>::operator[](unsigned int& index)
 	{
-		return (mArray[0] >> index) % 2 == 0 ? false : true;
+		return (mArray[index / 32] >> index % 32) % 2 == 0 ? false : true;
 	}
 
 	template <size_t N>
