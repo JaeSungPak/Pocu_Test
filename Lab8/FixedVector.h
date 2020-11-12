@@ -30,10 +30,12 @@ namespace lab8
 	FixedVector<T, N>::FixedVector()
 		: mSize(0)
 	{
+		/*
 		for (int i = 0; i < N; i++)
 		{
 			mArray[i] = static_cast<T>(0);
 		}
+		*/
 	}
 
 	template <typename T, size_t N>
