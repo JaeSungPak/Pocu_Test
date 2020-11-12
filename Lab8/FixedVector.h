@@ -126,7 +126,7 @@ namespace lab8
 	{
 		mSize = other.mSize;
 
-		for (int i = 0; i < N / 32 + 1; i++)
+		for (int i = 0; i < N; i++)
 		{
 			mArray[i] = other.mArray[i];
 		}
