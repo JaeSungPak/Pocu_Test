@@ -9,7 +9,7 @@ namespace lab8
 
 	public:
 		FixedVector();
-		FixedVector(FixedVector<bool, N>& other);
+		FixedVector(FixedVector<bool, N>& bOther);
 		~FixedVector() = default;
 		bool Add(const bool t);
 		bool Remove(const bool t);
@@ -18,7 +18,7 @@ namespace lab8
 		int GetIndex(const bool t);
 		size_t GetSize();
 		size_t GetCapacity();
-		FixedVector<bool, N>& operator= (FixedVector<bool, N>& other);
+		FixedVector<bool, N>& operator= (FixedVector<bool, N>& bOther);
 		
 	private:
 		size_t mSize;
@@ -40,14 +40,14 @@ namespace lab8
 	}
 
 	template <size_t N>
-	FixedVector<bool, N>::FixedVector(FixedVector<bool, N>& other)
-		: mSize(other.mSize)
+	FixedVector<bool, N>::FixedVector(FixedVector<bool, N>& bOther)
+		: mSize(bOther.mSize)
 	{
 		int32_t mArray[N / 32 + 1];
 
 		for (int i = 0; i < N / 32 + 1; i++)
 		{
-			mArray[i] = other.mArray[i];
+			mArray[i] = bOther.mArray[i];
 		}
 	}
 
@@ -154,13 +154,13 @@ namespace lab8
 	}
 
 	template <size_t N>
-	FixedVector<bool, N>& FixedVector<bool, N>::operator= (FixedVector<bool, N>& other)
+	FixedVector<bool, N>& FixedVector<bool, N>::operator= (FixedVector<bool, N>& bOther)
 	{
-		mSize = other.mSize;
+		mSize = bOther.mSize;
 
 		for (int i = 0; i < N / 32 + 1; i++)
 		{
-			mArray[i] = other.mArray[i];
+			mArray[i] = bOther.mArray[i];
 		}
 
 		return *this;

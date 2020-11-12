@@ -13,7 +13,7 @@ int main()
 	assert(intVector.GetSize() == 0);
 	assert(intVector.GetIndex(0) == -1);
 	assert(!intVector.Remove(0));
-	assert(!intVector[0]);
+	//assert(!intVector[0]);
 
 	for (auto i = 0; i != 5; ++i)
 	{
