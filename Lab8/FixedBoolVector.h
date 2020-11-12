@@ -11,12 +11,12 @@ namespace lab8
 		FixedVector();
 		FixedVector(FixedVector<bool, N>& other);
 		~FixedVector() = default;
-		bool Add(const bool& t);
-		bool Remove(const bool& t);
+		bool Add(const bool t);
+		bool Remove(const bool t);
 		bool Get(unsigned int index);
 		bool operator[](unsigned int index);
-		int GetIndex(const bool& t);
-		size_t& GetSize();
+		int GetIndex(const bool t);
+		size_t GetSize();
 		size_t GetCapacity();
 		FixedVector<bool, N>& operator= (FixedVector<bool, N>& other);
 		
@@ -52,7 +52,7 @@ namespace lab8
 	}
 
 	template <size_t N>
-	bool FixedVector<bool, N>::Add(const bool& bIndex)
+	bool FixedVector<bool, N>::Add(const bool bIndex)
 	{
 		if (mSize < N)
 		{
@@ -76,7 +76,7 @@ namespace lab8
 	}
 
 	template <size_t N>
-	bool FixedVector<bool, N>::Remove(const bool& bIndex)
+	bool FixedVector<bool, N>::Remove(const bool bIndex)
 	{
 		int location = GetIndex(bIndex);
 
@@ -128,7 +128,7 @@ namespace lab8
 	}
 
 	template <size_t N>
-	int FixedVector<bool, N>::GetIndex(const bool& bIndex)
+	int FixedVector<bool, N>::GetIndex(const bool bIndex)
 	{
 		for (size_t i = 0; i < mSize; i++)
 		{
@@ -142,7 +142,7 @@ namespace lab8
 	}
 
 	template <size_t N>
-	size_t& FixedVector<bool, N>::GetSize()
+	size_t FixedVector<bool, N>::GetSize()
 	{
 		return mSize;
 	}
