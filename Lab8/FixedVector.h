@@ -28,7 +28,10 @@ namespace lab8
 	FixedVector<T, N>::FixedVector()
 		: mSize(0)
 	{
-		T mArray[N];
+		for (int i = 0; i < N; i++)
+		{
+			mArray[i] = 0;
+		}
 	}
 
 	template <typename T, size_t N>
@@ -60,6 +63,8 @@ namespace lab8
 		{
 			mArray[i] = mArray[i + 1];
 		}
+
+		mArray[mSize - 1] = NULL;
 
 		mSize--;
 

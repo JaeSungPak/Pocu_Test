@@ -13,7 +13,7 @@ namespace lab8
 		bool Add(const bool& t);
 		bool Remove(const bool& t);
 		bool Get(unsigned int index);
-		bool operator[](unsigned int& index);
+		bool operator[](unsigned int index);
 		int GetIndex(const bool& t);
 		size_t& GetSize();
 		size_t GetCapacity();
@@ -71,12 +71,30 @@ namespace lab8
 			return false;
 		}
 
-		int32_t temp1 = static_cast<int32_t>(pow(2, location)) - 1;
-		temp1 &= mArray[0];
-		int32_t temp2 = mArray[0] >> (location + 1);
+		//해당 위치의 정수 조정
+
+		int32_t temp1 = static_cast<int32_t>(pow(2, location % 32)) - 1;
+		temp1 &= mArray[location / 32];
+		int32_t temp2 = mArray[location / 32] >> (location + 1);
 		temp2 <<= location;
 
-		mArray[0] = temp1 + temp2;
+		mArray[location / 32] = temp1 + temp2;
+
+		//상위 배열들 하나씩 당기기
+
+		for (int i = location / 32 + 1; i < N / 32 + 1; i++)
+		{
+			if (Get(i * 32))
+			{
+				mArray[i - 1] |= (1 << 31);
+			}
+			else
+			{
+				mArray[i - 1] &= ~(1 << 31);
+			}
+
+			mArray[i] >>= 1;
+		}
 
 		mSize--;
 
@@ -90,7 +108,7 @@ namespace lab8
 	}
 
 	template <size_t N>
-	bool FixedVector<bool, N>::operator[](unsigned int& index)
+	bool FixedVector<bool, N>::operator[](unsigned int index)
 	{
 		return (mArray[index / 32] >> index % 32) % 2 == 0 ? false : true;
 	}
