@@ -52,6 +52,7 @@ namespace assignment3
 	template<typename T>
 	void QueueStack<T>::Enqueue(T number)
 	{
+		/*
 		if (mQueue.back().size() >= mMaxStackSize)
 		{
 			mQueue.push({});
@@ -60,17 +61,19 @@ namespace assignment3
 		mQueue.back().push(number);
 
 		mCurrentSize++;
+		*/
 	}
 
 	template<typename T>
 	T QueueStack<T>::Peek()
 	{
-		return mQueue.front().top();
+		return 0; //mQueue.front().top();
 	}
 
 	template<typename T>
 	T QueueStack<T>::Dequeue()
 	{
+		/*
 		T temp = mQueue.front().top();
 
 		mQueue.front().pop();
@@ -81,13 +84,14 @@ namespace assignment3
 		}
 
 		mCurrentSize--;
-
-		return temp;
+		*/
+		return 0; //temp;
 	}
 
 	template<typename T>
 	T QueueStack<T>::GetMax()
 	{
+		/*
 		T temp = std::numeric_limits<T>::min();
 
 		QueueStack<T> clone(*this);
@@ -101,13 +105,14 @@ namespace assignment3
 				temp = pop;
 			}
 		}
-
-		return temp;
+		*/
+		return 0; //temp;
 	}
 
 	template<typename T>
 	T QueueStack<T>::GetMin()
 	{
+		/*
 		T temp = std::numeric_limits<T>::max();
 
 		QueueStack<T> clone(*this);
@@ -121,19 +126,20 @@ namespace assignment3
 				temp = pop;
 			}
 		}
-
-		return temp;
+		*/
+		return 0; //temp;
 	}
 
 	template<typename T>
 	double QueueStack<T>::GetAverage()
 	{
-		return static_cast<double>(GetSum()) / GetCount();
+		return 0; //static_cast<double>(GetSum()) / GetCount();
 	}
 
 	template<typename T>
 	T QueueStack<T>::GetSum()
 	{
+		/*
 		T sum = 0;
 
 		QueueStack<T> clone(*this);
@@ -142,26 +148,27 @@ namespace assignment3
 		{
 			sum += clone.Dequeue();
 		}
-
-		return sum;
+		*/
+		return 0; // sum;
 	}
 
 
 	template<typename T>
 	unsigned int QueueStack<T>::GetStackCount()
 	{
-		return mQueue.size();
+		return 0; //mQueue.size();
 	}
 
 	template<typename T>
 	unsigned int QueueStack<T>::GetCount()
 	{
-		return mCurrentSize;
+		return 0; // mCurrentSize;
 	}
 
 	template<typename T>
 	QueueStack<T> QueueStack<T>::operator=(const QueueStack<T>& other)
 	{
+		/*
 		if (this != &other) 
 		{
 			mQueue = other.mQueue;
@@ -170,7 +177,7 @@ namespace assignment3
 
 			mCurrentSize = other.mCurrentSize;
 		}
-
+		*/
 		return *this;
 	}
 }
