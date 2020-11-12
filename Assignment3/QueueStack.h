@@ -52,7 +52,7 @@ namespace assignment3
 	template<typename T>
 	void QueueStack<T>::Enqueue(T number)
 	{
-		/*
+		
 		if (mQueue.back().size() >= mMaxStackSize)
 		{
 			mQueue.push({});
@@ -61,19 +61,19 @@ namespace assignment3
 		mQueue.back().push(number);
 
 		mCurrentSize++;
-		*/
+		
 	}
 
 	template<typename T>
 	T QueueStack<T>::Peek()
 	{
-		return 0; //mQueue.front().top();
+		return mQueue.front().top();
 	}
 
 	template<typename T>
 	T QueueStack<T>::Dequeue()
 	{
-		/*
+		
 		T temp = mQueue.front().top();
 
 		mQueue.front().pop();
@@ -84,8 +84,8 @@ namespace assignment3
 		}
 
 		mCurrentSize--;
-		*/
-		return 0; //temp;
+		
+		return temp;
 	}
 
 	template<typename T>

@@ -108,6 +108,11 @@ namespace assignment3
 	template<typename T>
 	double SmartStack<T>::GetAverage()
 	{
+		if (GetCount() == 0)
+		{
+			return 0;
+		}
+
 		T sum = GetSum();
 
 		return static_cast<double>(sum) / mStack.size();
@@ -131,6 +136,11 @@ namespace assignment3
 	template<typename T>
 	double SmartStack<T>::GetVariance()
 	{
+		if (GetCount() == 0)
+		{
+			return 0;
+		}
+
 		double temp = 0;
 
 		double average = GetAverage();
@@ -150,6 +160,11 @@ namespace assignment3
 	template<typename T>
 	double SmartStack<T>::GetStandardDeviation()
 	{
+		if (GetCount() == 0)
+		{
+			return 0;
+		}
+
 		return sqrt(GetVariance());
 	}
 
