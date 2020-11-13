@@ -73,73 +73,84 @@ namespace assignment3
 	template<typename T>
 	T QueueStack<T>::Dequeue()
 	{
-		/*
-		T temp = mQueue.front().top();
+		std::stack<T>& clone = mQueue.front();
 
-		mQueue.front().pop();
+		T temp = clone.top();
 
-		if (mQueue.front().empty())
+		clone.pop();
+
+		if (clone.empty())
 		{
 			mQueue.pop();
 		}
 
 		mCurrentSize--;
-		*/
-		return 0; //temp;
+		
+		return temp;
 	}
 
 	template<typename T>
 	T QueueStack<T>::GetMax()
 	{
-		/*
-		T temp = std::numeric_limits<T>::min();
+		
+		T temp = std::numeric_limits<T>::lowest();
 
-		QueueStack<T> clone(*this);
+		std::queue<std::stack<T>> clone(mQueue);
 
-		while (!clone.mQueue.empty())
+		while (!clone.empty())
 		{
-			T pop = clone.Dequeue();
+			T pop = clone.front().top();
+
+			if (clone.front().empty())
+			{
+				clone.pop();
+			}
 
 			if (pop > temp)
 			{
 				temp = pop;
 			}
 		}
-		*/
-		return 0; //temp;
+		
+		return temp;
 	}
 
 	template<typename T>
 	T QueueStack<T>::GetMin()
 	{
-		/*
+		
 		T temp = std::numeric_limits<T>::max();
 
-		QueueStack<T> clone(*this);
+		std::queue<std::stack<T>> clone(mQueue);
 
 		while (!clone.mQueue.empty())
 		{
-			T pop = clone.Dequeue();
+			T pop = clone.front().top();
+
+			if (clone.front().empty())
+			{
+				clone.pop();
+			}
 
 			if (pop < temp)
 			{
 				temp = pop;
 			}
 		}
-		*/
-		return 0; //temp;
+		
+		return temp;
 	}
 
 	template<typename T>
 	double QueueStack<T>::GetAverage()
 	{
-		return 0; //static_cast<double>(GetSum()) / GetCount();
+		return static_cast<double>(GetSum()) / GetCount();
 	}
 
 	template<typename T>
 	T QueueStack<T>::GetSum()
 	{
-		/*
+		
 		T sum = 0;
 
 		QueueStack<T> clone(*this);
@@ -148,8 +159,8 @@ namespace assignment3
 		{
 			sum += clone.Dequeue();
 		}
-		*/
-		return 0; // sum;
+		
+		return sum;
 	}
 
 

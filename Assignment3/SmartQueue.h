@@ -15,10 +15,10 @@ namespace assignment3
 		~SmartQueue() = default;
 
 		void Enqueue(T number);
-		T& Dequeue();
-		T& Peek();
-		T& GetMax();
-		T& GetMin();
+		T Dequeue();
+		T Peek();
+		T GetMax();
+		T GetMin();
 		double GetAverage();
 		T& GetSum();
 		double GetVariance();
@@ -47,13 +47,13 @@ namespace assignment3
 	}
 
 	template<typename T>
-	T& SmartQueue<T>::Peek()
+	T SmartQueue<T>::Peek()
 	{
 		return mQueue.front();
 	}
 
 	template<typename T>
-	T& SmartQueue<T>::Dequeue()
+	T SmartQueue<T>::Dequeue()
 	{
 		T temp = mQueue.front();
 
@@ -63,7 +63,7 @@ namespace assignment3
 	}
 
 	template<typename T>
-	T& SmartQueue<T>::GetMax()
+	T SmartQueue<T>::GetMax()
 	{
 		std::queue<T> clone(mQueue);
 
@@ -85,13 +85,13 @@ namespace assignment3
 	}
 
 	template<typename T>
-	T& SmartQueue<T>::GetMin()
+	T SmartQueue<T>::GetMin()
 	{
 		std::queue<T> clone(mQueue);
 
 		T temp = std::numeric_limits<T>::max();
 
-		while(!clone.empty())
+		while(clone.empty() == false)
 		{
 			T pop = clone.front();
 
@@ -144,7 +144,7 @@ namespace assignment3
 			return 0.0;
 		}
 
-		T temp = 0;
+		double temp = 0;
 
 		double average = GetAverage();
 

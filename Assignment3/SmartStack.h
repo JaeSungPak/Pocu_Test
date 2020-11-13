@@ -15,10 +15,10 @@ namespace assignment3
 		~SmartStack() = default;
 
 		void Push(T number);
-		T& Pop();
-		T& Peek();
-		T& GetMax();
-		T& GetMin();
+		T Pop();
+		T Peek();
+		T GetMax();
+		T GetMin();
 		double GetAverage();
 		T& GetSum();
 		double GetVariance();
@@ -48,7 +48,7 @@ namespace assignment3
 	}
 
 	template<typename T>
-	T& SmartStack<T>::Pop()
+	T SmartStack<T>::Pop()
 	{
 		T temp = mStack.top();
 
@@ -58,19 +58,19 @@ namespace assignment3
 	}
 
 	template<typename T>
-	T& SmartStack<T>::Peek()
+	T SmartStack<T>::Peek()
 	{
 		return mStack.top();
 	}
 
 	template<typename T>
-	T& SmartStack<T>::GetMax()
+	T SmartStack<T>::GetMax()
 	{
 		std::stack<T> clone(mStack);
 
 		T temp = std::numeric_limits<T>::lowest();
 
-		while(!clone.empty())
+		while (clone.empty() == false)
 		{
 			T pop = clone.top();
 
@@ -86,7 +86,7 @@ namespace assignment3
 	}
 
 	template<typename T>
-	T& SmartStack<T>::GetMin()
+	T SmartStack<T>::GetMin()
 	{
 		std::stack<T> clone(mStack);
 
@@ -144,7 +144,7 @@ namespace assignment3
 			return 0.0;
 		}
 
-		T temp = 0;
+		double temp = 0;
 
 		double average = GetAverage();
 
