@@ -20,7 +20,7 @@ namespace assignment3
 		T GetMax();
 		T GetMin();
 		double GetAverage();
-		T& GetSum();
+		T GetSum();
 		double GetVariance();
 		double GetStandardDeviation();
 		unsigned int GetCount();
@@ -120,7 +120,7 @@ namespace assignment3
 	}
 
 	template<typename T>
-	T& SmartQueue<T>::GetSum()
+	T SmartQueue<T>::GetSum()
 	{
 		std::queue<T> clone(mQueue);
 

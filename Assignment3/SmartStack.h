@@ -20,7 +20,7 @@ namespace assignment3
 		T GetMax();
 		T GetMin();
 		double GetAverage();
-		T& GetSum();
+		T GetSum();
 		double GetVariance();
 		double GetStandardDeviation();
 		unsigned int GetCount();
@@ -120,7 +120,7 @@ namespace assignment3
 	}
 
 	template<typename T>
-	T& SmartStack<T>::GetSum()
+	T SmartStack<T>::GetSum()
 	{
 		std::stack<T> clone(mStack);
 

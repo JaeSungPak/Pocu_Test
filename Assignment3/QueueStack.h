@@ -92,7 +92,7 @@ namespace assignment3
 	template<typename T>
 	T QueueStack<T>::GetMax()
 	{
-		
+		/*
 		T temp = std::numeric_limits<T>::lowest();
 
 		std::queue<std::stack<T>> clone(mQueue);
@@ -111,19 +111,19 @@ namespace assignment3
 				temp = pop;
 			}
 		}
-		
-		return temp;
+		*/
+		return 0;// temp;
 	}
 
 	template<typename T>
 	T QueueStack<T>::GetMin()
 	{
-		
+		/*
 		T temp = std::numeric_limits<T>::max();
 
 		std::queue<std::stack<T>> clone(mQueue);
 
-		while (!clone.mQueue.empty())
+		while (!clone.empty())
 		{
 			T pop = clone.front().top();
 
@@ -137,8 +137,8 @@ namespace assignment3
 				temp = pop;
 			}
 		}
-		
-		return temp;
+		*/
+		return 0; // temp;
 	}
 
 	template<typename T>
