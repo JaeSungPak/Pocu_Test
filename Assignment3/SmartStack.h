@@ -14,12 +14,12 @@ namespace assignment3
 		~SmartStack() = default;
 
 		void Push(T number);
-		T Pop();
-		T Peek();
-		T GetMax();
-		T GetMin();
+		T& Pop();
+		T& Peek();
+		T& GetMax();
+		T& GetMin();
 		double GetAverage();
-		T GetSum();
+		T& GetSum();
 		double GetVariance();
 		double GetStandardDeviation();
 		unsigned int GetCount();
@@ -47,7 +47,7 @@ namespace assignment3
 	}
 
 	template<typename T>
-	T SmartStack<T>::Pop()
+	T& SmartStack<T>::Pop()
 	{
 		T temp = mStack.top();
 
@@ -57,13 +57,13 @@ namespace assignment3
 	}
 
 	template<typename T>
-	T SmartStack<T>::Peek()
+	T& SmartStack<T>::Peek()
 	{
 		return mStack.top();
 	}
 
 	template<typename T>
-	T SmartStack<T>::GetMax()
+	T& SmartStack<T>::GetMax()
 	{
 		std::stack<T> clone(mStack);
 
@@ -85,7 +85,7 @@ namespace assignment3
 	}
 
 	template<typename T>
-	T SmartStack<T>::GetMin()
+	T& SmartStack<T>::GetMin()
 	{
 		std::stack<T> clone(mStack);
 
@@ -108,9 +108,9 @@ namespace assignment3
 	template<typename T>
 	double SmartStack<T>::GetAverage()
 	{
-		if (GetCount() == 0)
+		if (mStack.empty())
 		{
-			return 0;
+			return 0.0;
 		}
 
 		T sum = GetSum();
@@ -119,15 +119,17 @@ namespace assignment3
 	}
 
 	template<typename T>
-	T SmartStack<T>::GetSum()
+	T& SmartStack<T>::GetSum()
 	{
-		SmartStack clone(*this);
+		std::stack<T> clone(*this);
 
 		T sum = 0;
 
-		while (!clone.mStack.empty())
+		while (!clone.empty())
 		{
-			sum += clone.Pop();
+			sum += clone.top();
+
+			clone.pop();
 		}
 
 		return sum;
@@ -136,20 +138,22 @@ namespace assignment3
 	template<typename T>
 	double SmartStack<T>::GetVariance()
 	{
-		if (GetCount() == 0)
+		if (mStack.empty())
 		{
-			return 0;
+			return 0.0;
 		}
 
 		double temp = 0;
 
 		double average = GetAverage();
 
-		SmartStack clone(*this);
+		std::stack<T> clone(*this);
 
-		while (!clone.mStack.empty())
+		while (!clone.empty())
 		{
-			double deviation = clone.Pop() - average;
+			double deviation = clone.top() - average;
+
+			clone.pop();
 
 			temp += pow(deviation, 2);
 		}
@@ -162,7 +166,7 @@ namespace assignment3
 	{
 		if (GetCount() == 0)
 		{
-			return 0;
+			return 0.0;
 		}
 
 		return sqrt(GetVariance());
@@ -181,6 +185,7 @@ namespace assignment3
 		{
 			mStack = other.mStack;
 		}
+
 		return *this;
 	}
 }
