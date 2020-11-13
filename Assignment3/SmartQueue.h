@@ -39,8 +39,8 @@ namespace assignment3
 	template<typename T>
 	SmartQueue<T>::SmartQueue(const SmartQueue& other)
 		: mQueue(other.mQueue)
-		, mMaxT(0)
-		, mMinT(0)
+		, mMaxT(std::numeric_limits<T>::lowest())
+		, mMinT(std::numeric_limits<T>::max())
 	{
 
 	}
@@ -96,7 +96,7 @@ namespace assignment3
 
 		T temp = std::numeric_limits<T>::max();
 
-		while(clone.empty() == false)
+		while (!clone.empty())
 		{
 			T pop = clone.front();
 

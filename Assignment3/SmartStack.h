@@ -37,8 +37,8 @@ namespace assignment3
 	template<typename T>
 	SmartStack<T>::SmartStack(const SmartStack& other)
 		: mStack(other.mStack)
-		, mMaxT(0)
-		, mMinT(0)
+		, mMaxT(std::numeric_limits<T>::lowest())
+		, mMinT(std::numeric_limits<T>::max())
 	{
 		
 	}
@@ -47,12 +47,32 @@ namespace assignment3
 	void SmartStack<T>::Push(T number) 
 	{
 		mStack.push(number);
+
+		if (mMaxT < number)
+		{
+			mMaxT = number;
+		}
+
+		if (mMinT > number)
+		{
+			mMaxT = number;
+		}
 	}
 
 	template<typename T>
 	T SmartStack<T>::Pop()
 	{
 		T temp = mStack.top();
+
+		if (mMaxT == temp)
+		{
+			mMaxT = std::numeric_limits<T>::lowest();
+		}
+
+		if (mMinT == temp)
+		{
+			mMaxT = std::numeric_limits<T>::max();
+		}
 
 		mStack.pop();
 
@@ -68,9 +88,12 @@ namespace assignment3
 	template<typename T>
 	T SmartStack<T>::GetMax()
 	{
-		std::stack<T> clone(mStack);
+		if (mMaxT != std::numeric_limits<T>::lowest())
+		{
+			return mMaxT;
+		}
 
-		T temp = std::numeric_limits<T>::lowest();
+		std::stack<T> clone(mStack);
 
 		while (clone.empty() == false)
 		{
@@ -78,34 +101,38 @@ namespace assignment3
 
 			clone.pop();
 
-			if (temp < pop)
+			if (mMaxT < pop)
 			{
-				temp = pop;
+				mMaxT = pop;
 			}
 		}
 
-		return temp;
+		return mMaxT;
 	}
 
 	template<typename T>
 	T SmartStack<T>::GetMin()
 	{
+		if (mMinT != std::numeric_limits<T>::max())
+		{
+			return mMinT;
+		}
+
 		std::stack<T> clone(mStack);
 
-		T temp = std::numeric_limits<T>::max();
 		while (!clone.empty())
 		{
 			T pop = clone.top();
 
 			clone.pop();
 
-			if (temp > pop)
+			if (mMinT > pop)
 			{
-				temp = pop;
+				mMinT = pop;
 			}
 		}
 
-		return temp;
+		return mMinT;
 	}
 
 	template<typename T>
@@ -146,20 +173,26 @@ namespace assignment3
 			return 0.0;
 		}
 
-		double temp = 0;
+		double variance = 0;
 
-		double average = GetAverage();
+		double sum = 0;
 
 		std::stack<T> clone(mStack);
 
+		double size = clone.size();
+
 		while (!clone.empty())
 		{
-			temp += pow(clone.top() - average, 2);
+			double temp = static_cast<double>(clone.top());
+
+			sum += temp / size;
+
+			variance += temp * temp / size;
 
 			clone.pop();
 		}
 
-		return temp / static_cast<double>(mStack.size());
+		return variance - sum * sum;
 	}
 
 	template<typename T>
