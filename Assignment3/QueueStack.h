@@ -28,6 +28,7 @@ namespace assignment3
 		std::queue<std::stack<T>> mQueue;
 		unsigned int mMaxStackSize;
 		unsigned int mCurrentSize;
+		std::stack<T>* mFrontStack;
 	};
 
 	//---------------------------------------------------------
@@ -38,6 +39,8 @@ namespace assignment3
 		, mCurrentSize(0)
 	{
 		mQueue.push({});
+
+		mFrontStack = &mQueue.front();
 	}
 
 	template<typename T>
@@ -45,6 +48,7 @@ namespace assignment3
 		: mQueue(other.mQueue)
 		, mMaxStackSize(other.mMaxStackSize)
 		, mCurrentSize(other.mCurrentSize)
+		, mFrontStack(&mQueue.front())
 	{
 
 	}
@@ -52,11 +56,16 @@ namespace assignment3
 	template<typename T>
 	void QueueStack<T>::Enqueue(T number)
 	{
-		std::stack<T>& clone = mQueue.back();
+		if (mQueue.empty())
+		{
+			mQueue.push({});
 
-		clone.push(number);
+			mFrontStack = &mQueue.front();
+		}
 
-		if (clone.size() >= mMaxStackSize)
+		mQueue.back().push(number);
+
+		if (mQueue.back().size() >= mMaxStackSize)
 		{
 			mQueue.push({});
 		}
@@ -68,21 +77,24 @@ namespace assignment3
 	template<typename T>
 	T QueueStack<T>::Peek()
 	{
-		return mQueue.front().top();
+		return mFrontStack->top();
 	}
 
 	template<typename T>
 	T QueueStack<T>::Dequeue()
 	{
-		std::stack<T>& clone = mQueue.front();
+		T temp = mFrontStack->top();
 
-		T temp = clone.top();
+		mFrontStack->pop();
 
-		clone.pop();
-
-		if (clone.empty())
+		if (mFrontStack->empty())
 		{
 			mQueue.pop();
+
+			if (!mQueue.empty())
+			{
+				mFrontStack = &mQueue.front();
+			}
 		}
 
 		mCurrentSize--;
@@ -145,6 +157,11 @@ namespace assignment3
 	template<typename T>
 	double QueueStack<T>::GetAverage()
 	{
+		if (GetCount() == 0)
+		{
+			return 0;
+		}
+
 		return static_cast<double>(GetSum()) / GetCount();
 	}
 
@@ -153,7 +170,7 @@ namespace assignment3
 	{
 		
 		T sum = 0;
-
+		/*
 		std::queue<std::stack<T>> clone(mQueue);
 
 		while (!clone.empty())
@@ -169,7 +186,7 @@ namespace assignment3
 
 			clone.pop();
 		}
-		
+		*/
 		return sum;
 	}
 
@@ -197,6 +214,8 @@ namespace assignment3
 			mMaxStackSize = other.mMaxStackSize;
 
 			mCurrentSize = other.mCurrentSize;
+
+			mFrontStack = &mQueue.front();
 		}
 		
 		return *this;

@@ -34,6 +34,16 @@ int main()
 
     double popped1 = ss.Dequeue();
     double popped2 = ss.Dequeue();
+    ss.Dequeue();
+    ss.Dequeue();
+    ss.Dequeue();
+    ss.Dequeue();
+    ss.Dequeue();
+    ss.Dequeue();
+    ss.Dequeue();
+    ss.Dequeue();
+
+    ss.Enqueue(3.4);
 
     assert(popped1 == 9.2);
     assert(popped2 == -12.4);
