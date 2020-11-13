@@ -1,6 +1,7 @@
 #pragma once
 
 #include <queue>
+#include <limits>
 
 namespace assignment3
 {
@@ -108,9 +109,9 @@ namespace assignment3
 	template<typename T>
 	double SmartQueue<T>::GetAverage()
 	{
-		if (GetCount() == 0)
+		if (mQueue.empty())
 		{
-			return 0;
+			return 0.0;
 		}
 
 		T sum = GetSum();
@@ -121,13 +122,15 @@ namespace assignment3
 	template<typename T>
 	T& SmartQueue<T>::GetSum()
 	{
-		SmartQueue clone(*this);
+		std::queue<T> clone(mQueue);
 
 		T sum = 0;
 
-		while (!clone.mQueue.empty())
+		while (!clone.empty())
 		{
-			sum += clone.Dequeue();
+			sum += clone.front();
+
+			clone.pop();
 		}
 
 		return sum;
@@ -136,20 +139,22 @@ namespace assignment3
 	template<typename T>
 	double SmartQueue<T>::GetVariance()
 	{
-		if (GetCount() == 0)
+		if (mQueue.empty())
 		{
-			return 0;
+			return 0.0;
 		}
 
 		double temp = 0;
 
 		double average = GetAverage();
 
-		SmartQueue clone(*this);
+		std::queue<T> clone(mQueue);
 
-		while (!clone.mQueue.empty())
+		while (!clone.empty())
 		{
-			double deviation = clone.Dequeue() - average;
+			double deviation = clone.front() - average;
+
+			clone.pop();
 
 			temp += pow(deviation, 2);
 		}
@@ -160,9 +165,9 @@ namespace assignment3
 	template<typename T>
 	double SmartQueue<T>::GetStandardDeviation()
 	{
-		if (GetCount() == 0)
+		if (mQueue.empty())
 		{
-			return 0;
+			return 0.0;
 		}
 
 		return sqrt(GetVariance());
@@ -181,6 +186,7 @@ namespace assignment3
 		{
 			mQueue = other.mQueue;
 		}
+
 		return *this;
 	}
 }

@@ -73,19 +73,19 @@ namespace assignment3
 	template<typename T>
 	T QueueStack<T>::Dequeue()
 	{
-		/*
+		
 		T temp = mQueue.front().top();
 
 		mQueue.front().pop();
 
-		if (mQueue.front().empty() == 0)
+		if (mQueue.front().empty())
 		{
 			mQueue.pop();
 		}
 
 		mCurrentSize--;
-		*/
-		return 0; //temp;
+		
+		return temp;
 	}
 
 	template<typename T>

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stack>
+#include <limits>
 
 namespace assignment3
 {
@@ -121,7 +122,7 @@ namespace assignment3
 	template<typename T>
 	T& SmartStack<T>::GetSum()
 	{
-		std::stack<T> clone(*this);
+		std::stack<T> clone(mStack);
 
 		T sum = 0;
 
@@ -147,7 +148,7 @@ namespace assignment3
 
 		double average = GetAverage();
 
-		std::stack<T> clone(*this);
+		std::stack<T> clone(mStack);
 
 		while (!clone.empty())
 		{
