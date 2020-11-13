@@ -68,7 +68,7 @@ namespace assignment3
 	{
 		std::stack<T> clone(mStack);
 
-		T temp = std::numeric_limits<T>::min();
+		T temp = std::numeric_limits<T>::lowest();
 
 		while(!clone.empty())
 		{
@@ -144,7 +144,7 @@ namespace assignment3
 			return 0.0;
 		}
 
-		double temp = 0;
+		T temp = 0;
 
 		double average = GetAverage();
 
@@ -152,14 +152,12 @@ namespace assignment3
 
 		while (!clone.empty())
 		{
-			double deviation = clone.top() - average;
+			temp += pow(clone.top() - average, 2);
 
 			clone.pop();
-
-			temp += pow(deviation, 2);
 		}
 
-		return temp / mStack.size();
+		return temp / static_cast<double>(mStack.size());
 	}
 
 	template<typename T>

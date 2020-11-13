@@ -67,7 +67,7 @@ namespace assignment3
 	{
 		std::queue<T> clone(mQueue);
 
-		T temp = std::numeric_limits<T>::min();
+		T temp = std::numeric_limits<T>::lowest();
 
 		while (!clone.empty())
 		{
@@ -144,7 +144,7 @@ namespace assignment3
 			return 0.0;
 		}
 
-		double temp = 0;
+		T temp = 0;
 
 		double average = GetAverage();
 
@@ -152,14 +152,12 @@ namespace assignment3
 
 		while (!clone.empty())
 		{
-			double deviation = clone.front() - average;
+			temp += pow(clone.front() - average, 2);
 
 			clone.pop();
-
-			temp += pow(deviation, 2);
 		}
 
-		return temp / mQueue.size();
+		return temp / static_cast<double>(mQueue.size());
 	}
 
 	template<typename T>

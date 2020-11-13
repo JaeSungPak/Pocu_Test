@@ -73,7 +73,7 @@ namespace assignment3
 	template<typename T>
 	T QueueStack<T>::Dequeue()
 	{
-		
+		/*
 		T temp = mQueue.front().top();
 
 		mQueue.front().pop();
@@ -84,8 +84,8 @@ namespace assignment3
 		}
 
 		mCurrentSize--;
-		
-		return temp;
+		*/
+		return 0; //temp;
 	}
 
 	template<typename T>
@@ -168,7 +168,7 @@ namespace assignment3
 	template<typename T>
 	QueueStack<T> QueueStack<T>::operator=(const QueueStack<T>& other)
 	{
-		/*
+		
 		if (this != &other) 
 		{
 			mQueue = other.mQueue;
@@ -177,7 +177,7 @@ namespace assignment3
 
 			mCurrentSize = other.mCurrentSize;
 		}
-		*/
+		
 		return *this;
 	}
 }
