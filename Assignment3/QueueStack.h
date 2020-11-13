@@ -52,13 +52,14 @@ namespace assignment3
 	template<typename T>
 	void QueueStack<T>::Enqueue(T number)
 	{
-		
-		if (mQueue.back().size() >= mMaxStackSize)
+		std::stack<T>& clone = mQueue.back();
+
+		clone.push(number);
+
+		if (clone.size() >= mMaxStackSize)
 		{
 			mQueue.push({});
 		}
-
-		mQueue.back().push(number);
 
 		mCurrentSize++;
 		
@@ -153,11 +154,20 @@ namespace assignment3
 		
 		T sum = 0;
 
-		QueueStack<T> clone(*this);
+		std::queue<std::stack<T>> clone(mQueue);
 
-		while (!clone.mQueue.empty())
+		while (!clone.empty())
 		{
-			sum += clone.Dequeue();
+			std::stack<T>& stackClone = clone.front();
+
+			while (!stackClone.empty())
+			{
+				sum += stackClone.top();
+
+				stackClone.pop();
+			}
+
+			clone.pop();
 		}
 		
 		return sum;
