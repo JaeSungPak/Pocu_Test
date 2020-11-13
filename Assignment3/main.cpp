@@ -23,14 +23,13 @@ int main()
 
     assert(ss.GetCount() == 10U);
     assert(ss.Peek() == 4.6);
-    //assert(ss.GetMax() == 10.2);
-    //assert(ss.GetMin() == -12.4);
     std::cout << ss.GetSum() << std::endl;
-    //assert(ss.GetSum() == 15.82);
     std::cout << ss.GetAverage() << std::endl;
-    //assert(ss.GetAverage() == 1.582);
-    //assert(ss.Peek() == 9.2);
     std::cout << ss.Peek() << std::endl;
+
+    std::cout << ss.GetSum() << std::endl;
+    std::cout << ss.GetMax() << std::endl;
+    std::cout << ss.GetMin() << std::endl;
 
     double popped1 = ss.Dequeue();
     double popped2 = ss.Dequeue();
