@@ -28,8 +28,8 @@ namespace assignment3
 
 	private:
 		std::stack<T> mStack;
-		
-
+		T mMaxT;
+		T mMinT;
 	};
 
 	//---------------------------------------------------------
@@ -37,6 +37,8 @@ namespace assignment3
 	template<typename T>
 	SmartStack<T>::SmartStack(const SmartStack& other)
 		: mStack(other.mStack)
+		, mMaxT(0)
+		, mMinT(0)
 	{
 		
 	}

@@ -28,6 +28,9 @@ namespace assignment3
 
 	private:
 		std::queue<T> mQueue;
+		T mMaxT;
+		T mMinT;
+
 
 	};
 
@@ -36,6 +39,8 @@ namespace assignment3
 	template<typename T>
 	SmartQueue<T>::SmartQueue(const SmartQueue& other)
 		: mQueue(other.mQueue)
+		, mMaxT(0)
+		, mMinT(0)
 	{
 
 	}
