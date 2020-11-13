@@ -10,7 +10,7 @@ namespace assignment3
 	{
 
 	public:
-		SmartStack() = default;
+		SmartStack();
 		SmartStack(const SmartStack& other);
 		~SmartStack() = default;
 
@@ -35,10 +35,18 @@ namespace assignment3
 	//---------------------------------------------------------
 
 	template<typename T>
+	SmartStack<T>::SmartStack()
+		: mMaxT(std::numeric_limits<T>::lowest())
+		, mMinT(std::numeric_limits<T>::max())
+	{
+
+	}
+
+	template<typename T>
 	SmartStack<T>::SmartStack(const SmartStack& other)
 		: mStack(other.mStack)
-		, mMaxT(std::numeric_limits<T>::lowest())
-		, mMinT(std::numeric_limits<T>::max())
+		, mMaxT(other.mMaxT)
+		, mMinT(other.mMinT)
 	{
 		
 	}
@@ -218,6 +226,10 @@ namespace assignment3
 		if (this != &other) 
 		{
 			mStack = other.mStack;
+
+			mMaxT = other.mMaxT;
+
+			mMinT = other.mMinT;
 		}
 
 		return *this;
