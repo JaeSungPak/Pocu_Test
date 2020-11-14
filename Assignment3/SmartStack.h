@@ -56,17 +56,16 @@ namespace assignment3
 	{
 		mStack.push(number);
 
-		if (mMaxT < number)
+		if (mMaxT != NULL)
 		{
-			if (mMaxT != std::numeric_limits<T>::lowest())
+			if (mMaxT < number)
 			{
 				mMaxT = number;
 			}
 		}
-
-		if (mMinT > number)
+		if (mMinT != NULL)
 		{
-			if (mMinT != std::numeric_limits<T>::max())
+			if (mMinT > number)
 			{
 				mMaxT = number;
 			}
@@ -80,12 +79,12 @@ namespace assignment3
 
 		if (mMaxT == temp)
 		{
-			mMaxT = std::numeric_limits<T>::lowest();
+			mMaxT = NULL;
 		}
 
 		if (mMinT == temp)
 		{
-			mMaxT = std::numeric_limits<T>::max();
+			mMaxT = NULL;
 		}
 
 		mStack.pop();
@@ -102,12 +101,14 @@ namespace assignment3
 	template<typename T>
 	T SmartStack<T>::GetMax()
 	{
-		if (mMaxT != std::numeric_limits<T>::lowest())
+		if (mMaxT != NULL)
 		{
 			return mMaxT;
 		}
 
 		std::stack<T> clone(mStack);
+
+		mMaxT = std::numeric_limits<T>::lowest;
 
 		while (clone.empty() == false)
 		{
@@ -133,6 +134,8 @@ namespace assignment3
 		}
 
 		std::stack<T> clone(mStack);
+
+		mMinT = std::numeric_limits<T>::max;
 
 		while (!clone.empty())
 		{
