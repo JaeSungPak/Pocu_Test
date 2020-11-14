@@ -108,7 +108,7 @@ namespace assignment3
 
 		std::stack<T> clone(mStack);
 
-		mMaxT = std::numeric_limits<T>::lowest;
+		mMaxT = std::numeric_limits<T>::lowest();
 
 		while (clone.empty() == false)
 		{
@@ -135,7 +135,7 @@ namespace assignment3
 
 		std::stack<T> clone(mStack);
 
-		mMinT = std::numeric_limits<T>::max;
+		mMinT = std::numeric_limits<T>::max();
 
 		while (!clone.empty())
 		{
@@ -196,7 +196,7 @@ namespace assignment3
 
 		std::stack<T> clone(mStack);
 
-		double size = clone.size();
+		double size = static_cast<double>(clone.size());
 
 		while (!clone.empty())
 		{
