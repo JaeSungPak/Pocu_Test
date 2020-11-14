@@ -58,12 +58,18 @@ namespace assignment3
 
 		if (mMaxT < number)
 		{
-			mMaxT = number;
+			if (mMaxT != std::numeric_limits<T>::lowest())
+			{
+				mMaxT = number;
+			}
 		}
 
 		if (mMinT > number)
 		{
-			mMaxT = number;
+			if (mMinT != std::numeric_limits<T>::max())
+			{
+				mMaxT = number;
+			}
 		}
 	}
 
