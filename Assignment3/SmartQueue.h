@@ -184,7 +184,7 @@ namespace assignment3
 	template<typename T>
 	double SmartQueue<T>::GetVariance()
 	{
-		double average = GetSum() / static_cast<double>(mQueue.size());
+		double average = GetAverage();
 
 		return mSquared / mQueue.size() - average * average;
 	}
@@ -209,7 +209,7 @@ namespace assignment3
 	template<typename T>
 	SmartQueue<T> SmartQueue<T>::operator=(const SmartQueue<T>& other)
 	{
-		if (this != &other) 
+		if (this != &other)
 		{
 			mQueue = other.mQueue;
 

@@ -1,10 +1,10 @@
 diff a/Assignment3/SmartQueue.h b/Assignment3/SmartQueue.h	(rejected hunks)
-@@ -31,8 +31,6 @@
- 		T mMaxT;
- 		T mMinT;
- 		double mSquared;
--		double mSum;
--		unsigned int mCount;
+@@ -184,7 +184,7 @@
+ 	template<typename T>
+ 	double SmartQueue<T>::GetVariance()
+ 	{
+-		double average = GetAverage();
++		double average = GetSum() / static_cast<double>(mQueue.size());
  
- 	};
- 
+ 		return mSquared / mQueue.size() - average * average;
+ 	}

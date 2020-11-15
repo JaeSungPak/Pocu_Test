@@ -1,0 +1,75 @@
+From a24e40e62a034e705252d862235bc01b9ecc070b Mon Sep 17 00:00:00 2001
+From: qudan7 <qudan7@gmail.com>
+Date: Mon, 16 Nov 2020 03:04:57 +0900
+Subject: [PATCH] no message
+
+---
+ Assignment3/SmartQueue.h | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/Assignment3/SmartQueue.h b/Assignment3/SmartQueue.h
+index 54cd1e0..18aa89a 100644
+--- a/Assignment3/SmartQueue.h
++++ b/Assignment3/SmartQueue.h
+@@ -30,7 +30,8 @@ namespace assignment3
+ 		std::queue<T> mQueue;
+ 		T mMaxT;
+ 		T mMinT;
+-		double mSquared;
++		T mSquared;
++		T mSum;
+ 		unsigned short mCount;
+ 
+ 	};
+@@ -42,6 +43,7 @@ namespace assignment3
+ 		: mMaxT(std::numeric_limits<T>::lowest())
+ 		, mMinT(std::numeric_limits<T>::max())
+ 		, mSquared(0)
++		, mSum(0)
+ 		, mCount(0)
+ 	{
+ 
+@@ -52,6 +54,7 @@ namespace assignment3
+ 		: mQueue(other.mQueue)
+ 		, mMaxT(other.mMaxT)
+ 		, mMinT(other.mMinT)
++		, mSum(0)
+ 		, mSquared(other.mSquared)
+ 		, mCount(other.mCount)
+ 	{
+@@ -72,6 +75,7 @@ namespace assignment3
+ 		}
+ 
+ 		mSquared += number * number;
++		mSum += number;
+ 		mCount++;
+ 
+ 		mQueue.push(number);
+@@ -99,6 +103,7 @@ namespace assignment3
+ 		}
+ 
+ 		mSquared -= temp * temp;
++		mSum -= temp;
+ 
+ 		mQueue.pop();
+ 		mCount--;
+@@ -189,7 +194,7 @@ namespace assignment3
+ 	template<typename T>
+ 	double SmartQueue<T>::GetVariance()
+ 	{
+-		double average = GetSum() / static_cast<double>(mCount);
++		double average = mSum / static_cast<double>(mCount);
+ 
+ 		return mSquared / static_cast<double>(mCount) - average * average;
+ 	}
+@@ -218,6 +223,7 @@ namespace assignment3
+ 		{
+ 			mQueue = other.mQueue;
+ 
++			mSum = other.mSum;
+ 			mMaxT = other.mMaxT;
+ 			mMinT = other.mMinT;
+ 			mSquared = other.mSquared;
+-- 
+2.26.2.windows.1
+
