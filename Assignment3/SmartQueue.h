@@ -30,7 +30,8 @@ namespace assignment3
 		std::queue<T> mQueue;
 		T mMaxT;
 		T mMinT;
-		double mSquared;
+		T mSquared;
+		T mSum;
 
 	};
 
@@ -41,6 +42,7 @@ namespace assignment3
 		: mMaxT(std::numeric_limits<T>::lowest())
 		, mMinT(std::numeric_limits<T>::max())
 		, mSquared(0)
+		, mSum(0)
 	{
 
 	}
@@ -51,6 +53,7 @@ namespace assignment3
 		, mMaxT(other.mMaxT)
 		, mMinT(other.mMinT)
 		, mSquared(other.mSquared)
+		, mSum(other.mSum)
 	{
 
 	}
@@ -69,6 +72,7 @@ namespace assignment3
 		}
 
 		mSquared += number * number;
+		mSum += number;
 
 		mQueue.push(number);
 	}
@@ -95,6 +99,7 @@ namespace assignment3
 		}
 
 		mSquared -= temp * temp;
+		mSum -= temp;
 
 		mQueue.pop();
 
@@ -184,9 +189,11 @@ namespace assignment3
 	template<typename T>
 	double SmartQueue<T>::GetVariance()
 	{
-		double average = GetAverage();
+		double size = static_cast<double>(mQueue.size());
 
-		return mSquared / mQueue.size() - average * average;
+		double average = mSum / size;
+
+		return mSquared / size - average * average;
 	}
 
 	template<typename T>
