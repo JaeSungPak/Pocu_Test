@@ -30,9 +30,9 @@ namespace assignment3
 		std::queue<T> mQueue;
 		T mMaxT;
 		T mMinT;
-		T mSquared;
-		T mSum;
-		unsigned short mCount;
+		double mSquared;
+		double mSum;
+		unsigned int mCount;
 
 	};
 
@@ -54,8 +54,8 @@ namespace assignment3
 		: mQueue(other.mQueue)
 		, mMaxT(other.mMaxT)
 		, mMinT(other.mMinT)
-		, mSum(0)
 		, mSquared(other.mSquared)
+		, mSum(other.mSum)
 		, mCount(other.mCount)
 	{
 
@@ -104,9 +104,9 @@ namespace assignment3
 
 		mSquared -= temp * temp;
 		mSum -= temp;
+		mCount--;
 
 		mQueue.pop();
-		mCount--;
 
 		return temp;
 	}
@@ -195,12 +195,16 @@ namespace assignment3
 	double SmartQueue<T>::GetVariance()
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		double average = GetSum() / static_cast<double>(mQueue.size());
 =======
 		double average = mSum / static_cast<double>(mCount);
 >>>>>>> a24e40e62a034e705252d862235bc01b9ecc070b
+=======
+		double average = mSum / mCount;
+>>>>>>> mergeTest
 
-		return mSquared / static_cast<double>(mCount) - average * average;
+		return mSquared / mCount - average * average;
 	}
 
 	template<typename T>
@@ -223,15 +227,14 @@ namespace assignment3
 	template<typename T>
 	SmartQueue<T> SmartQueue<T>::operator=(const SmartQueue<T>& other)
 	{
-		if (this != &other) 
+		if (this != &other)
 		{
 			mQueue = other.mQueue;
 
-			mSum = other.mSum;
 			mMaxT = other.mMaxT;
 			mMinT = other.mMinT;
 			mSquared = other.mSquared;
-			mCount = other.mCount;
+			mSum = other.mSum;
 		}
 
 		return *this;
