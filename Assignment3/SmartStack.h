@@ -173,24 +173,22 @@ namespace assignment3
 	template<typename T>
 	double SmartStack<T>::GetVariance()
 	{
-		double variance = 0;
+		double average = GetAverage();
 
-		double sum = 0;
+		double variance = -(average * average);
 
 		std::stack<T> clone(mStack);
 
 		while (!clone.empty())
 		{
-			T temp = clone.top();
+			double temp = clone.top();
 
 			variance += temp * temp / static_cast<double>(mStack.size());
-
-			sum += temp / static_cast<double>(mStack.size());
 
 			clone.pop();
 		}
 
-		return variance - sum * sum;
+		return variance;
 	}
 
 	template<typename T>

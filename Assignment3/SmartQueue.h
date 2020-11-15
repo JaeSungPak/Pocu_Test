@@ -30,7 +30,7 @@ namespace assignment3
 		std::queue<T> mQueue;
 		T mMaxT;
 		T mMinT;
-
+		double mSquared;
 
 	};
 
@@ -40,6 +40,7 @@ namespace assignment3
 	SmartQueue<T>::SmartQueue()
 		: mMaxT(std::numeric_limits<T>::lowest())
 		, mMinT(std::numeric_limits<T>::max())
+		, mSquared(0)
 	{
 
 	}
@@ -49,6 +50,7 @@ namespace assignment3
 		: mQueue(other.mQueue)
 		, mMaxT(other.mMaxT)
 		, mMinT(other.mMinT)
+		, mSquared(other.mSquared)
 	{
 
 	}
@@ -65,6 +67,8 @@ namespace assignment3
 		{
 			mMinT = number;
 		}
+
+		mSquared += number * number;
 
 		mQueue.push(number);
 	}
@@ -89,6 +93,8 @@ namespace assignment3
 		{
 			mMinT = std::numeric_limits<T>::max();
 		}
+
+		mSquared -= temp * temp;
 
 		mQueue.pop();
 
@@ -178,24 +184,9 @@ namespace assignment3
 	template<typename T>
 	double SmartQueue<T>::GetVariance()
 	{
-		double variance = 0;
+		double average = GetAverage();
 
-		double sum = 0;
-
-		std::queue<T> clone(mQueue);
-
-		for(int i = 0; i < mQueue.size(); i++)
-		{
-			double temp = static_cast<double>(clone.front());
-
-			sum += temp / static_cast<double>(clone.size());
-
-			variance += temp * temp / static_cast<double>(clone.size());
-
-			clone.pop();
-		}
-
-		return variance - sum * sum;
+		return mSquared / static_cast<double>(mQueue.size()) - average * average;
 	}
 
 	template<typename T>
@@ -221,6 +212,10 @@ namespace assignment3
 		if (this != &other) 
 		{
 			mQueue = other.mQueue;
+
+			mMaxT = other.mMaxT;
+			mMinT = other.mMinT;
+			mSquared = other.mSquared;
 		}
 
 		return *this;
