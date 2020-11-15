@@ -150,9 +150,7 @@ namespace assignment3
 			return 0.0;
 		}
 
-		T sum = GetSum();
-
-		return static_cast<double>(sum) / mStack.size();
+		return static_cast<double>(GetSum()) / mStack.size();
 	}
 
 	template<typename T>
@@ -179,9 +177,9 @@ namespace assignment3
 
 		double average = GetAverage();
 
-		double size = static_cast<double>(clone.size());
-
 		std::stack<T> clone(mStack);
+
+		double size = static_cast<double>(clone.size());
 
 		while (!clone.empty())
 		{
