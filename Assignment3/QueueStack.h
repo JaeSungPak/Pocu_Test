@@ -60,12 +60,12 @@ namespace assignment3
 			mFrontStack = &mQueue.front();
 		}
 
-		mQueue.back().push(number);
-
 		if (mQueue.back().size() >= mMaxStackSize)
 		{
 			mQueue.push({});
 		}
+
+		mQueue.back().push(number);
 
 		mCurrentSize++;
 		
