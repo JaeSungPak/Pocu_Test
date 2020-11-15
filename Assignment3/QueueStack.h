@@ -38,9 +38,6 @@ namespace assignment3
 		: mMaxStackSize(maxStackSize)
 		, mCurrentSize(0)
 	{
-		mQueue.push({});
-
-		mFrontStack = &mQueue.front();
 	}
 
 	template<typename T>

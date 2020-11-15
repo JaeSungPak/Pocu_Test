@@ -144,25 +144,31 @@ namespace assignment3
 	template<typename T>
 	double SmartQueue<T>::GetVariance()
 	{
-		if (mQueue.empty())
+		if (mStack.empty())
 		{
 			return 0.0;
 		}
 
-		double temp = 0;
+		double variance = 0;
 
-		double average = GetAverage();
+		double sum = 0;
 
-		std::queue<T> clone(mQueue);
+		std::queue<T> clone(mStack);
+
+		double size = static_cast<double>(clone.size());
 
 		while (!clone.empty())
 		{
-			temp += pow(clone.front() - average, 2);
+			double temp = static_cast<double>(clone.front());
+
+			sum += temp / size;
+
+			variance += temp * temp / size;
 
 			clone.pop();
 		}
 
-		return temp / static_cast<double>(mQueue.size());
+		return variance - sum * sum;
 	}
 
 	template<typename T>
