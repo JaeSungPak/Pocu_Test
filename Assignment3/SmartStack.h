@@ -183,18 +183,22 @@ namespace assignment3
 
 		double size = static_cast<double>(clone.size());
 
-		for(int i = 0; i < size; i++)
+		while(!clone.empty())
 		{
 			T temp = clone.top();
 
-			sum += temp / size;
+			sum += temp;
 
-			variance += temp * temp / size;
+			variance += temp * temp;
 
 			clone.pop();
 		}
 
-		return variance - sum * sum;
+		sum /= size;
+
+		variance /= size;
+
+		return (variance - sum * sum);
 	}
 
 	template<typename T>

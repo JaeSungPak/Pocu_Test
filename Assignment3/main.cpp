@@ -22,10 +22,6 @@ int main()
     s.Push(5);
     s.Push(-2);
 
-    s.Pop();
-    s.Pop(); // [ 6, 5, -2 ]
-    s.Pop();
-
     double variance = s.GetVariance(); // 12.667
 
     std::cout << s.GetMax() << std::endl;
