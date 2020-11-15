@@ -178,26 +178,19 @@ namespace assignment3
 	template<typename T>
 	double SmartQueue<T>::GetVariance()
 	{
-		if (mQueue.empty())
-		{
-			return 0.0;
-		}
-
 		double variance = 0;
 
 		double sum = 0;
 
 		std::queue<T> clone(mQueue);
 
-		double size = static_cast<double>(clone.size());
-
-		while (!clone.empty())
+		for(int i = 0; i < mQueue.size(); i++)
 		{
 			double temp = static_cast<double>(clone.front());
 
-			sum += temp / size;
+			sum += temp / static_cast<double>(clone.size());
 
-			variance += temp * temp / size;
+			variance += temp * temp / static_cast<double>(clone.size());
 
 			clone.pop();
 		}
