@@ -144,7 +144,7 @@ namespace assignment3
 	template<typename T>
 	double SmartQueue<T>::GetVariance()
 	{
-		if (mStack.empty())
+		if (mQueue.empty())
 		{
 			return 0.0;
 		}
@@ -153,7 +153,7 @@ namespace assignment3
 
 		double sum = 0;
 
-		std::queue<T> clone(mStack);
+		std::queue<T> clone(mQueue);
 
 		double size = static_cast<double>(clone.size());
 
