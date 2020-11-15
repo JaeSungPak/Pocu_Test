@@ -194,15 +194,7 @@ namespace assignment3
 	template<typename T>
 	double SmartQueue<T>::GetVariance()
 	{
-<<<<<<< HEAD
-<<<<<<< HEAD
-		double average = GetSum() / static_cast<double>(mQueue.size());
-=======
-		double average = mSum / static_cast<double>(mCount);
->>>>>>> a24e40e62a034e705252d862235bc01b9ecc070b
-=======
 		double average = mSum / mCount;
->>>>>>> mergeTest
 
 		return mSquared / mCount - average * average;
 	}
@@ -235,6 +227,7 @@ namespace assignment3
 			mMinT = other.mMinT;
 			mSquared = other.mSquared;
 			mSum = other.mSum;
+			mCount = other.mCount;
 		}
 
 		return *this;
