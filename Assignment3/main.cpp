@@ -14,9 +14,6 @@ int main()
     s.Push(5);
     s.Push(-2); // [ 6, 5, -2 ]
 
-    double variance = s.GetVariance(); // 12.667
-
-
     s.Pop();
     s.Pop(); // [ 6, 5, -2 ]
     s.Pop();
@@ -25,9 +22,14 @@ int main()
     s.Push(5);
     s.Push(-2);
 
+    s.Pop();
+    s.Pop(); // [ 6, 5, -2 ]
+    s.Pop();
+
+    double variance = s.GetVariance(); // 12.667
 
     std::cout << s.GetMax() << std::endl;
-    std::cout << s.GetMin() << std::endl;
+    std::cout << variance << std::endl;
 
     return 0;
 

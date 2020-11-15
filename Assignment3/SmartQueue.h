@@ -10,7 +10,7 @@ namespace assignment3
 	{
 
 	public:
-		SmartQueue() = default;
+		SmartQueue();
 		SmartQueue(const SmartQueue& other);
 		~SmartQueue() = default;
 
@@ -37,10 +37,18 @@ namespace assignment3
 	//---------------------------------------------------------
 
 	template<typename T>
+	SmartQueue<T>::SmartQueue()
+		: mMaxT(std::numeric_limits<T>::lowest())
+		, mMinT(std::numeric_limits<T>::max())
+	{
+
+	}
+
+	template<typename T>
 	SmartQueue<T>::SmartQueue(const SmartQueue& other)
 		: mQueue(other.mQueue)
-		, mMaxT(std::numeric_limits<T>::lowest())
-		, mMinT(std::numeric_limits<T>::max())
+		, mMaxT(other.mMaxT)
+		, mMinT(other.mMinT)
 	{
 
 	}
@@ -48,6 +56,16 @@ namespace assignment3
 	template<typename T>
 	void SmartQueue<T>::Enqueue(T number)
 	{
+		if (mMaxT < number)
+		{
+			mMaxT = number;
+		}
+
+		if (mMinT > number)
+		{
+			mMinT = number;
+		}
+
 		mQueue.push(number);
 	}
 
@@ -62,6 +80,16 @@ namespace assignment3
 	{
 		T temp = mQueue.front();
 
+		if (temp >= mMaxT)
+		{
+			mMaxT = std::numeric_limits<T>::lowest();
+		}
+
+		if (temp <= mMinT)
+		{
+			mMinT = std::numeric_limits<T>::max();
+		}
+
 		mQueue.pop();
 
 		return temp;
@@ -70,9 +98,12 @@ namespace assignment3
 	template<typename T>
 	T SmartQueue<T>::GetMax()
 	{
-		std::queue<T> clone(mQueue);
+		if (mMaxT > std::numeric_limits<T>::lowest())
+		{
+			return mMaxT;
+		}
 
-		T temp = std::numeric_limits<T>::lowest();
+		std::queue<T> clone(mQueue);
 
 		while (!clone.empty())
 		{
@@ -92,9 +123,12 @@ namespace assignment3
 	template<typename T>
 	T SmartQueue<T>::GetMin()
 	{
-		std::queue<T> clone(mQueue);
+		if (mMinT < std::numeric_limits<T>::max())
+		{
+			return mMinT;
+		}
 
-		T temp = std::numeric_limits<T>::max();
+		std::queue<T> clone(mQueue);
 
 		while (!clone.empty())
 		{

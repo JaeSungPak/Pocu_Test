@@ -175,11 +175,6 @@ namespace assignment3
 	template<typename T>
 	double SmartStack<T>::GetVariance()
 	{
-		if (mStack.empty())
-		{
-			return 0.0;
-		}
-
 		double variance = 0;
 
 		double sum = 0;
@@ -190,7 +185,7 @@ namespace assignment3
 
 		while (!clone.empty())
 		{
-			double temp = static_cast<double>(clone.top());
+			T temp = clone.top();
 
 			sum += temp / size;
 
