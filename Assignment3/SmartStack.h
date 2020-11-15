@@ -183,7 +183,7 @@ namespace assignment3
 
 		double size = static_cast<double>(clone.size());
 
-		while (!clone.empty())
+		for(int i = 0; i < size; i++)
 		{
 			T temp = clone.top();
 

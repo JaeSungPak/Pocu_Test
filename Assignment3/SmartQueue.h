@@ -111,13 +111,13 @@ namespace assignment3
 
 			clone.pop();
 
-			if (temp < pop)
+			if (mMaxT < pop)
 			{
-				temp = pop;
+				mMaxT = pop;
 			}
 		}
 
-		return temp;
+		return mMaxT;
 	}
 
 	template<typename T>
@@ -136,13 +136,13 @@ namespace assignment3
 
 			clone.pop();
 
-			if (temp > pop)
+			if (mMinT > pop)
 			{
-				temp = pop;
+				mMinT = pop;
 			}
 		}
 
-		return temp;
+		return mMinT;
 	}
 
 	template<typename T>
