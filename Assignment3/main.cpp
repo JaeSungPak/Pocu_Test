@@ -10,18 +10,18 @@ using namespace assignment3;
 
 int main()
 {
-    SmartStack<int> s;
-    s.Push(6);
-    s.Push(5);
-    s.Push(-2); // [ 6, 5, -2 ]
+    SmartQueue<int> s;
+    s.Enqueue(6);
+    s.Enqueue(5);
+    s.Enqueue(-2); // [ 6, 5, -2 ]
 
-    s.Pop();
-    s.Pop();
-    s.Pop();
+    s.Dequeue();
+    s.Dequeue();
+    s.Dequeue();
 
-    s.Push(6);
-    s.Push(5);
-    s.Push(-2);
+    s.Enqueue(6);
+    s.Enqueue(5);
+    s.Enqueue(-2);
 
     double variance = s.GetVariance(); // 12.667
 
