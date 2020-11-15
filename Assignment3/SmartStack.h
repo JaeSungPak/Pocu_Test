@@ -30,6 +30,9 @@ namespace assignment3
 		std::stack<T> mStack;
 		T mMaxT;
 		T mMinT;
+		double mSquared;
+		double mSum;
+		unsigned int mCount;
 	};
 
 	//---------------------------------------------------------
@@ -38,6 +41,9 @@ namespace assignment3
 	SmartStack<T>::SmartStack()
 		: mMaxT(std::numeric_limits<T>::lowest())
 		, mMinT(std::numeric_limits<T>::max())
+		, mSquared(0)
+		, mSum(0)
+		, mCount(0)
 	{
 	}
 
@@ -46,6 +52,9 @@ namespace assignment3
 		: mStack(other.mStack)
 		, mMaxT(other.mMaxT)
 		, mMinT(other.mMinT)
+		, mSquared(other.mSquared)
+		, mSum(other.mSum)
+		, mCount(other.mCount)
 	{
 		
 	}
@@ -62,6 +71,10 @@ namespace assignment3
 		{
 			mMinT = number;
 		}
+
+		mSquared += static_cast<double>(number) * number;
+		mSum += number;
+		mCount++;
 
 		mStack.push(number);
 	}
@@ -80,6 +93,10 @@ namespace assignment3
 		{
 			mMinT = std::numeric_limits<T>::max();
 		}
+
+		mSquared -= temp * temp;
+		mSum -= temp;
+		mCount--;
 
 		mStack.pop();
 
@@ -173,22 +190,9 @@ namespace assignment3
 	template<typename T>
 	double SmartStack<T>::GetVariance()
 	{
-		double average = GetAverage();
+		double average = mSum / mCount;
 
-		double variance = -(average * average);
-
-		std::stack<T> clone(mStack);
-
-		while (!clone.empty())
-		{
-			double temp = clone.top();
-
-			variance += temp * temp / static_cast<double>(mStack.size());
-
-			clone.pop();
-		}
-
-		return variance;
+		return mSquared / mCount - average * average;
 	}
 
 	template<typename T>
@@ -214,6 +218,12 @@ namespace assignment3
 		if (this != &other) 
 		{
 			mStack = other.mStack;
+
+			mMaxT = other.mMaxT;
+			mMinT = other.mMinT;
+			mSquared = other.mSquared;
+			mSum = other.mSum;
+			mCount = other.mCount;
 		}
 
 		return *this;
