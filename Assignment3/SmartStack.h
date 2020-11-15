@@ -175,24 +175,22 @@ namespace assignment3
 	{
 		double variance = 0;
 
-		double average = GetAverage();
+		double sum = 0;
 
 		std::stack<T> clone(mStack);
-
-		double size = static_cast<double>(clone.size());
 
 		while (!clone.empty())
 		{
 			T temp = clone.top();
 
-			variance += temp * temp;
+			variance += temp * temp / static_cast<double>(mStack.size());
+
+			sum += temp / static_cast<double>(mStack.size());
 
 			clone.pop();
 		}
 
-		variance /= size;
-
-		return variance - average * average;
+		return variance - sum * sum;
 	}
 
 	template<typename T>
