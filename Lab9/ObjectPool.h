@@ -11,37 +11,48 @@ namespace lab9
 	public:
 		ObjectPool() = delete;
 		ObjectPool(size_t maxPoolSize);
-		~ObjectPool() = default;
+		~ObjectPool();
 		T* Get();
 		void Return(T* object);
 		size_t GetFreeObjectCount();
 		size_t GetMaxFreeObjectCount();
 
 	private:
-		std::queue<T*> objects;
+		std::queue<T*> mObjects;
 		size_t mMaxPoolSize;
 	};
 
 	template<typename T>
 	ObjectPool<T>::ObjectPool(size_t maxPoolSize)
-		: objects()
+		: mObjects()
 		, mMaxPoolSize(maxPoolSize)
 	{
 	}
 
 	template<typename T>
+	ObjectPool<T>::~ObjectPool()
+	{
+		while (!mObjects.empty())
+		{
+			delete mObjects.front();
+
+			mObjects.pop();
+		}
+	}
+
+	template<typename T>
 	T* ObjectPool<T>::Get()
 	{
-		if (objects.empty())
+		if (mObjects.empty())
 		{
 			return new T();
 		}
 
 		std::unique_ptr<T> a;
 
-		T* temp = objects.front();
+		T* temp = mObjects.front();
 
-		objects.pop();
+		mObjects.pop();
 
 		return temp;
 	}
@@ -49,9 +60,9 @@ namespace lab9
 	template<typename T>
 	void ObjectPool<T>::Return(T* object)
 	{
-		if (objects.size() < mMaxPoolSize)
+		if (mObjects.size() < mMaxPoolSize)
 		{
-			objects.push(object);
+			mObjects.push(object);
 		}
 		else
 		{
@@ -62,7 +73,7 @@ namespace lab9
 	template<typename T>
 	size_t ObjectPool<T>::GetFreeObjectCount()
 	{
-		return objects.size();
+		return mObjects.size();
 	}
 
 	template<typename T>
