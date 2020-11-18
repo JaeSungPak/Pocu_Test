@@ -13,7 +13,7 @@ namespace lab9
 		ObjectPool(size_t maxPoolSize);
 		~ObjectPool();
 		T* Get();
-		void Return(T* object);
+		void Return(T*& object);
 		size_t GetFreeObjectCount();
 		size_t GetMaxFreeObjectCount();
 
@@ -56,7 +56,7 @@ namespace lab9
 	}
 
 	template<typename T>
-	void ObjectPool<T>::Return(T* object)
+	void ObjectPool<T>::Return(T*& object)
 	{
 		if (mObjects.size() < mMaxPoolSize)
 		{
