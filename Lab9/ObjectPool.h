@@ -48,8 +48,6 @@ namespace lab9
 			return new T();
 		}
 
-		std::unique_ptr<T> a;
-
 		T* temp = mObjects.front();
 
 		mObjects.pop();

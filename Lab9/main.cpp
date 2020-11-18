@@ -70,4 +70,6 @@ int main()
 	assert(i6 == i5);
 
 	op2.Return(i6);
+
+	return 0;
 }
