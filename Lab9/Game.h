@@ -16,12 +16,12 @@ namespace lab9
 		Game& operator=(const Game&) = delete;
 		void Spawn();
 		void Update();
-		const std::vector<IceCube*>& GetActiveGameObjects() const;
+		const std::vector<std::unique_ptr<IceCube>> GetActiveGameObjects() const;
 		ObjectPool<IceCube>& GetObjectPool();
 
 	private:
 		enum { MAX_FRAME_COUNT_TO_LIVE = 100 };
-		std::vector<IceCube*> mActiveGameObjects;
+		std::vector<std::unique_ptr<IceCube>> mActiveGameObjects;
 		ObjectPool<IceCube> mObjectPool;
 	};
 }
