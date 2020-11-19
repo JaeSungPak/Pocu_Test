@@ -10,12 +10,17 @@ namespace lab9
 
 	Game::~Game()
 	{
+		for (auto it = mActiveGameObjects.begin(); it != mActiveGameObjects.end(); ++it)
+		{
+			delete (*it);
+		}
+
 		mActiveGameObjects.clear();
 	}
 
 	void Game::Spawn()
 	{
-		std::unique_ptr<IceCube> iceCube = mObjectPool.Get();
+		IceCube* iceCube = mObjectPool.Get();
 		iceCube->Initialize(rand() % MAX_FRAME_COUNT_TO_LIVE + 1);
 		mActiveGameObjects.push_back(iceCube);
 	}
@@ -24,7 +29,7 @@ namespace lab9
 	{
 		for (auto it = mActiveGameObjects.begin(); it != mActiveGameObjects.end();)
 		{
-			std::unique_ptr<IceCube> iceCube = std::move(*it);
+			IceCube* iceCube = *it;
 			iceCube->Animate();
 
 			if (!iceCube->IsActive())
@@ -38,7 +43,7 @@ namespace lab9
 		}
 	}
 
-	const std::vector<std::unique_ptr<IceCube>> Game::GetActiveGameObjects() const
+	const std::vector<IceCube*>& Game::GetActiveGameObjects() const
 	{
 		return mActiveGameObjects;
 	}
