@@ -60,8 +60,6 @@ namespace lab10
 		{
 			Insert(std::move(data));
 
-			mSize++;
-
 			return;
 		}
 
@@ -104,11 +102,22 @@ namespace lab10
 			return false;
 		}
 
+		if (data == *(mFirst->Data))
+		{
+			mFirst = mFirst->Next;
+
+			mSize--;
+
+			return true;
+		}
+
 		std::shared_ptr<Node<T>> temp = mFirst;
 
 		bool bIsit = false;
 
-		for (unsigned int i = 0; i < mSize; i++)
+		unsigned int i;
+
+		for (i = 0; i < mSize; i++)
 		{
 			if (*(temp->Data) == data)
 			{
@@ -125,9 +134,16 @@ namespace lab10
 			return false;
 		}
 
-		temp->Previous.lock()->Next = temp->Next;
+		if (temp->Next != nullptr)
+		{
+			temp->Previous.lock()->Next = temp->Next;
 
-		temp->Next->Previous = temp->Previous.lock();
+			temp->Next->Previous = temp->Previous.lock();
+		}
+		else
+		{
+			temp->Previous.reset();
+		}
 
 		mSize--;
 
