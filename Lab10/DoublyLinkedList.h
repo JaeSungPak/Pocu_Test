@@ -61,6 +61,23 @@ namespace lab10
 			Insert(std::move(data));
 
 			mSize++;
+
+			return;
+		}
+
+		if (index == 0)
+		{
+			std::shared_ptr<Node<T>> temp = mFirst;
+
+			mFirst = std::make_shared<Node<T>>(std::move(data));
+
+			mFirst->Next = temp;
+
+			temp->Previous = mFirst;
+
+			mSize++;
+
+			return;
 		}
 
 		std::shared_ptr<Node<T>> temp = mFirst;
