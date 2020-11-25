@@ -27,7 +27,7 @@ namespace lab10
 
 	template<typename T>
 	DoublyLinkedList<T>::DoublyLinkedList()
-		:mSize(0)
+		: mSize(0)
 	{
 	}
 
@@ -74,7 +74,7 @@ namespace lab10
 
 		temp->Previous.lock()->Next->Next = temp;
 
-		temp->Previous.lock() = temp->Previous.lock()->Next;
+		temp->Previous = temp->Previous.lock()->Next;
 
 		mSize++;
 	}
