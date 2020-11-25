@@ -142,7 +142,7 @@ namespace lab10
 		}
 		else
 		{
-			temp->Previous.reset();
+			temp->Previous.lock()->Next.reset();
 		}
 
 		mSize--;
