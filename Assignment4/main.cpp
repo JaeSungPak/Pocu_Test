@@ -1,5 +1,6 @@
 #include "BinarySearchTree.h"
 #include <iostream>
+#include <cassert>
 
 using namespace assignment4;
 
@@ -40,7 +41,9 @@ int main()
 	bDeleted = tree.Delete(15);
 	assert(bDeleted);
 
-	v = tree.TraverseInOrder(tree.GetRootNode().lock());
+	std::shared_ptr<TreeNode<int>> m = tree.GetRootNode().lock();
+
+	v = tree.TraverseInOrder(m);
 
 	assert(v.size() == 7);
 	assert(v[0] == 4);

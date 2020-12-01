@@ -2,13 +2,14 @@
 
 #include <memory>
 #include <vector>
+#include <algorithm>
 #include "TreeNode.h"
 
 namespace assignment4
 {
 	template<typename T>
 	class TreeNode;
-
+	
 	template<typename T>
 	class BinarySearchTree final
 	{
@@ -18,6 +19,7 @@ namespace assignment4
 		bool Delete(const T& data);
 		const std::weak_ptr<TreeNode<T>> GetRootNode() const;
 
+		static void Interative(std::shared_ptr<TreeNode<T>> tree, std::vector<T>& collect);
 		static std::vector<T> TraverseInOrder(const std::shared_ptr<TreeNode<T>> startNode);
 
 	private:
@@ -125,7 +127,54 @@ namespace assignment4
 		std::shared_ptr<TreeNode<T>> temp = mFirst;
 		bool bRight = false;
 
-		//탐색
+		// 최상위 위치일 때
+
+		if (data == *(mFirst->Data))
+		{
+			if (mFirst->Left == nullptr && mFirst->Right == nullptr)
+			{
+				mFirst = nullptr;
+			}
+			else if (mFirst->Left != nullptr && mFirst->Right != nullptr)
+			{
+				std::shared_ptr<TreeNode<T>> low = mFirst->Right;
+
+				//오른쪽 하위 값 중 가장 작은 값 찾아서 분리하기
+
+				while (low->Left != nullptr)
+				{
+					low = low->Left;
+				}
+
+				if (low->Right != nullptr)
+				{
+					low->Right->Parent = low->Parent;
+
+					low->Parent.lock()->Left = low->Right;
+				}
+
+				//temp의 자리를 가장 작은 값으로 대체
+
+				mFirst = low;
+
+				low->Parent.lock()->Left = nullptr;
+				low->Right = mFirst->Right;
+				low->Left = mFirst->Left;
+
+			}
+			else if (mFirst->Left == nullptr && mFirst->Right != nullptr)
+			{
+				mFirst = mFirst->Right;
+			}
+			else if (mFirst->Left != nullptr && mFirst->Right == nullptr)
+			{
+				mFirst = mFirst->Left;
+			}
+
+			return true;
+		}
+
+		// 탐색
 
 		while (true)
 		{
@@ -159,7 +208,7 @@ namespace assignment4
 			}
 		}
 
-		//삭제
+		// 삭제
 
 		if (temp->Left == nullptr && temp->Right == nullptr)
 		{
@@ -201,6 +250,7 @@ namespace assignment4
 				temp->Parent.lock()->Left = low;
 			}
 
+			low->Parent.lock()->Left = nullptr;
 			low->Parent = temp->Parent;
 			low->Right = temp->Right;
 			low->Left = temp->Left;
@@ -239,7 +289,31 @@ namespace assignment4
 	template<typename T>
 	std::vector<T> BinarySearchTree<T>::TraverseInOrder(const std::shared_ptr<TreeNode<T>> startNode)
 	{
-		std::vector<T> v;
-		return v;
+		std::vector<T> collect;
+
+		if (startNode->Data != nullptr)
+		{
+			Interative(startNode, collect);
+		}
+
+		std::sort(collect.begin(), collect.end());
+
+		return collect;
+	}
+
+	template<typename T>
+	void BinarySearchTree<T>::Interative(std::shared_ptr<TreeNode<T>> tree, std::vector<T>& collect)
+	{
+		collect.push_back(*(tree->Data));
+
+		if (tree->Right != nullptr)
+		{
+			Interative(tree->Right, collect);
+		}
+
+		if (tree->Left != nullptr)
+		{
+			Interative(tree->Left, collect);
+		}
 	}
 }
