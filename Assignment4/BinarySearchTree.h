@@ -146,6 +146,15 @@ namespace assignment4
 					low = low->Left;
 				}
 
+				if (low == temp->Right)
+				{
+					low->Left = mFirst->Left;
+					mFirst->Left->Parent = low;
+					mFirst = low;
+
+					return true;
+				}
+
 				if (low->Right != nullptr)
 				{
 					low->Right->Parent = low->Parent;
@@ -155,9 +164,9 @@ namespace assignment4
 
 				//temp의 자리를 가장 작은 값으로 대체
 
+				low->Parent.lock()->Left = nullptr;
 				mFirst = low;
 
-				low->Parent.lock()->Left = nullptr;
 				low->Right = mFirst->Right;
 				low->Left = mFirst->Left;
 
@@ -232,6 +241,16 @@ namespace assignment4
 				low = low->Left;
 			}
 
+			if (low == temp->Right)
+			{
+				temp->Parent.lock()->Left = low;
+				low->Parent = temp->Parent;
+				low->Left = temp->Left;
+				temp->Left->Parent = low;
+
+				return true;
+			}
+
 			if (low->Right != nullptr)
 			{
 				low->Right->Parent = low->Parent;
@@ -291,12 +310,12 @@ namespace assignment4
 	{
 		std::vector<T> collect;
 
-		if (startNode->Data != nullptr)
+		if (startNode != nullptr)
 		{
 			Interative(startNode, collect);
-		}
 
-		std::sort(collect.begin(), collect.end());
+			std::sort(collect.begin(), collect.end());
+		}
 
 		return collect;
 	}
