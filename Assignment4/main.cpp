@@ -4,92 +4,114 @@
 
 using namespace assignment4;
 
-void Test_Insert_GetRoot();
-void Test_Search();
-void Test_Delete();
-void Test_Traverse();
+void BinarySearchTreeTest();
 
 int main()
 {
-	//Test_Insert_GetRoot();
-	//Test_Search();
-	//Test_Delete();
-	Test_Traverse();
+    BinarySearchTreeTest();
 
 	return 0;
 }
 
-void Test_Traverse()
+void BinarySearchTreeTest()
 {
-	BinarySearchTree<int> tree;
+	assignment4::BinarySearchTree<float> tree;
+	std::vector<float> v1;
+	//빈트리에 대한 테스트
+	assert(tree.GetRootNode().lock() == nullptr);
+	assert(tree.Delete(1.f) == false);
+	assert(tree.Search(1.f) == false);
 
-	int arr[9] = { 10, 15, 5, 4, 19, 20, 17, 12, 7 };
-	int arr_chk[9] = { 4, 5, 7, 10, 12, 15, 17, 19, 20 };
+	//루트 노드 하나만 있을 때 테스트
+	tree.Insert(std::make_unique<float>(1.2f));
+	assert(*tree.GetRootNode().lock()->Data == 1.2f);
+	assert(tree.Search(1.2f) == true);
 
-	// 빈 트리
-	std::vector<int> v1 = tree.TraverseInOrder(tree.GetRootNode().lock());
-	assert(v1.size() == 0);
-	assert(v1.empty());
+	v1 = tree.TraverseInOrder(tree.GetRootNode().lock());
+	assert(v1.size() == 1);
+	assert(v1[0] = 1.2f);
+	assert(tree.Delete(1.3f) == false);
+	assert(tree.Delete(1.2f) == true);
+	assert(tree.GetRootNode().lock() == nullptr);
 
-	tree.Insert(std::make_unique<int>(arr[0]));
-	// 헤드만 있는 트리
-	std::vector<int> v2 = tree.TraverseInOrder(tree.GetRootNode().lock());
-	assert(v2.size() == 1);
-	assert(v2[0] == arr[0]);
+	//그냥 여러 테스트...
+	tree.Insert(std::make_unique<float>(50.f));
+	tree.Insert(std::make_unique<float>(25.f));
+	tree.Insert(std::make_unique<float>(75.f));
+	tree.Insert(std::make_unique<float>(12.5f));
+	tree.Insert(std::make_unique<float>(37.5f));
+	tree.Insert(std::make_unique<float>(38.f));
+	tree.Insert(std::make_unique<float>(62.5f));
+	tree.Insert(std::make_unique<float>(87.5f));
+	tree.Insert(std::make_unique<float>(6.f));
+	tree.Insert(std::make_unique<float>(3.f));
+	tree.Insert(std::make_unique<float>(30.f));
+	tree.Insert(std::make_unique<float>(31.f));
+	tree.Insert(std::make_unique<float>(32.f));
+	tree.Insert(std::make_unique<float>(88.f));
+	tree.Insert(std::make_unique<float>(89.f));
 
-	// empty 포인터
-	std::vector<int> v3 = tree.TraverseInOrder(tree.GetRootNode().lock()->Left);
-	assert(v3.size() == 0);
-	assert(v3.empty());
+	v1 = tree.TraverseInOrder(tree.GetRootNode().lock());
+	assert(v1.size() == 15);
+	assert(v1[0] == 3.f);
+	assert(v1[1] == 6.f);
+	assert(v1[2] == 12.5f);
+	assert(v1[3] == 25.f);
+	assert(v1[4] == 30.f);
+	assert(v1[5] == 31.f);
+	assert(v1[6] == 32.f);
+	assert(v1[7] == 37.5f);
+	assert(v1[8] == 38.f);
+	assert(v1[9] == 50.f);
+	assert(v1[10] == 62.5f);
+	assert(v1[11] == 75.f);
+	assert(v1[12] == 87.5f);
+	assert(v1[13] == 88.f);
+	assert(v1[14] == 89.f);
 
-	// 트리 입력
-	for (size_t i = 1; i < 9; i++)
-	{
-		tree.Insert(std::make_unique<int>(arr[i]));
-	}
+	assert(tree.Search(34.f) == false);
+	assert(tree.Search(62.5f) == true);
 
-	// 헤드 노드 입력
-	std::vector<int> v4 = tree.TraverseInOrder(tree.GetRootNode().lock());
-	assert(v4.size() == 9);
-	assert(v4[0] == arr_chk[0]);
-	assert(v4[1] == arr_chk[1]);
-	assert(v4[2] == arr_chk[2]);
-	assert(v4[3] == arr_chk[3]);
-	assert(v4[4] == arr_chk[4]);
-	assert(v4[5] == arr_chk[5]);
-	assert(v4[6] == arr_chk[6]);
-	assert(v4[7] == arr_chk[7]);
-	assert(v4[8] == arr_chk[8]);
+	assert(tree.Delete(34.f) == false);
+	assert(tree.Delete(12.5f) == true);
+	assert(tree.Delete(37.5f) == true);
+	assert(tree.Delete(25.f) == true);
+	assert(tree.Delete(25.f) == false);
+	assert(tree.Delete(87.5f) == true);
 
-	// 중간 노드 입력
-	std::vector<int> v5 = tree.TraverseInOrder(tree.GetRootNode().lock()->Right->Right);
-	assert(v5.size() == 3);
-	assert(v5[0] == arr_chk[6]);
-	assert(v5[1] == arr_chk[7]);
-	assert(v5[2] == arr_chk[8]);
+	assert(tree.Delete(50.f) == true); //루트노드 삭제 테스트
+	assert(tree.GetRootNode().lock() != nullptr);
+	assert(*tree.GetRootNode().lock()->Data == 38.f);
 
-	// 말단 노드 입력
-	std::vector<int> v6 = tree.TraverseInOrder(tree.GetRootNode().lock()->Right->Left);
-	assert(v6.size() == 1);
-	assert(v6[0] == arr_chk[4]);
 
-	// 노드 삭제
-	for (size_t i = 0; i < 8; i++)
-	{
 
-		tree.Delete(arr[i]);
-	}
+	assert(tree.Search(37.5f) == false);
 
-	// 7만 남기고 모두 삭제된 트리
-	std::vector<int> v7 = tree.TraverseInOrder(tree.GetRootNode().lock());
-	assert(v7.size() == 1);
-	assert(v7[0] == arr[8]);
+	v1 = tree.TraverseInOrder(tree.GetRootNode().lock());
+	assert(v1.size() == 10);
+	assert(v1[0] == 3.f);
+	assert(v1[1] == 6.f);
+	assert(v1[2] == 30.f);
+	assert(v1[3] == 31.f);
+	assert(v1[4] == 32.f);
+	assert(v1[5] == 38.f);
+	assert(v1[6] == 62.5f);
+	assert(v1[7] == 75.f);
+	assert(v1[8] == 88.f);
+	assert(v1[9] == 89.f);
 
-	// 노드가 모두 삭제된 트리
-	tree.Delete(arr[8]);
-	std::vector<int> v8 = tree.TraverseInOrder(tree.GetRootNode().lock());
-	assert(v8.size() == 0);
-	assert(v8.empty());
+	//재배치된 노드 삭제 테스트
+	assert(tree.Delete(32.f) == true);
+	assert(tree.Delete(6.f) == true);
+	assert(tree.Delete(88.f) == true);
 
-	return;
+	v1 = tree.TraverseInOrder(tree.GetRootNode().lock());
+	assert(v1.size() == 7);
+	assert(v1[0] == 3.f);
+	assert(v1[1] == 30.f);
+	assert(v1[2] == 31.f);
+	assert(v1[3] == 38.f);
+	assert(v1[4] == 62.5f);
+	assert(v1[5] == 75.f);
+	assert(v1[6] == 89.f);
 }
