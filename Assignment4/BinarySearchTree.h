@@ -165,11 +165,12 @@ namespace assignment4
 				//temp의 자리를 가장 작은 값으로 대체
 
 				low->Parent.lock()->Left = nullptr;
-				mFirst = low;
-
+				
 				low->Right = mFirst->Right;
+				low->Right->Parent = low;
 				low->Left = mFirst->Left;
-
+				low->Left->Parent = low;
+				mFirst = low;
 			}
 			else if (mFirst->Left == nullptr && mFirst->Right != nullptr)
 			{
@@ -233,7 +234,6 @@ namespace assignment4
 		else if (temp->Left != nullptr && temp->Right != nullptr)
 		{
 			std::shared_ptr<TreeNode<T>> low = temp->Right;
-
 			//오른쪽 하위 값 중 가장 작은 값 찾아서 분리하기
 
 			while (low->Left != nullptr)
@@ -243,10 +243,19 @@ namespace assignment4
 
 			if (low == temp->Right)
 			{
-				temp->Parent.lock()->Left = low;
-				low->Parent = temp->Parent;
 				low->Left = temp->Left;
-				temp->Left->Parent = low;
+				low->Left->Parent = low;
+				
+				if (bRight)
+				{
+					temp->Parent.lock()->Right = low;
+				}
+				else
+				{
+					temp->Parent.lock()->Left = low;
+				}
+
+				low->Parent = temp->Parent;
 
 				return true;
 			}

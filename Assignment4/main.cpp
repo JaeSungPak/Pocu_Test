@@ -76,16 +76,17 @@ void Test_Traverse()
 	// 노드 삭제
 	for (size_t i = 0; i < 8; i++)
 	{
+
 		tree.Delete(arr[i]);
 	}
 
 	// 7만 남기고 모두 삭제된 트리
 	std::vector<int> v7 = tree.TraverseInOrder(tree.GetRootNode().lock());
-	//assert(v7.size() == 1);
-	//assert(v7[0] == arr[8]);
+	assert(v7.size() == 1);
+	assert(v7[0] == arr[8]);
 
 	// 노드가 모두 삭제된 트리
-	//tree.Delete(arr[8]);
+	tree.Delete(arr[8]);
 	std::vector<int> v8 = tree.TraverseInOrder(tree.GetRootNode().lock());
 	assert(v8.size() == 0);
 	assert(v8.empty());
