@@ -60,7 +60,7 @@ namespace assignment4
 				}
 				else
 				{
-					temp->Left = std::make_shared<TreeNode<T>>(temp ,std::move(data));
+					temp->Left = std::make_shared<TreeNode<T>>(temp, std::move(data));
 					return;
 				}
 			}
