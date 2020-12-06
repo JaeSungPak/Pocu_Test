@@ -71,7 +71,7 @@ namespace lab11
 	template<typename T>
 	const std::unique_ptr<T[]>& Storage<T>::GetData() const
 	{
-		return std::move(mArray);
+		return mArray;
 	}
 
 	template<typename T>
@@ -83,7 +83,7 @@ namespace lab11
 	template<typename T>
 	Storage<T>* Storage<T>::operator=(const Storage<T>& other)
 	{
-		if (&other != this && other.mPointer->mArray != nullptr)
+		if (&other != this)
 		{
 			mArray = std::move(other.mPointer->mArray);
 
