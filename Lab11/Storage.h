@@ -11,12 +11,14 @@ namespace lab11
 	public:
 		Storage(unsigned int length);
 		Storage(const Storage<T>& other);
+		Storage(Storage<T>& other);
 		Storage(unsigned int length, const T& initialValue);
 
 		bool Update(unsigned int index, const T& data);
 		const std::unique_ptr<T[]>& GetData() const;
 		unsigned int GetSize() const;
 		Storage<T>* operator=(const Storage<T>& other);
+		Storage<T>* operator=(Storage<T>& other);
 
 	private:
 		std::unique_ptr<T[]> mArray;
@@ -28,20 +30,28 @@ namespace lab11
 	Storage<T>::Storage(unsigned int length)
 		: mSize(length)
 		, mPointer(this)
-		, mArray(new T[length]{})
+		, mArray(new T[length] {})
 	{
 
 	}
 
 	template<typename T>
 	Storage<T>::Storage(const Storage<T>& other)
-		:mSize(other.mSize)
+		: mSize(other.mPointer->mSize)
 		, mPointer(this)
 		, mArray(std::move(other.mPointer->mArray))
 	{
 		other.mPointer->mSize = 0;
 	}
 
+	template<typename T>
+	Storage<T>::Storage(Storage<T>& other)
+		: mSize(other.mPointer->mSize)
+		, mPointer(this)
+		, mArray(std::move(other.mPointer->mArray))
+	{
+		other.mPointer->mSize = 0;
+	}
 
 	template<typename T>
 	Storage<T>::Storage(unsigned int length, const T& initialValue)
@@ -84,11 +94,29 @@ namespace lab11
 	template<typename T>
 	Storage<T>* Storage<T>::operator=(const Storage<T>& other)
 	{
-		mArray = std::move(other.mPointer->mArray);
+		if (&other != this)
+		{
+			mArray = std::move(other.mPointer->mArray);
 
-		mSize = other.mSize;
+			mSize = other.mPointer->mSize;
 
-		other.mPointer->mSize = 0;
+			other.mPointer->mSize = 0;
+		}
+
+		return this;
+	}
+
+	template<typename T>
+	Storage<T>* Storage<T>::operator=(Storage<T>& other)
+	{
+		if (&other != this)
+		{
+			mArray = std::move(other.mPointer->mArray);
+
+			mSize = other.mPointer->mSize;
+
+			other.mPointer->mSize = 0;
+		}
 
 		return this;
 	}
