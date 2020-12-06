@@ -31,9 +31,9 @@ namespace lab11
 		, mArray(new T[length])
 	{
 
-		for (int i = 0; i < length; i++)
+		for (unsigned int i = 0; i < length; i++)
 		{
-			mArray[i] = static_cast<T>(0);
+			mArray[i] = (T)0;
 		}
 	}
 
@@ -53,7 +53,7 @@ namespace lab11
 		, mPointer(this)
 		, mArray(new T[length])
 	{
-		for (int i = 0; i < length; i++)
+		for (unsigned int i = 0; i < length; i++)
 		{
 			mArray[i] = initialValue;
 		}
@@ -88,7 +88,7 @@ namespace lab11
 	template<typename T>
 	Storage<T>* Storage<T>::operator=(const Storage<T>& other)
 	{
-		mArray.reset(std::move(other.mArray));
+		mArray = std::move(other.mArray);
 
 		mSize = other.mSize;
 
