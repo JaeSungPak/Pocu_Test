@@ -88,9 +88,9 @@ namespace lab11
 	template<typename T>
 	Storage<T>* Storage<T>::operator=(const Storage<T>& other)
 	{
-		mArray = std::move(other->mArray);
+		mArray = std::move(other.mArray);
 
-		mSize = other->mSize;
+		mSize = other.mSize;
 
 		other.mPointer->mSize = 0;
 
