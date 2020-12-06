@@ -33,7 +33,7 @@ namespace lab11
 
 		for (int i = 0; i < length; i++)
 		{
-			mArray[i] = 0;
+			mArray[i] = static_cast<T>(0);
 		}
 	}
 
@@ -88,7 +88,7 @@ namespace lab11
 	template<typename T>
 	Storage<T>* Storage<T>::operator=(const Storage<T>& other)
 	{
-		mArray = std::move(other.mArray);
+		mArray.reset(std::move(other.mArray));
 
 		mSize = other.mSize;
 
