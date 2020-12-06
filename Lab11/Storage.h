@@ -28,7 +28,7 @@ namespace lab11
 	Storage<T>::Storage(unsigned int length)
 		: mSize(length)
 		, mPointer(this)
-		, mArray(new T[length]{ 0 })
+		, mArray(new T[length]{})
 	{
 
 	}
@@ -84,7 +84,7 @@ namespace lab11
 	template<typename T>
 	Storage<T>* Storage<T>::operator=(const Storage<T>& other)
 	{
-		mArray = other.mArray.release();
+		mArray = std::move(other.mPointer->mArray);
 
 		mSize = other.mSize;
 
