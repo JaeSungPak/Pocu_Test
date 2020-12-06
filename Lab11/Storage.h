@@ -39,8 +39,6 @@ namespace lab11
 		, mPointer(this)
 		, mArray(std::move(other.mPointer->mArray))
 	{
-		other.mPointer->mArray = nullptr;
-
 		other.mPointer->mSize = 0;
 	}
 
@@ -85,11 +83,9 @@ namespace lab11
 	template<typename T>
 	Storage<T>* Storage<T>::operator=(const Storage<T>& other)
 	{
-		if (&other != this)
+		if (&other != this && other.mPointer->mArray != nullptr)
 		{
 			mArray = std::move(other.mPointer->mArray);
-
-			other.mPointer->mArray = nullptr;
 
 			mSize = other.mPointer->mSize;
 
