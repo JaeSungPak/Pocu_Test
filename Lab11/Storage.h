@@ -10,15 +10,15 @@ namespace lab11
 	{
 	public:
 		Storage(unsigned int length);
-		Storage(const Storage<T>&& other);
-		Storage(Storage<T>& other);
+		Storage(Storage<T>&& other);
+		Storage(const Storage<T>& other);
 		Storage(unsigned int length, const T& initialValue);
 
 		bool Update(unsigned int index, const T& data);
 		const std::unique_ptr<T[]>& GetData() const;
 		unsigned int GetSize() const;
-		Storage<T>& operator=(const Storage<T>&& other);
-		Storage<T>& operator=(Storage<T>& other);
+		Storage<T>& operator=(Storage<T>&& other);
+		Storage<T>& operator=(const Storage<T>& other);
 
 	private:
 		std::unique_ptr<T[]> mArray;
@@ -36,7 +36,7 @@ namespace lab11
 	}
 
 	template<typename T>
-	Storage<T>::Storage(const Storage<T>&& other)
+	Storage<T>::Storage(Storage<T>&& other)
 		: mSize(other.mPointer->mSize)
 		, mPointer(this)
 		, mArray(std::move(other.mPointer->mArray))
@@ -45,12 +45,13 @@ namespace lab11
 	}
 
 	template<typename T>
-	Storage<T>::Storage(Storage<T>& other)
+	Storage<T>::Storage(const Storage<T>& other)
 		: mSize(other.mPointer->mSize)
 		, mPointer(this)
-		, mArray(std::move(other.mPointer->mArray))
 	{
-		other.mPointer->mSize = 0;
+		mArray = new T[mSize];
+
+		memcpy(mArray, other.mPointer->mArray, mSize);
 	}
 
 	template<typename T>
@@ -92,7 +93,7 @@ namespace lab11
 	}
 
 	template<typename T>
-	Storage<T>& Storage<T>::operator=(const Storage<T>&& other)
+	Storage<T>& Storage<T>::operator=(Storage<T>&& other)
 	{
 		if (&other != this)
 		{
@@ -107,15 +108,15 @@ namespace lab11
 	}
 
 	template<typename T>
-	Storage<T>& Storage<T>::operator=(Storage<T>& other)
+	Storage<T>& Storage<T>::operator=(const Storage<T>& other)
 	{
 		if (&other != this)
 		{
-			mArray = std::move(other.mPointer->mArray);
-
 			mSize = other.mPointer->mSize;
 
-			other.mPointer->mSize = 0;
+			mArray = new T[mSize];
+
+			memcpy(mArray, other.mPointer->mArray, mSize);
 		}
 
 		return *this;
