@@ -21,8 +21,8 @@ namespace lab11
 		Storage<T>& operator=(const Storage<T>& other);
 
 	private:
-		std::unique_ptr<T[]> mArray;
 		size_t mSize;
+		std::unique_ptr<T[]> mArray;
 		Storage<T>* mPointer;
 	};
 
@@ -48,10 +48,12 @@ namespace lab11
 	Storage<T>::Storage(const Storage<T>& other)
 		: mSize(other.mPointer->mSize)
 		, mPointer(this)
+		, mArray(new T[mSize])
 	{
-		mArray = new T[mSize];
-
-		memcpy(mArray, other.mPointer->mArray, mSize);
+		for (unsigned int i = 0; i < mSize; i++)
+		{
+			mArray[i] = other.mArray[i];
+		}
 	}
 
 	template<typename T>
@@ -114,9 +116,12 @@ namespace lab11
 		{
 			mSize = other.mPointer->mSize;
 
-			mArray = new T[mSize];
+			mArray.reset(new T[mSize]);
 
-			memcpy(mArray, other.mPointer->mArray, mSize);
+			for (unsigned int i = 0; i < mSize; i++)
+			{
+				mArray[i] = other.mArray[i];
+			}
 		}
 
 		return *this;
