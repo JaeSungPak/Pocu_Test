@@ -103,7 +103,7 @@ namespace lab11
 			other.mPointer->mSize = 0;
 		}
 
-		return this;
+		return *this;
 	}
 
 	template<typename T>
@@ -118,7 +118,7 @@ namespace lab11
 			other.mPointer->mSize = 0;
 		}
 
-		return this;
+		return *this;
 	}
 	
 }
