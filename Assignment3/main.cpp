@@ -1,5 +1,6 @@
 #include <cassert>
 #include <cmath>
+#include <algorithm>
 
 #include "QueueStack.h"
 #include "SmartStack.h"
@@ -10,6 +11,12 @@ using namespace assignment3;
 
 int main()
 {
+    std::vector<int> a;
+
+    std::sort(a.begin(), a.end(), [](int a, int b) -> bool { return a < b; });
+
+    std::find(a.begin(), a.end(), "");
+
     SmartQueue<int> s;
     s.Enqueue(6);
     s.Enqueue(5);
@@ -29,5 +36,8 @@ int main()
     std::cout << variance << std::endl;
 
     return 0;
+
+
+    
 
 }
